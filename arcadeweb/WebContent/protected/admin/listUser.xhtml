@@ -1,0 +1,161 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Arcade Web - 1.02 - warhjr - 2017</title>
+
+</h:head>
+<h:body style="height: 631px; ">
+
+	<ui:composition template="/protected/admin/template.xhtml">
+
+		<ui:define name="content">
+
+
+
+
+			<p:panel id="pnlFormulario" header="Painel de Usuários"
+				styleClass="ocupada" style="width:1000px; background-color: #E7E5D6">
+
+				<h:form enctype="multipart/form-data" id="formEdit"
+					style="width:800px" prependId="false">
+
+					<p:panelGrid columns="4">
+
+
+						<h:outputText value="Usuário:" style="font-weight: bold" />
+						<p:inputText value="#{UsuarioMBean.nomeDoUser}"
+							style="width: 378px;">
+						</p:inputText>
+						<p:commandButton value="Pesquisar Usuário"
+							action="#{UsuarioMBean.pesquisaPorNome}" update="formlist" />
+
+
+
+					</p:panelGrid>
+				</h:form>
+
+				<h:form id="formlist" enctype="multipart/form-data"
+					style="width:1000px" prependId="false">
+
+					<p:dataTable var="item" value="#{UsuarioMBean.listarUsuarios}"
+						lazy="true" border="1" cellpadding="2" cellspacing="0"
+						paginator="true" paginatorPosition="bottom" rows="3" id="tbl"
+						style="width:800px">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Código" />
+							</f:facet>
+							<h:outputText value="#{item.idusuario}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nome Usuario" />
+							</f:facet>
+							<h:outputText value="#{item.nomeusuario}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="login" />
+							</f:facet>
+							<h:outputText value="#{item.loginusuario}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Data de Cadastro" />
+							</f:facet>
+							<h:outputText value="#{item.datacadastro}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Selecionar" />
+							</f:facet>
+							<h:commandLink>
+								<h:outputText value="Selecionar" />
+								<f:setPropertyActionListener value="#{item}"
+									target="#{UsuarioMBean.usuario}" />
+							</h:commandLink>
+						</p:column>
+
+					</p:dataTable>
+
+					<p:commandButton value="Novo" action="novoUsuario"
+						resetValues="true"></p:commandButton>
+
+				</h:form>
+
+			</p:panel>
+			<br />
+
+				<p:panel id="pnlFormularioEdit" rendered="#{UsuarioMBean.habilitarFormulario != false}" header="Alterar Usuários"
+					styleClass="ocupada" style="width:1000px; background-color: #E7E5D6;">
+					<h:form id="formEditAtual" enctype="multipart/form-data"
+						style="width:1000px" prependId="false">
+
+						<p:messages autoUpdate="true" closable="true" />
+						<h:panelGrid columns="2">
+							<h:outputText value="Nome Usuário:" />
+							<p:inputText required="true"
+								value="#{UsuarioMBean.usuario.nomeusuario}"
+								style=" width : 416px;" />
+							<h:outputText value="Login Usuário:" />
+							<p:inputText value="#{UsuarioMBean.usuario.loginusuario}"
+								style=" width : 215px;" />
+							<h:outputText value="Senha Usuário:" />
+							<p:password redisplay="true"
+								value="#{UsuarioMBean.usuario.senhausuario}"
+								style=" width : 196px;" required="true">
+
+							</p:password>
+
+							<h:outputText value="Data de Nascimento Usuário:" />
+							<p:calendar value="#{UsuarioMBean.usuario.datanascimento}"
+								pattern="dd/MM/yyyy" locale="pt_BR" navigator="true"
+								yearRange="-111:+39" library="js" name="locale.js">
+							</p:calendar>
+
+							<h:outputText value="Data de Cadastro Usuário:" />
+							<p:calendar value="#{UsuarioMBean.usuario.datacadastro}"
+								pattern="dd/MM/yyyy" locale="pt_BR" navigator="true"
+								yearRange="-111:+39" library="js" name="locale.js">
+							</p:calendar>
+
+							<h:outputText value="Tipo Usuário:" />
+							<p:selectBooleanCheckbox value="#{UsuarioMBean.usuario.tipo}" />
+
+
+							<h:outputText value="Thema:" />
+							<p:selectOneMenu value="#{UsuarioMBean.usuario.thema}"
+								converter="ThemaConverter" required="true">
+								<f:selectItem itemLabel="" itemValue="" />
+								<f:selectItems value="#{ThemaMBean.themas}" />
+							</p:selectOneMenu>
+
+
+						</h:panelGrid>
+						<p:commandButton value="Editar Salvar"
+							action="#{UsuarioMBean.Editar}" update="formEditAtual"></p:commandButton>
+						<p:commandButton value="Excluir Dados"
+							action="#{UsuarioMBean.removeUsuario}"
+							onclick="if (!confirm('Confirma a exclusão da Pessoa: #{UsuarioMBean.usuario.nomeusuario}?')) return false;"></p:commandButton>
+						<p:commandButton value="Limpar Dados" resetValues="true"
+							action="#{UsuarioMBean.novo()}"></p:commandButton>
+					</h:form>
+				</p:panel>
+	
+			<p:separator />
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

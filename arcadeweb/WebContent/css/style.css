@@ -1,0 +1,69 @@
+/*
+  Design by : Mahmoud Abd Alkarim
+*/
+
+.login
+{
+	width:350px;
+	height:200px;
+	background:#39438F;
+	margin:25px auto;
+	padding:0;
+	overflow:hidden;	
+	border-radius:10px 100px 10px 100px;
+}
+.login form
+{
+	margin:7% 0 0 12%;
+	padding:0;	
+}
+.login form .username
+{
+	padding:7px 27px 7px 35px;
+	margin:20px 0 0 30px;
+	border:0;
+	border-radius:3px;
+  background:#FFF url(http://www5.0zz0.com/2014/08/22/12/244079595.png) no-repeat left;
+  outline:0
+}
+.login form .password
+{
+	padding:7px 27px 7px 35px;
+	margin:10px 0 0 30px;
+	border:0;
+	border-radius:3px;
+  background:#FFF url(http://icons.iconarchive.com/icons/icons8/ios7/24/User-Interface-Password-icon.png) no-repeat left;
+ outline:0
+}
+.login form .submit
+{
+	width:90px;
+	height:35px;
+	margin:10px 0 0 30px;	
+	border:0;
+	border-radius:3px;
+	background:#E25757;
+	color:#FFF;
+  cursor:pointer
+}
+.login form .submit:hover
+{
+	background:#C23636;
+	color:#FFF;
+}
+.login form .signup
+{
+	width:85px;
+	height:35px;
+	margin:10px 0 0 0;
+	border:0;
+	border-radius:3px;
+	background:#B3C43D;
+	color:#FFF; 
+  cursor:pointer
+}
+.login form .signup:hover
+{
+	background:#90A30E;
+	color:#FFF;
+}

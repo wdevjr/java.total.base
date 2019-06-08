@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta charset="UTF-8" />
+
+	<title>Acarde Web - warhjr</title>
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.requestContextPath}/csss/style.css"
+		media="screen" />
+	<script type="text/javascript" src="../js/modernizr.js">
+	</script>
+	<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="msgs" showDetail="true" closable="true" />
+		<h:panelGrid columns="2">
+			<h:outputText class="label" value="Login:" />
+			<h:inputText value="#{UsuarioMBean.usuario.loginusuario}"
+				placeholder="login" class="email" required="true"
+				style=" width : 220px;" />
+
+		</h:panelGrid>
+
+		<h:panelGrid columns="2">
+			<h:outputText class="label" value="Senha:" />
+			<h:inputSecret value="#{UsuarioMBean.usuario.senhausuario}"
+				name="emailaddress" placeholder="senha" class="email" type="email"
+				required="true" style=" width : 220px;" />
+
+		</h:panelGrid>
+
+
+		<h:commandButton action="#{UsuarioMBean.login}" name="submit"
+			class="btn" type="submit" value="Send" />
+
+	</h:form>
+
+
+</h:body>
+</html>

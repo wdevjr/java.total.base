@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<script src="resources/js/locale-primefaces.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Arcade Web - 1.02 - warhjr - 2017</title>
+
+</h:head>
+<h:body>
+	<ui:composition template="/protected/admin/template.xhtml">
+
+		<ui:define name="content">
+			<p:panel id="pnlFormulario" header="Cadastro de Novos Usuários"
+				styleClass="ocupada">
+				<p:messages autoUpdate="true" closable="true"/>
+				<h:form id="formNew" enctype="multipart/form-data" style="width:1000px"
+					prependId="false">
+					<h:panelGrid columns="2">
+						<h:outputText value="Nome Usuário:" />
+ 
+                         <p:inputText value="#{UsuarioMBean.usuario.nomeusuario}"   
+						    requiredMessage="Precisa Encontrar um Nome de Usuário" required="true" style=" width : 416px;" />
+						<h:outputText value="Login Usuário:" />
+						<p:inputText value="#{UsuarioMBean.usuario.loginusuario}"
+							style=" width : 215px;" required="true"/>
+						<h:outputText value="Senha Usuário:" />
+						<p:password redisplay="true" value="#{UsuarioMBean.usuario.senhausuario}" required="true" style=" width : 196px;">
+						
+						</p:password>
+
+						<h:outputText value="Data de Nascimento Usuário:" />
+						<p:calendar value="#{UsuarioMBean.usuario.datanascimento}"
+							pattern="dd/MM/yyyy" locale="pt_BR" navigator="true" yearRange="-111:+39" library="js" name="locale.js" required="true">
+						</p:calendar>
+
+						<h:outputText value="Data de Cadastro Usuário:" />
+						<p:calendar value="#{UsuarioMBean.usuario.datacadastro}"
+							pattern="dd/MM/yyyy" required="true" locale="pt_BR" navigator="true" yearRange="-111:+39" library="js" name="locale.js">
+						</p:calendar>
+
+						<h:outputText value="Tipo Usuário:" />
+						<p:selectBooleanCheckbox value="#{UsuarioMBean.usuario.tipo}" />
+
+
+						<h:outputText value="Thema:" />
+						<p:selectOneMenu value="#{UsuarioMBean.usuario.thema}"
+							converter="ThemaConverter" required="true">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems value="#{ThemaMBean.themas}" />
+						</p:selectOneMenu>
+
+
+					</h:panelGrid>
+					<br />
+					<p:commandButton value="Novo"  action="#{UsuarioMBean.novo}" update="formNew"></p:commandButton>
+					<p:commandButton value="Salvar" action="#{UsuarioMBean.Salvando()}" ></p:commandButton>
+					
+				</h:form>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
