@@ -1,6 +1,7 @@
 package com.algaworks.financeiro.controller;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 import javax.enterprise.context.SessionScoped;
