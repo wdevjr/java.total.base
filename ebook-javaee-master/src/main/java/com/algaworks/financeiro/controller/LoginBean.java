@@ -10,6 +10,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+
+
 @Named
 @RequestScoped
 public class LoginBean {
