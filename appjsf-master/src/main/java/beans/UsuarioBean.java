@@ -6,7 +6,6 @@
 package beans;
 
 import controladores.UsuarioControlador;
-
 import entidades.Usuario;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -117,7 +116,7 @@ public class UsuarioBean implements Serializable {
         String hql = "SELECT vo FROM Usuario vo"
                 + " WHERE ("+this.colunaSelecionada + ")"
                 + " LIKE '%" + this.texto.toUpperCase() + "%' "
-                //+ " AND vo.nivel='ADMINISTRADOR'"
+                + " AND vo.nivel='SUPER'"
                 + " ORDER BY vo." + this.colunaSelecionada + " ASC";
 
         this.usuarios = new UsuarioControlador().listar(hql);
@@ -140,9 +139,8 @@ public class UsuarioBean implements Serializable {
         this.revisoes = new ArrayList<>();
         this.usuarioSelecionado = new Usuario();
         this.usuarios = new ArrayList<>();
-        String hql1 = "SELECT vo FROM Usuario vo WHERE vo.nivel='SUPER'";
-        String hql2 = "SELECT vo FROM Usuario vo";
-        this.usuarios = new UsuarioControlador().listar(hql2);
+        String hql = "SELECT vo FROM Usuario vo WHERE vo.nivel='SUPER'";
+        this.usuarios = new UsuarioControlador().listar(hql);
     }
 
     public void salvar() {

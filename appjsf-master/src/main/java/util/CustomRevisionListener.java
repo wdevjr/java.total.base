@@ -6,7 +6,6 @@
 package util;
 
 import entidades.Revisao;
-
 import org.hibernate.envers.RevisionListener;
 
 /**

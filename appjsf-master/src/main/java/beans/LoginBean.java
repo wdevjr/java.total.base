@@ -5,10 +5,11 @@
  */
 package beans;
 
+import controladores.UsuarioControlador;
+import entidades.Nivel;
+import entidades.Usuario;
 import java.io.Serializable;
-
 import java.util.Properties;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -20,9 +21,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-import controladores.UsuarioControlador;
-import entidades.Usuario;
 import util.Util;
 
 /**
