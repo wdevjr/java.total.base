@@ -1,0 +1,24 @@
+{
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "outline": {
+      
+    },
+    "angular": {
+      
+    }
+  },
+  "plugins": {
+    "guess-types": {
+      
+    }
+  },
+  "libs": [
+    "browser"
+  ]
+}
