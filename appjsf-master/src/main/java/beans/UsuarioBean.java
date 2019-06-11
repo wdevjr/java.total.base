@@ -6,6 +6,7 @@
 package beans;
 
 import controladores.UsuarioControlador;
+
 import entidades.Usuario;
 import java.io.File;
 import java.io.FileOutputStream;
