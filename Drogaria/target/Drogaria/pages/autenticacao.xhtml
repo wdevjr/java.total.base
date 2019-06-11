@@ -15,10 +15,10 @@
 		resizable="false" modal="true" visible="true">
 		<h:form>
 			<h:panelGrid columns="2">
-				<p:outputLabel for="cpf" value="CPF:" />
-				<p:inputMask id="cpf" mask="999.999.999-99" size="20"
-					required="true" requiredMessage="O campo CPF é obrigatório"
-					value="#{autenticacaoBean.usuario.pessoa.cpf}" />
+				<p:outputLabel for="email" value="email:" />
+				<p:inputText id="email" 
+					required="true" requiredMessage="O campo email é obrigatório"
+					value="#{autenticacaoBean.usuario.pessoa.email}" />
 
 				<p:outputLabel for="senha" value="Senha:" />
 				<p:password id="senha" maxlength="8" size="20" required="true"
