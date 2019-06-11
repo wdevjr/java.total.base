@@ -1,6 +1,7 @@
 package com.algaworks.financeiro.util;
 
 import javax.enterprise.context.ApplicationScoped;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
