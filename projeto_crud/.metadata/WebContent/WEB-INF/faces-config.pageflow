@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14588220638090" configfile="/Projeto_Crud/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1743" id="pf14588221085971" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf14588221085972 pf14588221085973 pf14588221085974 pf14588221085975 pf145939564995430 pf145939564995431 pf145939564995432 pf145939564995433 pf145939564995434 pf145939564995435 pf145939564995436 pf145939564995437 pf145939564995438 pf145939564995439 pf145939564995440 pf145939564995441" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="Disciplina/newDisciplina" x="338" y="562" id="pf145882210859718" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf145882210859719" inlinks="pf14588221085972" path="/Disciplina/newDisciplina.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Disciplina/editDisciplina" x="338" y="946" id="pf145882210859720" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf145882210859721" inlinks="pf14588221085973" path="/Disciplina/editDisciplina.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Disciplina/listDisciplina" x="554" y="951" id="pf145882210859722" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14588221085974 pf145882210859719 pf145882210859721" path="/Disciplina/listDisciplina.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="index" x="432" y="1740" id="pf145882210859723" referenceLink="//@navigationRule.9/@navigationCase.3/@toViewId|" inlinks="pf14588221085975 pf145939564995433 pf145939564995437 pf145939564995441" path="/index.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Pessoa/newPessoa" id="pf145939564995442" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf145939564995443" inlinks="pf145939564995430" path="/Pessoa/newPessoa.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Pessoa/editPessoa" x="180" y="178" id="pf145939564995444" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf145939564995445" inlinks="pf145939564995431" path="/Pessoa/editPessoa.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Pessoa/listPessoa" x="396" y="120" id="pf145939564995446" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf145939564995432 pf145939564995443 pf145939564995445" path="/Pessoa/listPessoa.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Aluno/newAluno" x="32" y="72" id="pf145939564995447" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf145939564995448" inlinks="pf145939564995434" path="/Aluno/newAluno.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Aluno/editAluno" x="60" y="156" id="pf145939564995449" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf145939564995450" inlinks="pf145939564995435" path="/Aluno/editAluno.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Aluno/listAluno" x="264" y="36" id="pf145939564995451" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf145939564995436 pf145939564995448 pf145939564995450" path="/Aluno/listAluno.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Curso/newCurso" x="101" y="48" id="pf145939564995452" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf145939564995453" inlinks="pf145939564995438" path="/Curso/newCurso.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Curso/editCurso" x="504" y="144" id="pf145939564995454" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf145939564995455" inlinks="pf145939564995439" path="/Curso/editCurso.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Curso/listCurso" x="696" y="48" id="pf145939564995556" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf145939564995440 pf145939564995453 pf145939564995455" path="/Curso/listCurso.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Pessoa/jan3" x="888" y="48" id="pf145939639036063" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" path="/Pessoa/jan3.jsp"/>
+  <links id="pf14588221085972" target="pf145882210859718" source="pf14588221085971" outcome="newDisciplina" redirect="true"/>
+  <links id="pf14588221085973" target="pf145882210859720" source="pf14588221085971" outcome="editDisciplina"/>
+  <links id="pf14588221085974" target="pf145882210859722" source="pf14588221085971" outcome="listDisciplina" redirect="true"/>
+  <links id="pf14588221085975" target="pf145882210859723" source="pf14588221085971" outcome="index" redirect="true"/>
+  <links id="pf145882210859719" target="pf145882210859722" source="pf145882210859718" outcome="newSuccess" redirect="true"/>
+  <links id="pf145882210859721" target="pf145882210859722" source="pf145882210859720" outcome="editSuccess" redirect="true"/>
+  <links id="pf145939564995430" target="pf145939564995442" source="pf14588221085971" outcome="newPessoa" redirect="true"/>
+  <links id="pf145939564995431" target="pf145939564995444" source="pf14588221085971" outcome="findPessoa"/>
+  <links id="pf145939564995432" target="pf145939564995446" source="pf14588221085971" outcome="listPessoa" redirect="true"/>
+  <links id="pf145939564995433" target="pf145882210859723" source="pf14588221085971" outcome="index" redirect="true"/>
+  <links id="pf145939564995443" target="pf145939564995446" source="pf145939564995442" outcome="newSuccess" redirect="true"/>
+  <links id="pf145939564995445" target="pf145939564995446" source="pf145939564995444" outcome="editSuccess" redirect="true"/>
+  <links id="pf145939564995434" target="pf145939564995447" source="pf14588221085971" outcome="newAluno" redirect="true"/>
+  <links id="pf145939564995435" target="pf145939564995449" source="pf14588221085971" outcome="editAluno"/>
+  <links id="pf145939564995436" target="pf145939564995451" source="pf14588221085971" outcome="listAluno" redirect="true"/>
+  <links id="pf145939564995437" target="pf145882210859723" source="pf14588221085971" outcome="index" redirect="true"/>
+  <links id="pf145939564995448" target="pf145939564995451" source="pf145939564995447" outcome="newSuccess" redirect="true"/>
+  <links id="pf145939564995450" target="pf145939564995451" source="pf145939564995449" outcome="editSuccess" redirect="true"/>
+  <links id="pf145939564995438" target="pf145939564995452" source="pf14588221085971" outcome="newCurso" redirect="true"/>
+  <links id="pf145939564995439" target="pf145939564995454" source="pf14588221085971" outcome="editCurso"/>
+  <links id="pf145939564995440" target="pf145939564995556" source="pf14588221085971" outcome="listCurso" redirect="true"/>
+  <links id="pf145939564995441" target="pf145882210859723" source="pf14588221085971" outcome="index" redirect="true"/>
+  <links id="pf145939564995453" target="pf145939564995556" source="pf145939564995452" outcome="newSuccess" redirect="true"/>
+  <links id="pf145939564995455" target="pf145939564995556" source="pf145939564995454" outcome="editSuccess" redirect="true"/>
+</pageflow:Pageflow>

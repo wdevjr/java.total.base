@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+
+    <converter>
+      <converter-id>CursoConverter</converter-id>
+      <converter-class>converters.CursoConverter</converter-class>
+    </converter>
+        <converter>
+      <converter-id>CursoConverterList</converter-id>
+      <converter-class>converters.CursoConverterList</converter-class>
+    </converter>
+   <converter>
+      <converter-id>PessoaConverter</converter-id>
+      <converter-class>converters.PessoaConverter</converter-class>
+    </converter>
+   <managed-bean>
+   	<managed-bean-name>cidadeManagedBean</managed-bean-name>
+   	<managed-bean-class>beansgerenciados.CidadeManagedBean</managed-bean-class>
+   	<managed-bean-scope>session</managed-bean-scope>
+   </managed-bean>
+
+<navigation-rule>
+    <from-view-id>*</from-view-id>
+    <navigation-case>
+        <from-outcome>newDisciplina</from-outcome>
+        <to-view-id>/Disciplina/newDisciplina.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>editDisciplina</from-outcome>
+        <to-view-id>/Disciplina/editDisciplina.jsp</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>listDisciplina</from-outcome>
+        <to-view-id>/Disciplina/listDisciplina.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>index</from-outcome>
+        <to-view-id>/index.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Disciplina/newDisciplina.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>newSuccess</from-outcome>
+        <to-view-id>/Disciplina/listDisciplina.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Disciplina/editDisciplina.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>editSuccess</from-outcome>
+        <to-view-id>/Disciplina/listDisciplina.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>*</from-view-id>
+    <navigation-case>
+        <from-outcome>newPessoa</from-outcome>
+        <to-view-id>/Pessoa/newPessoa.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>findPessoa</from-outcome>
+        <to-view-id>/Pessoa/editPessoa.jsp</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>listPessoa</from-outcome>
+        <to-view-id>/Pessoa/listPessoa.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>index</from-outcome>
+        <to-view-id>/index.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Pessoa/newPessoa.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>newSuccess</from-outcome>
+        <to-view-id>/Pessoa/listPessoa.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Pessoa/editPessoa.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>editSuccess</from-outcome>
+        <to-view-id>/Pessoa/listPessoa.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>*</from-view-id>
+    <navigation-case>
+        <from-outcome>newAluno</from-outcome>
+        <to-view-id>/Aluno/newAluno.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>editAluno</from-outcome>
+        <to-view-id>/Aluno/editAluno.jsp</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>listAluno</from-outcome>
+        <to-view-id>/Aluno/listAluno.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>index</from-outcome>
+        <to-view-id>/index.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Aluno/newAluno.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>newSuccess</from-outcome>
+        <to-view-id>/Aluno/listAluno.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Aluno/editAluno.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>editSuccess</from-outcome>
+        <to-view-id>/Aluno/listAluno.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>*</from-view-id>
+    <navigation-case>
+        <from-outcome>newCurso</from-outcome>
+        <to-view-id>/Curso/newCurso.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>editCurso</from-outcome>
+        <to-view-id>/Curso/editCurso.jsp</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>listCurso</from-outcome>
+        <to-view-id>/Curso/listCurso.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>index</from-outcome>
+        <to-view-id>/index.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Curso/newCurso.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>newSuccess</from-outcome>
+        <to-view-id>/Curso/listCurso.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/Curso/editCurso.jsp</from-view-id>
+    <navigation-case>
+        <from-outcome>editSuccess</from-outcome>
+        <to-view-id>/Curso/listCurso.jsp</to-view-id>
+		<redirect/>
+    </navigation-case>
+</navigation-rule>
+
+
+</faces-config>
+
