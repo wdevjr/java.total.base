@@ -1,18 +1,12 @@
 package br.com.warhjr.controller;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import br.com.warhjr.dao.ArquivoDAO;
 import br.com.warhjr.dao.UsuarioDAO;
 import br.com.warhjr.model.Usuario;
 
