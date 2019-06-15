@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project AppAplicationJava">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}/WebContent"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/TreinaProjeto.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.workspace}/AppAplicationJava/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/AppAplicationJava/lib/log4j-1.2.16.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/AppAplicationJava/lib/postgresql-9.4.1212.jar"/>
+        </jar>
+    </target>
+</project>

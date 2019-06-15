@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<script language="Javascript">
+var javawsInstalled = 0;
+isIE = "false";
+if (navigator.mimeTypes && navigator.mimeTypes.length) {
+x = navigator.mimeTypes['application/x-java-jnlp-file'];
+if (x) javawsInstalled = 1;
+} else {
+isIE = "true";
+}
+function insertLink(url, name) {
+if (javawsInstalled) {
+document.write("<a href=" + url + ">" + name + "</a>");
+} else {
+document.write("Você precisa instalar o Java");
+}
+}
+</script>
+<body>
+	<br>
+		<p align="center">
+			<font face="tahoma" size="4"><b>Teste com warhjr Java Web Start</b>
+			</h1>
+				<p align="center">
+					<img src="imagens/animated.gif"/> 
+					
+				</p>
+				<p align="center">
+				<a href="jnlpAgenda.jnlp">Clique Aqui</a>
+				</br>
+					
+                     </p>
+                     </font>
+
+
+				
+
+</body>
+</html>
