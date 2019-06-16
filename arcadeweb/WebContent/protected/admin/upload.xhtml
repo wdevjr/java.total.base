@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<style type="text/css">
+.ui-datatable-odd {
+	background: none repeat scroll 0 0 #ffffff;
+}
+
+.ui-datepicker {
+	font-size: 70% !important;
+}
+</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Arcade Web - 1.02 - warhjr - 2017</title>
+</h:head>
+<h:body style="height: 557px; ">
+	<ui:composition template="/protected/admin/template.xhtml">
+
+		<ui:define name="content">
+			<p:layout fullPage="true" style="background-color: red;">
+
+				<p:panel id="pnlFormulario" styleClass="ocupada"
+					header="Cadastro de Arquivos">
+					
+						<p:messages severity="info" autoUpdate="true" escape="false" showDetail="true"
+							closable="true" />
+							
+					<h:form enctype="multipart/form-data" style="width:700px"
+						prependId="false" id="form">
+						
+						<div align="right">
+							<p:ajaxStatus>
+								<f:facet name="start">
+
+									<h:graphicImage library="imagens" name="carregando.gif"
+										style="width : 36px; height : 37px;" />
+
+								</f:facet>
+								<f:facet name="complete">
+									<h:outputText value="" />
+								</f:facet>
+							</p:ajaxStatus>
+						</div>
+
+						<h:panelGrid columns="1" style=" width : 557px;">
+							<p:fileUpload fileUploadListener="#{arquivoManaged.Upload}"
+								widgetVar="fileupload" mode="advanced" showButtons="true">
+							</p:fileUpload>
+						</h:panelGrid>
+
+
+						<br></br>
+
+
+
+						<p:panelGrid columns="1" style=" width : 557px;">
+							<h:outputLabel value="Descrição Inserir !" />
+							<p:inputTextarea required="true"
+								value="#{arquivoManaged.descarquivo.descricaoarquivos}"
+								requiredMessage="Descrição é obrigatória."
+								style="width : 250px; height : 87px;">
+
+							</p:inputTextarea>
+
+							<p:commandButton value="Salvar descrição em Conjunto"
+								action="#{arquivoManaged.EditInserir()}" />
+						</p:panelGrid>
+					</h:form>
+
+
+
+				</p:panel>
+
+			</p:layout>
+			<p:panel styleClass="ocupada" header="Edição ...">
+				<p:separator></p:separator>
+				<h:form enctype="multipart/form-data" style="width:700px"
+					prependId="false">
+					<!-- <p:messages autoUpdate="true" closable="true" /> -->
+					<h:panelGrid columns="3">
+						<p:inputText value="#{arquivoManaged.arquivo.idarquivos}"
+							disabled="true" />
+						<p:inputTextarea value="#{arquivoManaged.arquivo.nomearquivos}"
+							style="width: auto;" disabled="true" />
+						<p:inputText value="#{arquivoManaged.arquivo.usuarionome}"
+							size="45" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="1" style=" width : 600px;">
+						<h:outputLabel value="Descrição Editar !" />
+
+						<p:inputTextarea required="true"
+							value="#{arquivoManaged.arquivo.descricaoarquivos}"
+							requiredMessage="Descrição é obrigatória."
+							style="width : 250px; height : 87px;">
+
+						</p:inputTextarea>
+
+						<p:commandButton value="Editar descrição "
+							action="#{arquivoManaged.EditEdit()}" update="formLista" />
+					</h:panelGrid>
+
+				</h:form>
+				<p:ajaxStatus styleClass="ajax-status">
+					<f:facet name="start">
+
+						<h:graphicImage library="imagens" name="carregando.gif"
+							style="width : 37px; height : 34px;" />
+
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+				<h:form id="formPesquisa" enctype="multipart/form-data"
+					prependId="false">
+					<p:panelGrid columns="4">
+						<h:outputText value="Data de Cadastro Inicial:" />
+						<p:calendar value="#{arquivoManaged.dInicial}"
+							pattern="dd/MM/yyyy" locale="pt_BR" navigator="true"
+							yearRange="-111:+39" library="js" name="locale.js"
+							style="float: left">
+						</p:calendar>
+
+						<h:outputText value="Data de Cadastro Final:" />
+						<p:calendar value="#{arquivoManaged.dFinal}" pattern="dd/MM/yyyy"
+							locale="pt_BR" navigator="true" yearRange="-111:+39" library="js"
+							name="locale.js">
+						</p:calendar>
+
+
+
+
+						<h:outputText value="Nome do Arquivo:" style="font-weight: bold" />
+						<p:inputText value="#{arquivoManaged.nomeUsuario}"
+							style="width: 378px;">
+						</p:inputText>
+						<p:commandButton value="Pesquisar: "
+							action="#{arquivoManaged.pesquisaDataouNome}" update="formLista" />
+					</p:panelGrid>
+				</h:form>
+
+				<h:form id="formLista" enctype="multipart/form-data"
+					prependId="false">
+					<p:dataTable var="file" value="#{arquivoManaged.listararquivos}"
+						lazy="true" border="1" cellpadding="2" cellspacing="0"
+						paginator="true" rows="3" paginatorPosition="bottom" id="tbl"
+						tableStyle="width: auto;">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Código" />
+							</f:facet>
+							<h:outputText value="#{file.idarquivos}" />
+						</p:column>
+						<p:column style="min-width: 100px;">
+							<f:facet name="header">
+								<h:outputText value="Descrição" />
+							</f:facet>
+							<h:outputText value="#{file.descricaoarquivos}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nome Arquivo" />
+							</f:facet>
+							<h:outputText value="#{file.nomearquivos}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nome Proprietario" />
+							</f:facet>
+							<h:outputText value="#{file.usuarionome}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Data de Cadastro" />
+							</f:facet>
+							<h:outputText value="#{file.datacadastro}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Baixar" />
+							</f:facet>
+							<div align="center">
+								<p:commandLink value="Download"
+									action="#{arquivoManaged.downloadFile()}" ajax="false">
+									<f:setPropertyActionListener target="#{arquivoManaged.arquivo}"
+										value="#{file}" />
+								</p:commandLink>
+							</div>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Selecionar" />
+							</f:facet>
+							<div align="center">
+								<p:commandLink ajax="false">
+									<h:outputText value="Selecionar" />
+									<f:setPropertyActionListener value="#{file}"
+										target="#{arquivoManaged.arquivo}" />
+								</p:commandLink>
+							</div>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Excluir" />
+							</f:facet>
+							<div align="center">
+								<p:commandButton title="Excluir"
+									action="#{arquivoManaged.RemoverArquivo()}"
+									onclick="if (!confirm('Confirma a exclusão do Arquivo: #{file.nomearquivos}?')) return false;"
+									update="formLista">
+									<f:setPropertyActionListener value="#{file}"
+										target="#{arquivoManaged.arquivo}" />
+								</p:commandButton>
+							</div>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</p:panel>
+			<br />
+
+
+
+
+
+		</ui:define>
+
+
+	</ui:composition>
+
+</h:body>
+</html>
