@@ -325,7 +325,7 @@ public class CadastroUsuario extends JFrame {
 				} else if (textFieldLogin.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "O nome de login deve ser informado!", "Atenção!",
 							JOptionPane.INFORMATION_MESSAGE);
-				} else if (textFieldSenha.getText().length() == 0) {
+				} else if (textFieldSenha.getPassword().toString().length() == 0) {
 					JOptionPane.showMessageDialog(null, "A Senha também deve ser informada!", "Atenção!",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
