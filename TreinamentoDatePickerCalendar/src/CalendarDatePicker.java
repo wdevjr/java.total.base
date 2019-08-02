@@ -25,7 +25,7 @@ import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CanlendarDatePicker extends JDialog {
+public class CalendarDatePicker extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -37,7 +37,7 @@ public class CanlendarDatePicker extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			CanlendarDatePicker dialog = new CanlendarDatePicker();
+			CalendarDatePicker dialog = new CalendarDatePicker();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 			dialog.setLocationRelativeTo(null);
@@ -49,7 +49,7 @@ public class CanlendarDatePicker extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CanlendarDatePicker() {
+	public CalendarDatePicker() {
 		setBounds(100, 100, 607, 393);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
