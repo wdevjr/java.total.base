@@ -25,11 +25,14 @@ import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class CalendarDatePicker extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
+	@SuppressWarnings("unused")
 	private JDatePicker datePicker;
+	@SuppressWarnings("unused")
 	private Component datePanelPlacar;
 
 	/**
