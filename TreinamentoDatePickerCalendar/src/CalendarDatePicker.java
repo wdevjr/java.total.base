@@ -1,29 +1,31 @@
 
-
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.awt.event.ActionEvent;
-import org.jdatepicker.JDatePicker;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import org.jdatepicker.JDatePanel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
+import org.jdatepicker.JDatePanel;
+import org.jdatepicker.JDatePicker;
 
 @SuppressWarnings("serial")
 public class CalendarDatePicker extends JDialog {
@@ -34,6 +36,10 @@ public class CalendarDatePicker extends JDialog {
 	private JDatePicker datePicker;
 	@SuppressWarnings("unused")
 	private Component datePanelPlacar;
+	
+	private TimeZone tz;
+	
+	private Calendar ca;
 
 	/**
 	 * Launch the application.
@@ -66,11 +72,26 @@ public class CalendarDatePicker extends JDialog {
 		LabelData.setForeground(Color.BLUE);
 
 		JDatePicker datePicker_1 = new JDatePicker();
-
+		JDatePanel datePanelMostra = new JDatePanel();
 		JCheckBox CheckBoxDate = new JCheckBox("Habilitar DatePanel");
 		JPanel panelDatePlacar = new JPanel();
 		panelDatePlacar.setVisible(false);
-		JDatePanel datePanelMostra = new JDatePanel();
+     
+       
+		datePanelMostra.setShowYearButtons(false);
+		datePanelMostra.setShowYearButtons(true);
+		tz = TimeZone.getTimeZone("America/Sao_Paulo");
+		//TimeZone.setDefault(tz);
+		
+		
+		Calendar ca = GregorianCalendar.getInstance(tz);
+
+		ca = GregorianCalendar.getInstance(tz);
+		Date selectedDate = ca.getTime();
+		//datePanelMostra.setLocation();
+	
+
+		
 		CheckBoxDate.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -83,16 +104,24 @@ public class CalendarDatePicker extends JDialog {
 			}
 		});
 		btnTransferir.addActionListener(new ActionListener() {
+			 
+
 			public void actionPerformed(ActionEvent e) {
 
 				if (panelDatePlacar.isVisible() == false) {
 					if (datePicker_1.getFormattedTextField().getText().length() > 0) {
+						Object v = datePicker_1.getFormattedTextField().getValue();
+						Calendar value;
+						Calendar cal = Calendar.getInstance();
+						cal.setTime((Date) v);
+						value = cal.getInstance();
+
 						SimpleDateFormat dns = new SimpleDateFormat("dd/MM/yyyy");
 						Calendar selectedValue = (Calendar) datePicker_1.getModel().getValue();
 						Date selectedDate = selectedValue.getTime();
 						String dataAtual = dns.format(selectedDate);
 						LabelData.setText(dataAtual);
-					}
+
 					} else {
 						
 							SimpleDateFormat dns = new SimpleDateFormat("dd/MM/yyyy");
@@ -103,7 +132,9 @@ public class CalendarDatePicker extends JDialog {
 						}
 					
 				
+				}
 			}
+			
 		});
 
 	GroupLayout gl_contentPanel = new GroupLayout(
