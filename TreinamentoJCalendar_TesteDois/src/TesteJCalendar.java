@@ -22,6 +22,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.GridLayout;
+import javax.swing.border.LineBorder;
 
 public class TesteJCalendar extends JFrame {
 
@@ -59,6 +63,10 @@ public class TesteJCalendar extends JFrame {
 		JPanel panel = new JPanel();
 		JLabel LabelJCalendar = new JLabel("");
 		JCalendar calendarPanel = new JCalendar();
+		calendarPanel.getDayChooser().getDayPanel().setBorder(new LineBorder(new Color(0, 0, 255)));
+		GridLayout gridLayout = (GridLayout) calendarPanel.getDayChooser().getDayPanel().getLayout();
+		calendarPanel.getYearChooser().getSpinner().setBackground(SystemColor.info);
+		calendarPanel.getDayChooser().getDayPanel().setBackground(Color.WHITE);
 		calendarPanel.setVisible(false);
 		
 		JButton btnNewButton = new JButton("Transferir");

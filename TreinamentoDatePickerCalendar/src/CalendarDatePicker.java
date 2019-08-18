@@ -76,10 +76,6 @@ public class CalendarDatePicker extends JDialog {
 		JCheckBox CheckBoxDate = new JCheckBox("Habilitar DatePanel");
 		JPanel panelDatePlacar = new JPanel();
 		panelDatePlacar.setVisible(false);
-     
-       
-		datePanelMostra.setShowYearButtons(false);
-		datePanelMostra.setShowYearButtons(true);
 		tz = TimeZone.getTimeZone("America/Sao_Paulo");
 		//TimeZone.setDefault(tz);
 		
@@ -110,12 +106,6 @@ public class CalendarDatePicker extends JDialog {
 
 				if (panelDatePlacar.isVisible() == false) {
 					if (datePicker_1.getFormattedTextField().getText().length() > 0) {
-						Object v = datePicker_1.getFormattedTextField().getValue();
-						Calendar value;
-						Calendar cal = Calendar.getInstance();
-						cal.setTime((Date) v);
-						value = cal.getInstance();
-
 						SimpleDateFormat dns = new SimpleDateFormat("dd/MM/yyyy");
 						Calendar selectedValue = (Calendar) datePicker_1.getModel().getValue();
 						Date selectedDate = selectedValue.getTime();
