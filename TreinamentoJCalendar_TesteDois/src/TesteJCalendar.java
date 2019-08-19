@@ -7,8 +7,13 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import com.jgoodies.looks.windows.WindowsLookAndFeel;
 import com.toedter.calendar.JCalendar;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -57,56 +62,71 @@ public class TesteJCalendar extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JDateChooser dateChooser = new JDateChooser();
-		
+		JCalendar calendarPanel = new JCalendar();
+		calendarPanel.setVisible(false);
+		dateChooser.getCalendarButton().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					UIManager.setLookAndFeel(new WindowsLookAndFeel());
+					SwingUtilities.updateComponentTreeUI(dateChooser);
+					dateChooser.updateUI();
+				} catch (UnsupportedLookAndFeelException e1) {
+
+				}
+			}
+		});
+		dateChooser.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+		});
+
 		JPanel panel = new JPanel();
 		JLabel LabelJCalendar = new JLabel("");
-		JCalendar calendarPanel = new JCalendar();
-		calendarPanel.getDayChooser().getDayPanel().setBorder(new LineBorder(new Color(0, 0, 255)));
-		GridLayout gridLayout = (GridLayout) calendarPanel.getDayChooser().getDayPanel().getLayout();
-		calendarPanel.getYearChooser().getSpinner().setBackground(SystemColor.info);
-		calendarPanel.getDayChooser().getDayPanel().setBackground(Color.WHITE);
-		calendarPanel.setVisible(false);
-		
+
 		JButton btnNewButton = new JButton("Transferir");
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
-				String Campo = null;
+
 				String dataAtual = null;
 				SimpleDateFormat dnsDate = new SimpleDateFormat("dd/MM/yyyy");
 
-			if (calendarPanel.isVisible() == false)
-			    {
-			    	if (dateChooser.getDate() != null)
-			    	{
-			    	dataAtual = dnsDate.format(dateChooser.getDate());
-			    	LabelJCalendar.setText(dataAtual);
-			 
-			    	} else {
-			    		JOptionPane.showMessageDialog(null, "Preencha qualquer um dos campos!");
-			    	}
-			    } else {
-			    	String dataAtualJCalendar = dnsDate.format(calendarPanel.getDate());
-				    LabelJCalendar.setText(dataAtualJCalendar);
-			    }
-			    
-			  }
-			
+				if (calendarPanel.isVisible() == false) {
+					if (dateChooser.getDate() != null) {
+						dataAtual = dnsDate.format(dateChooser.getDate());
+						LabelJCalendar.setText(dataAtual);
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Preencha qualquer um dos campos!");
+					}
+				} else {
+					String dataAtualJCalendar = dnsDate.format(calendarPanel.getDate());
+					LabelJCalendar.setText(dataAtualJCalendar);
+				}
+
+			}
+
 		});
-		
-	
+
 		LabelJCalendar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
- 
-		
+
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Check box JCalendar");
 		chckbxNewCheckBox.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (calendarPanel.isVisible() == false)
-				{
+				try {
+					UIManager.setLookAndFeel(new WindowsLookAndFeel());
+					SwingUtilities.updateComponentTreeUI(calendarPanel);
+					calendarPanel.updateUI();
+				} catch (UnsupportedLookAndFeelException e1) {
+
+				}
+				if (calendarPanel.isVisible() == false) {
 					calendarPanel.setVisible(true);
 				} else {
 					calendarPanel.setVisible(false);
@@ -117,13 +137,17 @@ public class TesteJCalendar extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(72, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap(61, Short.MAX_VALUE)
 							.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton)))
+							.addComponent(btnNewButton)
+							.addGap(30))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(61)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(12)
@@ -131,7 +155,7 @@ public class TesteJCalendar extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(18)
 							.addComponent(LabelJCalendar, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
-					.addGap(79))
+					.addGap(62))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -144,12 +168,12 @@ public class TesteJCalendar extends JFrame {
 							.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(15)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(68)
-							.addComponent(LabelJCalendar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
-					.addGap(66))
+							.addComponent(LabelJCalendar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)))
+					.addGap(58))
 		);
 		
 		
