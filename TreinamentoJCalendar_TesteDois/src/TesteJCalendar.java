@@ -8,6 +8,9 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
+import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.theme.DarkStar;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 import com.toedter.calendar.JCalendar;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -45,6 +48,16 @@ public class TesteJCalendar extends JFrame {
 				try {
 					TesteJCalendar frame = new TesteJCalendar();
 					frame.setVisible(true);
+					//PlasticLookAndFeel.setPlasticTheme(new Green());
+					 try {
+						 UIManager.setLookAndFeel(new Plastic3DLookAndFeel());
+					 } catch (UnsupportedLookAndFeelException ex1) {
+						 ex1.printStackTrace();
+					 
+					 }
+						
+					
+					 
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,32 +73,28 @@ public class TesteJCalendar extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 532, 358);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-
-		JDateChooser dateChooser = new JDateChooser();
-		JCalendar calendarPanel = new JCalendar();
-		calendarPanel.setVisible(false);
-		dateChooser.getCalendarButton().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
+		JDateChooser dataChooser = new JDateChooser();
+		dataChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					UIManager.setLookAndFeel(new WindowsLookAndFeel());
-					SwingUtilities.updateComponentTreeUI(dateChooser);
-					dateChooser.updateUI();
+					SwingUtilities.updateComponentTreeUI(dataChooser);
+					dataChooser.updateUI();
 				} catch (UnsupportedLookAndFeelException e1) {
 
 				}
 			}
 		});
-		dateChooser.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
+		JCalendar calendarPanel = new JCalendar();
+		calendarPanel.getDayChooser().getDayPanel().setBackground(Color.WHITE);
+		calendarPanel.setVisible(false);
 
-			}
-		});
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		JLabel LabelJCalendar = new JLabel("");
 
 		JButton btnNewButton = new JButton("Transferir");
@@ -97,8 +106,8 @@ public class TesteJCalendar extends JFrame {
 				SimpleDateFormat dnsDate = new SimpleDateFormat("dd/MM/yyyy");
 
 				if (calendarPanel.isVisible() == false) {
-					if (dateChooser.getDate() != null) {
-						dataAtual = dnsDate.format(dateChooser.getDate());
+					if (dataChooser.getDate() != null) {
+						dataAtual = dnsDate.format(dataChooser.getDate());
 						LabelJCalendar.setText(dataAtual);
 
 					} else {
@@ -133,19 +142,20 @@ public class TesteJCalendar extends JFrame {
 				}
 			}
 		});
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap(61, Short.MAX_VALUE)
-							.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+					.addGap(61)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(dataChooser, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnNewButton)
 							.addGap(30))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(61)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -162,10 +172,9 @@ public class TesteJCalendar extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(42)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(dataChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(chckbxNewCheckBox)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnNewButton)
-							.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnNewButton))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(68)
