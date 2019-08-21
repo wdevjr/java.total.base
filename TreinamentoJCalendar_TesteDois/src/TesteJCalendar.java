@@ -34,6 +34,7 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class TesteJCalendar extends JFrame {
 
@@ -49,13 +50,13 @@ public class TesteJCalendar extends JFrame {
 					TesteJCalendar frame = new TesteJCalendar();
 					frame.setVisible(true);
 					//PlasticLookAndFeel.setPlasticTheme(new Green());
-					 try {
-						 UIManager.setLookAndFeel(new Plastic3DLookAndFeel());
-					 } catch (UnsupportedLookAndFeelException ex1) {
-						 ex1.printStackTrace();
-					 
-					 }
-						
+//					 try {
+//						 UIManager.setLookAndFeel(new WindowsLookAndFeel());
+//					 } catch (UnsupportedLookAndFeelException ex1) {
+//						 ex1.printStackTrace();
+//					 
+//					 }
+//						
 					
 					 
 					frame.setLocationRelativeTo(null);
@@ -71,21 +72,23 @@ public class TesteJCalendar extends JFrame {
 	 */
 	public TesteJCalendar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 532, 358);
+		setBounds(100, 100, 630, 358);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		JDateChooser dataChooser = new JDateChooser();
+		dataChooser.setBackground(Color.WHITE);
+	
 		dataChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					UIManager.setLookAndFeel(new WindowsLookAndFeel());
-					SwingUtilities.updateComponentTreeUI(dataChooser);
-					dataChooser.updateUI();
-				} catch (UnsupportedLookAndFeelException e1) {
-
-				}
+//				try {
+//					UIManager.setLookAndFeel(new WindowsLookAndFeel());
+//					SwingUtilities.updateComponentTreeUI(dataChooser);
+//					dataChooser.updateUI();
+//				} catch (UnsupportedLookAndFeelException e1) {
+//
+//				}
 			}
 		});
 		JCalendar calendarPanel = new JCalendar();
@@ -94,10 +97,11 @@ public class TesteJCalendar extends JFrame {
 
 
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(245, 245, 220));
 		JLabel LabelJCalendar = new JLabel("");
 
 		JButton btnNewButton = new JButton("Transferir");
+		btnNewButton.setIcon(new ImageIcon(TesteJCalendar.class.getResource("/br/com/warhjr/icon/lupa24x24.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
@@ -144,49 +148,48 @@ public class TesteJCalendar extends JFrame {
 		});
 		
 		
+		panel.add(calendarPanel);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(61)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(dataChooser, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton)
-							.addGap(30))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(12)
+							.addGap(179)
+							.addComponent(dataChooser, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+							.addGap(26)
+							.addComponent(btnNewButton)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(chckbxNewCheckBox))
 						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(133)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(LabelJCalendar, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
-					.addGap(62))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(42)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(dataChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(chckbxNewCheckBox)
-						.addComponent(btnNewButton))
+					.addGap(37)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(dataChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(6))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(chckbxNewCheckBox)
+								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(68)
-							.addComponent(LabelJCalendar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)))
-					.addGap(58))
+							.addGap(54)
+							.addComponent(LabelJCalendar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
+					.addGap(189))
 		);
-		
-		
-		panel.add(calendarPanel);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
