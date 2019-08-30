@@ -132,13 +132,13 @@ public class TesteJCalendar extends JFrame {
 		chckbxNewCheckBox.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					UIManager.setLookAndFeel(new WindowsLookAndFeel());
-					SwingUtilities.updateComponentTreeUI(calendarPanel);
-					calendarPanel.updateUI();
-				} catch (UnsupportedLookAndFeelException e1) {
-
-				}
+//				try {
+//					UIManager.setLookAndFeel(new WindowsLookAndFeel());
+//					SwingUtilities.updateComponentTreeUI(calendarPanel);
+//					calendarPanel.updateUI();
+//				} catch (UnsupportedLookAndFeelException e1) {
+//
+//				}
 				if (calendarPanel.isVisible() == false) {
 					calendarPanel.setVisible(true);
 				} else {

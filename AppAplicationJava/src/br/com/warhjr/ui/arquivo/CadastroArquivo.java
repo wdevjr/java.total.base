@@ -507,6 +507,8 @@ public class CadastroArquivo extends JFrame {
 
 					// progressBar.setIndeterminate(true);
 					// carrega(10, progressBar);
+					
+					Gravar.setBackground(Color.blue);				
 
 					ArquivoController auxSave = new ArquivoController();
 
@@ -569,6 +571,7 @@ public class CadastroArquivo extends JFrame {
 					Alert.setVisible(true);
 					labelText.setVisible(true);
 					labelText.setText("Dados Inseridos com Sucesso!");
+					Gravar.setBackground(new Color(240,240,240));
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"Insira um Arquivo ou Selecione um Proprietário para esse Arquivo!");
