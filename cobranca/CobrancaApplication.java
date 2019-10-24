@@ -1,4 +1,4 @@
-package br.com.newidea;
+package com.algaworks.cobranca;
 
 import java.util.Locale;
 
@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
-
 @SpringBootApplication
 public class CobrancaApplication {
 
@@ -19,19 +18,19 @@ public class CobrancaApplication {
 		SpringApplication.run(CobrancaApplication.class, args);
 	}
 	
-//	@Bean
-//	public LocaleResolver localResolver() {
-//		return new FixedLocaleResolver(new Locale("pt", "BR")); 
-//	}
-//	
-//	@Configuration
-//	public static class MvcConfig extends WebMvcConfigurerAdapter {
-//		
-//		@Override
-//		public void addViewControllers(ViewControllerRegistry registry) {
-//			registry.addRedirectViewController("/", "/titulos");
-//		}
-//		
-//	}
-
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new FixedLocaleResolver(new Locale("pt", "BR"));
+	}
+	
+	@Configuration
+	public static class MvcConfig extends WebMvcConfigurerAdapter {
+		
+		@Override
+		public void addViewControllers(ViewControllerRegistry registry) {
+			registry.addRedirectViewController("/", "/titulos");
+		}
+		
+	}
+	
 }

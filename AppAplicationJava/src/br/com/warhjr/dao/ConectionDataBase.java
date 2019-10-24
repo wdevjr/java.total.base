@@ -13,6 +13,11 @@ public class ConectionDataBase {
 	private static final String DRIVER_CLASS = "net.sourceforge.jtds.jdbc.Driver";
 	private static final String USER = "sa";
 	private static final String PASSWORD = "root";
+	
+//	private static final String URL_POSTGRESQL ="jdbc:postgresql://127.0.0.1:5432/agendaUser";
+//	private static final String DRIVER_CLASS = "org.postgresql.Driver";
+//	private static final String USER = "postgres";
+//	private static final String PASSWORD = "root";
 
 	public static Connection getConnection() {
 		Connection con = null;

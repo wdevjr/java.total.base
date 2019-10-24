@@ -21,7 +21,7 @@ public class PessoaDAO {
 
 		String select = "select UP.idPessoa, UP.COD_ENDERECO, UP.nomepessoa, UP.idade, UP.sexo, ED.endereco, ED.bairro, CI.nomecidade, CI.uf "
 				+ "from Pessoa as UP " + " inner join ENDERECO as ED on (ED.IDEndereco = UP.COD_ENDERECO)"
-				+ " inner join CIDADE as CI on (CI.IDCidade = ED.COD_CIDADE)" + " where UP.nomePessoa like '%"
+				+ " left join CIDADE as CI on (CI.IDCidade = ED.COD_CIDADE)" + " where UP.nomePessoa like '%"
 				+ nomePessoa + "%'" + " order by UP.nomePessoa desc";
 
 		PreparedStatement stmt = auxConection.getConnection().prepareStatement(select);
