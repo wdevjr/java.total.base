@@ -55,7 +55,7 @@ public class ProgressBar extends Thread {
 							.addGap(22)
 							.addComponent(bar, GroupLayout.PREFERRED_SIZE, 470, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(247)
+							.addGap(246)
 							.addComponent(lblNewLabel)))
 					.addContainerGap(50, Short.MAX_VALUE))
 		);
