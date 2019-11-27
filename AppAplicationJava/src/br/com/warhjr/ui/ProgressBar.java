@@ -55,7 +55,7 @@ public class ProgressBar extends Thread {
 							.addGap(22)
 							.addComponent(bar, GroupLayout.PREFERRED_SIZE, 470, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(241)
+							.addGap(247)
 							.addComponent(lblNewLabel)))
 					.addContainerGap(50, Short.MAX_VALUE))
 		);
@@ -66,9 +66,9 @@ public class ProgressBar extends Thread {
 					.addComponent(lblAguardeProcedimentoSendo)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(bar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(lblNewLabel)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		dialog.getContentPane().setLayout(groupLayout);
 		dialog.setVisible(true);		
