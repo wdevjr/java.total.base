@@ -767,8 +767,8 @@ public class CadastroArquivo extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel_1, 0, 0, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_2, 0, 0, Short.MAX_VALUE)
-						.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 778, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 790, Short.MAX_VALUE)
+						.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -776,12 +776,12 @@ public class CadastroArquivo extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 					.addGap(1)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 276, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(22)
 					.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(19, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -851,7 +851,7 @@ public class CadastroArquivo extends JFrame {
 										.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 610, GroupLayout.PREFERRED_SIZE)
 										.addGroup(gl_panel_1.createSequentialGroup()
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(LabelCodigo, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(LabelCodigo, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)))
 									.addGap(14)
 									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnCarregar, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
@@ -875,7 +875,7 @@ public class CadastroArquivo extends JFrame {
 								.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 731, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panelAlerta, GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)))
+							.addComponent(panelAlerta, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
@@ -886,8 +886,9 @@ public class CadastroArquivo extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(LabelCodigo, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
+							.addGap(12)
+							.addComponent(LabelCodigo, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(btnCarregar)
@@ -915,7 +916,7 @@ public class CadastroArquivo extends JFrame {
 						.addComponent(lblNewLabel_4))
 					.addGap(6)
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		
 
@@ -927,16 +928,16 @@ public class CadastroArquivo extends JFrame {
 							.addComponent(Alert_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(labelText_1, GroupLayout.PREFERRED_SIZE, 381, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(353, Short.MAX_VALUE))
+							.addContainerGap(355, Short.MAX_VALUE))
 				);
 				gl_panelAlerta.setVerticalGroup(
 					gl_panelAlerta.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panelAlerta.createSequentialGroup()
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(gl_panelAlerta.createParallelGroup(Alignment.LEADING)
-								.addComponent(labelText_1)
-								.addComponent(Alert_1))
-							.addContainerGap())
+							.addGroup(gl_panelAlerta.createParallelGroup(Alignment.TRAILING)
+								.addComponent(Alert_1)
+								.addComponent(labelText_1))
+							.addGap(5))
 				);
 				panelAlerta.setLayout(gl_panelAlerta);
 				Alert_1.setVisible(false);
