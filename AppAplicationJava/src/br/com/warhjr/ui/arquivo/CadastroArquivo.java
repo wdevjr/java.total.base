@@ -614,6 +614,7 @@ public class CadastroArquivo extends JFrame {
 										}
 									} else {
 										panelAlerta.setVisible(true);
+										labelText_1.setVisible(true);
 										Alert_1.setVisible(true);
 
 									}
@@ -934,10 +935,13 @@ public class CadastroArquivo extends JFrame {
 					gl_panelAlerta.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panelAlerta.createSequentialGroup()
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(gl_panelAlerta.createParallelGroup(Alignment.TRAILING)
-								.addComponent(Alert_1)
-								.addComponent(labelText_1))
-							.addGap(5))
+							.addGroup(gl_panelAlerta.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panelAlerta.createSequentialGroup()
+									.addComponent(Alert_1)
+									.addGap(5))
+								.addGroup(Alignment.TRAILING, gl_panelAlerta.createSequentialGroup()
+									.addComponent(labelText_1)
+									.addContainerGap())))
 				);
 				panelAlerta.setLayout(gl_panelAlerta);
 				Alert_1.setVisible(false);
