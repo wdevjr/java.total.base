@@ -43,10 +43,7 @@ import br.com.warhjr.controller.ArquivoController;
 import br.com.warhjr.dao.ArquivoDAO;
 import br.com.warhjr.dao.UsuarioDAO;
 import br.com.warhjr.model.Arquivo;
-import br.com.warhjr.ui.DialogProgress;
 import br.com.warhjr.ui.ProgressBar;
-
-import javax.swing.JLayeredPane;
 
 public class CadastroArquivo extends JFrame {
 	
@@ -307,7 +304,7 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setExtencao(textFieldexten.getText());
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
-							auxArquivo.setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.getPessoa().setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 							auxArquivo.setData(dataAtual_1.getText());
 
 							Inserir.setEnabled(true);
@@ -363,7 +360,7 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
 							auxArquivo.setData(dataAtual_1.getText());
-							auxArquivo.setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.getPessoa().setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 							Inserir.setEnabled(true);
 							Gravar.setEnabled(false);
@@ -578,7 +575,7 @@ public class CadastroArquivo extends JFrame {
 
 							auxArquivo.setData(dataAtual_1.getText());
 
-							auxArquivo.setCod_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.getPessoa().setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 							try {
 

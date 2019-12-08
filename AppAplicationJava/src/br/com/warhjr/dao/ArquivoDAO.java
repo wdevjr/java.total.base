@@ -52,7 +52,7 @@ public class ArquivoDAO {
 				offset += numRead;
 			}
 			ps.setInt(1, incrementa());
-			ps.setInt(2, arquivo.getCod_pessoa());
+			ps.setInt(2, arquivo.getPessoa().getId_pessoa());
 			ps.setString(3, arquivo.getNomearquivo());
 			ps.setString(4, arquivo.getExtencao());
 			ps.setString(5, arquivo.getTamanho());
@@ -86,7 +86,7 @@ public class ArquivoDAO {
 		}
 
 		statement.setInt(1, incrementa());
-		statement.setInt(2, arquivo.getCod_pessoa());
+		statement.setInt(2, arquivo.getPessoa().getId_pessoa());
 
 		statement.setString(3, arquivo.getNomearquivo());
 		statement.setString(4, arquivo.getExtencao());
@@ -132,7 +132,7 @@ public class ArquivoDAO {
 
 		stmt = ConectionDataBase.getConnection().prepareStatement(update);
 
-		stmt.setInt(1, arquivo.getId_pessoa());
+		stmt.setInt(1, arquivo.getPessoa().getId_pessoa());
 		stmt.setString(2, arquivo.getNomearquivo());
 		stmt.setString(3, arquivo.getExtencao());
 		stmt.setString(4, arquivo.getTamanho());
@@ -154,7 +154,7 @@ public class ArquivoDAO {
 		stmts = conectionAux.getConnection().prepareStatement(updates);
 
 		stmts.setInt(6, arqui.getId());
-		stmts.setInt(1, arqui.getId_pessoa());
+		stmts.setInt(1, arqui.getPessoa().getId_pessoa());
 		stmts.setString(2, arqui.getNomearquivo());
 		stmts.setString(3, arqui.getExtencao());
 		stmts.setString(4, arqui.getTamanho());
@@ -222,8 +222,8 @@ public class ArquivoDAO {
 				Arquivo arquivo = new Arquivo();
 
 				arquivo.setId(rs.getInt(1));
-				arquivo.setId_pessoa(Integer.parseInt(rs.getString(2)));
-				arquivo.setNomePessoa(rs.getString(3));
+				arquivo.getPessoa().setId_pessoa(Integer.parseInt(rs.getString(2)));
+				arquivo.getPessoa().setNomePessoa(rs.getString(3));
 				arquivo.setNomearquivo(rs.getString(4));
 				arquivo.setExtencao(rs.getString(5));
 				arquivo.setTamanho(rs.getString(6));

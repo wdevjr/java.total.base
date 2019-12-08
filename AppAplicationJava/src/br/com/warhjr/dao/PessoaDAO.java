@@ -20,7 +20,8 @@ public class PessoaDAO {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
 		String select = "select UP.idPessoa, UP.COD_ENDERECO, UP.nomepessoa, UP.idade, UP.sexo, ED.endereco, ED.bairro, CI.nomecidade, CI.uf "
-				+ "from Pessoa as UP " + " inner join ENDERECO as ED on (ED.IDEndereco = UP.COD_ENDERECO)"
+				+ "from Pessoa as UP " 
+				+ " left join ENDERECO as ED on (ED.IDEndereco = UP.COD_ENDERECO)"
 				+ " left join CIDADE as CI on (CI.IDCidade = ED.COD_CIDADE)" + " where UP.nomePessoa like '%"
 				+ nomePessoa + "%'" + " order by UP.nomePessoa desc";
 
@@ -34,7 +35,7 @@ public class PessoaDAO {
 				Pessoa pessoa = new Pessoa();
 
 				pessoa.setId_pessoa(rs.getInt("idPessoa"));
-				pessoa.setCod_endereco(rs.getInt("cod_endereco"));
+				pessoa.setId_endereco(rs.getInt("cod_endereco"));
 				pessoa.setNomePessoa(rs.getString("nomePessoa"));
 				pessoa.setIdade(rs.getInt("idade"));
 				pessoa.setSexo(rs.getString("sexo"));
