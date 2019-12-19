@@ -4,7 +4,7 @@
     <!--ANT 1.7 is required                                        -->
     <!--define folder properties-->
     <property name="dir.buildfile" value="."/>
-    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.workspace" value="D:/eclipse-workspace-Atual"/>
     <property name="dir.jarfile" value="C:/Users/warhjr/Desktop"/>
     <target name="create_run_jar">
         <jar destfile="${dir.jarfile}/agendaUser.jar" filesetmanifest="mergewithoutmain">
