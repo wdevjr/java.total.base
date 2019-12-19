@@ -110,7 +110,7 @@ public class BuscaPessoaDialog extends JDialog {
 						while (lstrg.hasNext()) {
 							Pessoa newfocus = lstrg.next();
 
-							objects[0] = newfocus.getId_pessoa();
+							objects[0] = newfocus.getIdPessoa();
 							objects[1] = newfocus.getId_endereco();
 							objects[2] = newfocus.getNomePessoa();
 							objects[3] = newfocus.getIdade();

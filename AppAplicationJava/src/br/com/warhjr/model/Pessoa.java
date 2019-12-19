@@ -2,18 +2,19 @@ package br.com.warhjr.model;
 
 public class Pessoa extends Endereco {
 
-	private Integer id_pessoa;
+	private Integer idPessoa;
 	private String nomePessoa;
 	private Integer idade;
 	private String sexo;
 	private Endereco endereco;
 
-	public Integer getId_pessoa() {
-		return id_pessoa;
+
+	public Integer getIdPessoa() {
+		return idPessoa;
 	}
 
-	public void setId_pessoa(Integer id_pessoa) {
-		this.id_pessoa = id_pessoa;
+	public void setIdPessoa(Integer idPessoa) {
+		this.idPessoa = idPessoa;
 	}
 
 
@@ -48,9 +49,9 @@ public class Pessoa extends Endereco {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + ((id_pessoa == null) ? 0 : id_pessoa.hashCode());
+		result = prime * result + ((idPessoa == null) ? 0 : idPessoa.hashCode());
 		result = prime * result + ((idade == null) ? 0 : idade.hashCode());
 		result = prime * result + ((nomePessoa == null) ? 0 : nomePessoa.hashCode());
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
@@ -61,7 +62,7 @@ public class Pessoa extends Endereco {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -71,10 +72,10 @@ public class Pessoa extends Endereco {
 				return false;
 		} else if (!endereco.equals(other.endereco))
 			return false;
-		if (id_pessoa == null) {
-			if (other.id_pessoa != null)
+		if (idPessoa == null) {
+			if (other.idPessoa != null)
 				return false;
-		} else if (!id_pessoa.equals(other.id_pessoa))
+		} else if (!idPessoa.equals(other.idPessoa))
 			return false;
 		if (idade == null) {
 			if (other.idade != null)
@@ -96,9 +97,11 @@ public class Pessoa extends Endereco {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id_pessoa=" + id_pessoa + ", nomePessoa=" + nomePessoa + ", idade=" + idade + ", sexo=" + sexo
+		return "Pessoa [idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", idade=" + idade + ", sexo=" + sexo
 				+ ", endereco=" + endereco + "]";
 	}
+
+
 	
 	
 

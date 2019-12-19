@@ -34,7 +34,7 @@ public class PessoaDAO {
 
 				Pessoa pessoa = new Pessoa();
 
-				pessoa.setId_pessoa(rs.getInt("idPessoa"));
+				pessoa.setIdPessoa(rs.getInt("idPessoa"));
 				pessoa.setId_endereco(rs.getInt("cod_endereco"));
 				pessoa.setNomePessoa(rs.getString("nomePessoa"));
 				pessoa.setIdade(rs.getInt("idade"));
