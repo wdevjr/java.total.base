@@ -52,7 +52,7 @@ public class ArquivoDAO {
 				offset += numRead;
 			}
 			ps.setInt(1, incrementa());
-			ps.setInt(2, arquivo.getPessoa().getId_pessoa());
+			ps.setInt(2, arquivo.getId_pessoa());
 			ps.setString(3, arquivo.getNomearquivo());
 			ps.setString(4, arquivo.getExtencao());
 			ps.setString(5, arquivo.getTamanho());
@@ -86,7 +86,7 @@ public class ArquivoDAO {
 		}
 
 		statement.setInt(1, incrementa());
-		statement.setInt(2, arquivo.getPessoa().getId_pessoa());
+		statement.setInt(2, arquivo.getId_pessoa());
 
 		statement.setString(3, arquivo.getNomearquivo());
 		statement.setString(4, arquivo.getExtencao());
@@ -132,7 +132,7 @@ public class ArquivoDAO {
 
 		stmt = ConectionDataBase.getConnection().prepareStatement(update);
 
-		stmt.setInt(1, arquivo.getPessoa().getId_pessoa());
+		stmt.setInt(1, arquivo.getId_pessoa());
 		stmt.setString(2, arquivo.getNomearquivo());
 		stmt.setString(3, arquivo.getExtencao());
 		stmt.setString(4, arquivo.getTamanho());
@@ -154,7 +154,7 @@ public class ArquivoDAO {
 		stmts = conectionAux.getConnection().prepareStatement(updates);
 
 		stmts.setInt(6, arqui.getId());
-		stmts.setInt(1, arqui.getPessoa().getId_pessoa());
+		stmts.setInt(1, arqui.getId_pessoa());
 		stmts.setString(2, arqui.getNomearquivo());
 		stmts.setString(3, arqui.getExtencao());
 		stmts.setString(4, arqui.getTamanho());
@@ -179,7 +179,7 @@ public class ArquivoDAO {
 	public List<Usuario> findUsuarios(String nomeUsuario) throws SQLException {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
-		String select = "select * from USUARIO where nome ilike '%" + nomeUsuario + "%' ORDER BY nome DESC";
+		String select = "select * from USUARIO where nome like '%" + nomeUsuario + "%' ORDER BY nome DESC";
 
 		PreparedStatement stmt = conectionAux.getConnection().prepareStatement(select);
 
@@ -210,7 +210,7 @@ public class ArquivoDAO {
 		List<Arquivo> arquivos = new ArrayList<Arquivo>();
 		SimpleDateFormat dnst = new SimpleDateFormat("dd/MM/yyyy");
 		String select = "select AQ.id,AQ.COD_PESSOA,PE.nomePessoa,AQ.NOMEARQUIVO,AQ.EXTENCAO,AQ.TAMANHO,AQ.DATA from ARQUIVO AS AQ "
-				+ "inner join PESSOA AS PE on (PE.IDPessoa = AQ.COD_PESSOA) " + "where PE.nomePessoa like '%"
+				+ "left join PESSOA AS PE on (PE.IDPessoa = AQ.COD_PESSOA) " + "where PE.nomePessoa like '%"
 				+ nomepessoa + "%' OR AQ.nomeArquivo like '%" + nomearquivo + "%'"
 				+ " ORDER BY PE.nomePessoa, AQ.nomeArquivo DESC";
 
@@ -222,8 +222,8 @@ public class ArquivoDAO {
 				Arquivo arquivo = new Arquivo();
 
 				arquivo.setId(rs.getInt(1));
-				arquivo.getPessoa().setId_pessoa(Integer.parseInt(rs.getString(2)));
-				arquivo.getPessoa().setNomePessoa(rs.getString(3));
+				arquivo.setId_pessoa(Integer.parseInt(rs.getString(2)));
+				arquivo.setNomePessoa(rs.getString(3));
 				arquivo.setNomearquivo(rs.getString(4));
 				arquivo.setExtencao(rs.getString(5));
 				arquivo.setTamanho(rs.getString(6));

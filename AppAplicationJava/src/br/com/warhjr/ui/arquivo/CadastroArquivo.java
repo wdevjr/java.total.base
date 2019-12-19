@@ -304,7 +304,7 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setExtencao(textFieldexten.getText());
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
-							auxArquivo.getPessoa().setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 							auxArquivo.setData(dataAtual_1.getText());
 
 							Inserir.setEnabled(true);
@@ -360,7 +360,7 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
 							auxArquivo.setData(dataAtual_1.getText());
-							auxArquivo.getPessoa().setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 							Inserir.setEnabled(true);
 							Gravar.setEnabled(false);
@@ -575,7 +575,7 @@ public class CadastroArquivo extends JFrame {
 
 							auxArquivo.setData(dataAtual_1.getText());
 
-							auxArquivo.getPessoa().setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setId_pessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 							try {
 
