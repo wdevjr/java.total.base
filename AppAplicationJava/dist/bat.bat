@@ -1,1 +1,1 @@
-start javaw -Xmx1024m -jar "TreinaProjeto.jar"
+start javaw -Xmx1024m -jar "agendaUser.jar"
