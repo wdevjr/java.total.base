@@ -192,7 +192,7 @@ public class CadastroArquivo extends JFrame {
 		MaskFormatter FormatterDecimal = null;
 		try {
 
-			FormatterDecimal = new MaskFormatter("###.###");
+			FormatterDecimal = new MaskFormatter("###.##");
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -678,7 +678,7 @@ public class CadastroArquivo extends JFrame {
 
 					// } else {
 
-					DecimalFormat df = new DecimalFormat("###.###");
+					DecimalFormat df = new DecimalFormat("###.##");
 					double novonumero = (file.length());
 					double numberAux = (novonumero);
 					double number = (numberAux / 1024 / 1024);
@@ -778,7 +778,7 @@ public class CadastroArquivo extends JFrame {
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(22)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
@@ -836,6 +836,8 @@ public class CadastroArquivo extends JFrame {
 
 		scrollPane_1.setViewportView(textArea__1);
 		
+		JLabel lblMb = new JLabel("MB");
+		
 
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
@@ -861,11 +863,13 @@ public class CadastroArquivo extends JFrame {
 									.addComponent(textFieldexten, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
 									.addGap(18)
 									.addComponent(lblTamanho)
-									.addGap(4)
-									.addComponent(textFieldTamanho, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-									.addGap(10)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textFieldTamanho, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblMb)
+									.addGap(40)
 									.addComponent(lblNewLabel)
-									.addGap(4)
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(dataAtual_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addComponent(lblNewLabel_3)
@@ -902,20 +906,21 @@ public class CadastroArquivo extends JFrame {
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblTamanho))
-						.addComponent(textFieldTamanho, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(1)
-							.addComponent(lblNewLabel))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(1)
-							.addComponent(dataAtual_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(dataAtual_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel)))
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(textFieldTamanho, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblMb)))
 					.addGap(11)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_3)
 						.addComponent(lblNewLabel_4))
 					.addGap(6)
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(26, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 

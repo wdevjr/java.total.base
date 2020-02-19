@@ -5,7 +5,7 @@
     <!--define folder properties-->
     <property name="dir.buildfile" value="."/>
     <property name="dir.workspace" value="D:/workspace-Atual"/>
-    <property name="dir.jarfile" value="C:/Users/warhjr/Desktop"/>
+    <property name="dir.jarfile" value="C:/Users/warhjr/OneDrive/Área de Trabalho"/>
     <target name="create_run_jar">
         <jar destfile="${dir.jarfile}/agendaUser.jar" filesetmanifest="mergewithoutmain">
             <manifest>
