@@ -37,7 +37,7 @@ public class ProgressBar extends Thread {
 		bar.setForeground(new Color(176,196,222));
 		dialog.setLocationRelativeTo(null);
 		
-		JLabel lblAguardeProcedimentoSendo = new JLabel("Aguarde Procedimento sendo Feito!");
+		JLabel lblAguardeProcedimentoSendo = new JLabel("Aguarde procedimento sendo feito!");
 		lblAguardeProcedimentoSendo.setForeground(Color.BLUE);
 		lblAguardeProcedimentoSendo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
@@ -52,12 +52,11 @@ public class ProgressBar extends Thread {
 							.addGap(168)
 							.addComponent(lblAguardeProcedimentoSendo))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(22)
-							.addComponent(bar, GroupLayout.PREFERRED_SIZE, 470, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(246)
-							.addComponent(lblNewLabel)))
-					.addContainerGap(50, Short.MAX_VALUE))
+							.addGap(36)
+							.addComponent(lblNewLabel)
+							.addGap(28)
+							.addComponent(bar, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(142, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -65,10 +64,10 @@ public class ProgressBar extends Thread {
 					.addGap(11)
 					.addComponent(lblAguardeProcedimentoSendo)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(bar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(lblNewLabel)
-					.addContainerGap())
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel)
+						.addComponent(bar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(44, Short.MAX_VALUE))
 		);
 		dialog.getContentPane().setLayout(groupLayout);
 		dialog.setVisible(true);		
