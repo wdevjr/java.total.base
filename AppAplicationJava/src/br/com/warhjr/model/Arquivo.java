@@ -11,8 +11,7 @@ public class Arquivo extends Pessoa {
 	private String extencao;
 	private String tamanho;
 	private byte[] dados;
-	private String data;
-
+	private String data = (new Date(System.currentTimeMillis())).toString();
 	public Integer getId() {
 		return id;
 	}

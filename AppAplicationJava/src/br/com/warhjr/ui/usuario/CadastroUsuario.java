@@ -84,6 +84,7 @@ public class CadastroUsuario extends JFrame {
 	private JTextField datatext;
 	private JTextField textFieldData;
 	private JPanel panel;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -116,6 +117,7 @@ public class CadastroUsuario extends JFrame {
 		UsuarioController userTable = new UsuarioController();
 		DefaultTableModel model = new DefaultTableModel();
 		UsuarioController cc = new UsuarioController();
+		
 		if (textFieldnome.getText().length() != 0) {
 			Object[] tableColumes = new Object[6];
 
@@ -191,6 +193,7 @@ public class CadastroUsuario extends JFrame {
 		textFieldTipo.addItem("Super");
 		tableUsers = new JTable();
 		JButton btDeletar = new JButton("Deletar");
+		JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
 		btDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -223,6 +226,8 @@ public class CadastroUsuario extends JFrame {
 		JButton btNovo = new JButton("Novo");
 		btNovo.addActionListener(new ActionListener() {
 
+			
+
 			public void actionPerformed(ActionEvent e) {
 
 				Calendar c = Calendar.getInstance();
@@ -240,6 +245,7 @@ public class CadastroUsuario extends JFrame {
 
 				btGravar.setEnabled(true);
 				btNovo.setEnabled(false);
+				btnNewButton_1.setEnabled(false);
 
 			}
 		});
@@ -284,6 +290,8 @@ public class CadastroUsuario extends JFrame {
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		label_5.setText(UsuarioDAO.getTipo());
+		
+		
 
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -336,6 +344,7 @@ public class CadastroUsuario extends JFrame {
 					btGravar.setEnabled(false);
 					btDeletar.setEnabled(true);
 					btEditar.setEnabled(false);
+					btnNewButton_1.setEnabled(true);
 
 					// } else {
 					// JOptionPane.showMessageDialog(null, "Dados
@@ -404,6 +413,7 @@ public class CadastroUsuario extends JFrame {
 				btDeletar.setEnabled(false);
 				btGravar.setEnabled(false);
 				btEditar.setEnabled(false);
+				btnNewButton_1.setEnabled(true);
 			}
 		});
 		btCancelar.setBounds(392, 11, 124, 25);
@@ -462,7 +472,7 @@ public class CadastroUsuario extends JFrame {
 		textFieldSenha = new JPasswordField();
 		textFieldSenha.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
-		JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
+		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -523,73 +533,82 @@ public class CadastroUsuario extends JFrame {
 								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)));
 
 		textFieldData = new JTextField();
+		textFieldData.setEditable(false);
 		textFieldData.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 		textFieldData.setColumns(10);
 
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
-				.createSequentialGroup()
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel.createSequentialGroup()
-						.addGap(10)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(510).addComponent(btnNewButton_1))
-								.addGroup(gl_panel.createSequentialGroup().addComponent(label_6).addGap(347)
-										.addComponent(label_7))
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(10)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(510)
+									.addComponent(btnNewButton_1))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(label_6)
+									.addGap(347)
+									.addComponent(label_7))
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(gl_panel.createSequentialGroup()
-												.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(18)
-												.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, 191,
-														GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel.createSequentialGroup().addGroup(gl_panel
-												.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel.createSequentialGroup()
-														.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, 179,
-																GroupLayout.PREFERRED_SIZE)
-														.addGap(10).addComponent(textFieldTipo,
-																GroupLayout.PREFERRED_SIZE, 123,
-																GroupLayout.PREFERRED_SIZE))
-												.addGroup(gl_panel.createSequentialGroup().addComponent(label_8)
-														.addGap(152).addComponent(label_9)))
-												.addGap(69)
-												.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-														.addComponent(textFieldData).addComponent(lblNewLabel_2))))))
-						.addGroup(gl_panel.createSequentialGroup().addContainerGap().addComponent(lblNewLabel_1)))
-				.addContainerGap(65, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
-				.createSequentialGroup().addContainerGap().addComponent(lblNewLabel_1)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_panel.createSequentialGroup()
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+											.addGroup(gl_panel.createSequentialGroup()
+												.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+												.addGap(10)
+												.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+											.addGroup(gl_panel.createSequentialGroup()
+												.addComponent(label_8)
+												.addGap(152)
+												.addComponent(label_9)))
+										.addGap(69)
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+											.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblNewLabel_2))))))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblNewLabel_1)))
+					.addContainerGap(65, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addGap(6)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(label_6).addComponent(label_7))
-				.addGap(6)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addGap(8)
-				.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(label_8)
-								.addComponent(label_9))
+						.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_6)
+						.addComponent(label_7))
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addComponent(label_8)
+							.addComponent(label_9))
 						.addComponent(lblNewLabel_2))
-				.addGap(11)
-				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)))
-				.addGap(27)));
+							.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(27))
+		);
 		panel.setLayout(gl_panel);
 
 		btnNewButton.addActionListener(new ActionListener() {

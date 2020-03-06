@@ -219,6 +219,7 @@ public class CadastroArquivo extends JFrame {
 		}
 		Formatter.setPlaceholderCharacter('_');
 		dataAtual_1 = new JFormattedTextField(Formatter);
+		dataAtual_1.setEditable(false);
 		dataAtual_1.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
 		final JButton Gravar = new JButton("Gravar");

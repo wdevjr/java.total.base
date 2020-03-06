@@ -10,7 +10,7 @@ public class Usuario {
 	private String login;
 	private String senha;
 	private String tipo;
-	private String data;
+	private String data = (new Date(System.currentTimeMillis())).toString();
 
 	public int getId() {
 		return id;

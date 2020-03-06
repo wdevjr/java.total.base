@@ -99,6 +99,7 @@ public class LoginUser extends JDialog {
 			lblMsg_1.setForeground(new Color(255, 0, 0));
 			lblMsg_1.setVisible(false);
 			loginTextComboBox = new JComboBox();
+			loginTextComboBox.setMaximumRowCount(3);
 			auxController.addComboBox(loginTextComboBox);
 			loginTextComboBox.setToolTipText("");
 			loginTextComboBox.setSelectedIndex(0);
