@@ -308,20 +308,45 @@ public class TreinaRedesComJava {
 		                    while ((line = bufferedReader.readLine()) != null) {
 		                        if (line.trim().startsWith(DEFAULT_GATEWAY)) {
 		                            String ipAddress = line.substring(line.indexOf(":")+1).trim(),
-		                                    routerURL  = String.format("http://%s", ipAddress);
+		                                    //routerURL  = String.format("http://%s", ipAddress);
+		                            		routerURL  = String.format("http://%s", ipAddress);
 
 		                            // opening router setup in browser
 		                           // Desktop.getDesktop().browse(new URI(routerURL));
 		                        }
 		                        //
-		                        line = line.replaceAll("\\s+"," ");
-		                        labelGateway.setText(line);
+		                       // line = line.replaceAll("\\s+"," ");
+		                      //  labelGateway.setText(line);
 		                    }
 		                }
 		            } catch (Exception e1) {
 		                e1.printStackTrace();
 		            }
 		        
+		            String[] cmd = { "cmd", "/c", "ipconfig | findstr /i \"Gateway\"" };
+
+		            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+		            Process process = null;
+					try {
+						process = processBuilder.start();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+		            BufferedReader saida = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+		            String linhaSaida = null;
+					try {
+						linhaSaida = saida.readLine();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		            StringTokenizer st = new StringTokenizer(linhaSaida, ":");
+		            st.nextToken(); // o endereco esta depois do ":"
+		            labelGateway.setText(st.nextToken());
+		            
 			}
 			
 			
