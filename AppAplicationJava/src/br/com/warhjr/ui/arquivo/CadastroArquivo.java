@@ -766,9 +766,9 @@ public class CadastroArquivo extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel_1, 0, 0, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 790, Short.MAX_VALUE)
-						.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE))
+						.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(

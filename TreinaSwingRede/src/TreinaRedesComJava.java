@@ -31,12 +31,12 @@ import java.awt.Color;
 public class TreinaRedesComJava {
 
 	private JFrame frame;
-    private String IP;
-    private StringBuilder sb = new StringBuilder();
-    private static final String DEFAULT_GATEWAY = "Default Gateway";
+	private String IP;
+	private StringBuilder sb = new StringBuilder();
+	private static final String DEFAULT_GATEWAY = "Default Gateway";
+
 	/**
-	 * Launch the application.
-	 * warhjr - Walter Junior
+	 * Launch the application. warhjr - Walter Junior
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -87,8 +87,6 @@ public class TreinaRedesComJava {
 		stdoutStream.close();
 		return outputText;
 	}
-
-
 
 	private final static boolean linuxIsMacAddress(String macAddressCandidate) {
 		if (macAddressCandidate.length() != 17)
@@ -184,8 +182,23 @@ public class TreinaRedesComJava {
 		return true;
 	}
 
+	public String getDefaultGateway() throws IOException {
+		String[] cmd = { "cmd", "/c", "ipconfig | findstr /i \"Gateway\"" };
+
+		ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+		Process process = processBuilder.start();
+
+		BufferedReader saida = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+		String linhaSaida = saida.readLine();
+		StringTokenizer st = new StringTokenizer(linhaSaida, ":");
+		st.nextToken(); // o endereco esta depois do ":"
+		return st.nextToken();
+	}
+
 	public TreinaRedesComJava() {
 		initialize();
+		
 	}
 
 	/**
@@ -196,12 +209,11 @@ public class TreinaRedesComJava {
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		JLabel labelIPHost = new JLabel("xxxxxxxxx");
 		JLabel labelNomeHost = new JLabel("xxxxxxxx");
 		JButton btnNewButton = new JButton("IP do host");
 		JLabel labelmac = new JLabel("xxxxxxxxxx");
-		JLabel labelGateway = new JLabel("xxxxxxxxxxxxxxx");
+		JLabel lblNewLabel = new JLabel("xxxxxxxxxx");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -237,40 +249,40 @@ public class TreinaRedesComJava {
 		JButton btnMacadress = new JButton("MacAdress");
 		btnMacadress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//InetAddress addr = InetAddress.getLocalHost();
-				//String ip = addr.getHostAddress();
-				//String mac = proc.toString();
-				 try {
-			            // Obtém o objeto que representa o endereço da máquina local
-			            InetAddress ip = InetAddress.getLocalHost();
+				// InetAddress addr = InetAddress.getLocalHost();
+				// String ip = addr.getHostAddress();
+				// String mac = proc.toString();
+				try {
+					// Obtém o objeto que representa o endereço da máquina local
+					InetAddress ip = InetAddress.getLocalHost();
 
-			            // Através do objeto obtido, obtém o objeto que representa a interface de rede
-			            NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+					// Através do objeto obtido, obtém o objeto que representa a interface de rede
+					NetworkInterface network = NetworkInterface.getByInetAddress(ip);
 
-			            // Recupera o endereço físico
-			            byte[] mac = network.getHardwareAddress();
-			           // System.out.print("Current MAC address : ");
+					// Recupera o endereço físico
+					byte[] mac = network.getHardwareAddress();
+					// System.out.print("Current MAC address : ");
 
-			            // Obtém o endereço do byte obtido
-			           // StringBuilder sb = new StringBuilder();
-			            for (int i = 0; i < mac.length; i++) {
-			                // Essa parte, o "mágica" está no format utilizando o formato "%02X%s"
-			                // O "X" no formato indica que o resultado será formatado como um inteiro hexadecimal
-			                // (nunca tinha utilizado esse "X" no format, achei na documentação =) )
-			                // FONTE: http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax
-			                sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
-			            }
+					// Obtém o endereço do byte obtido
+					// StringBuilder sb = new StringBuilder();
+					for (int i = 0; i < mac.length; i++) {
+						// Essa parte, o "mágica" está no format utilizando o formato "%02X%s"
+						// O "X" no formato indica que o resultado será formatado como um inteiro
+						// hexadecimal
+						// (nunca tinha utilizado esse "X" no format, achei na documentação =) )
+						// FONTE:
+						// http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax
+						sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+					}
 
-			            // Imprime o endereço obtido
-			            labelmac.setText(sb.toString());
-			        } catch (UnknownHostException e1) {
-			            e1.printStackTrace();
-			        } catch (SocketException e1){
-			            e1.printStackTrace();
-			        }
-			    }	
-				
-			
+					// Imprime o endereço obtido
+					labelmac.setText(sb.toString());
+				} catch (UnknownHostException e1) {
+					e1.printStackTrace();
+				} catch (SocketException e1) {
+					e1.printStackTrace();
+				}
+			}
 
 //				Runtime rt = Runtime.getRuntime();
 //				Process proc = null;
@@ -290,119 +302,56 @@ public class TreinaRedesComJava {
 //				}
 //
 //			}
-	
 
 		});
-		
+
 		JButton btnNewButton_2 = new JButton("Gateway");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-		            try {
-		                Process process = Runtime.getRuntime().exec("ipconfig");
 
-		                try (BufferedReader bufferedReader = new BufferedReader(
-		                        new InputStreamReader(process.getInputStream()))) {
-
-		                    String line;
-		                    while ((line = bufferedReader.readLine()) != null) {
-		                        if (line.trim().startsWith(DEFAULT_GATEWAY)) {
-		                            String ipAddress = line.substring(line.indexOf(":")+1).trim(),
-		                                    //routerURL  = String.format("http://%s", ipAddress);
-		                            		routerURL  = String.format("http://%s", ipAddress);
-
-		                            // opening router setup in browser
-		                           // Desktop.getDesktop().browse(new URI(routerURL));
-		                        }
-		                        //
-		                       // line = line.replaceAll("\\s+"," ");
-		                      //  labelGateway.setText(line);
-		                    }
-		                }
-		            } catch (Exception e1) {
-		                e1.printStackTrace();
-		            }
-		        
-		            String[] cmd = { "cmd", "/c", "ipconfig | findstr /i \"Gateway\"" };
-
-		            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-		            Process process = null;
 					try {
-						process = processBuilder.start();
+						lblNewLabel.setText(getDefaultGateway());
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
+
 						e1.printStackTrace();
 					}
 
-		            BufferedReader saida = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-		            String linhaSaida = null;
-					try {
-						linhaSaida = saida.readLine();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-		            StringTokenizer st = new StringTokenizer(linhaSaida, ":");
-		            st.nextToken(); // o endereco esta depois do ":"
-		            labelGateway.setText(st.nextToken());
-		            
 			}
-			
-			
-			
 		});
+
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(20)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(20).addGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(labelIPHost, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+								.addGap(27)
+								.addComponent(labelIPHost, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(labelNomeHost, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 113,
+										GroupLayout.PREFERRED_SIZE)
+								.addGap(27).addComponent(labelNomeHost, GroupLayout.PREFERRED_SIZE, 172,
+										GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnMacadress, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(labelmac))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-							.addGap(27)
-							.addComponent(labelGateway))))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(48)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(4)
-							.addComponent(labelIPHost)))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_1)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(4)
-							.addComponent(labelNomeHost)))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnMacadress)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(4)
-							.addComponent(labelmac)))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_2)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(4)
-							.addComponent(labelGateway))))
-		);
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnMacadress, GroupLayout.PREFERRED_SIZE, 113,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 113,
+												GroupLayout.PREFERRED_SIZE))
+								.addGap(27).addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNewLabel).addComponent(labelmac))))));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(48)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnNewButton)
+								.addGroup(groupLayout.createSequentialGroup().addGap(4).addComponent(labelIPHost)))
+						.addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnNewButton_1)
+								.addGroup(groupLayout.createSequentialGroup().addGap(4).addComponent(labelNomeHost)))
+						.addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(btnMacadress)
+								.addGroup(groupLayout.createSequentialGroup().addGap(4).addComponent(labelmac)))
+						.addGap(18).addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnNewButton_2).addComponent(lblNewLabel))));
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }
