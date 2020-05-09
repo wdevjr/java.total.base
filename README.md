@@ -10,5 +10,6 @@ Projeto em Java swing e Web
 <p>Todos os Direitos Reservados a Walter Ribeiro Homem Junior. (c) </p>
 <p><b>Contato: </b><a href="mailto:warhjr@gmail.com?Subject=Olá%20Contato"">warhjr@gmail.com</a></p>
 <p>Campo Grande - MS - Brasil.</p>
+<p>(C) Todos os Direitos Reservados!</p>
 </body>
 </html>
