@@ -195,6 +195,7 @@ public class CadastroUsuario extends JFrame {
 		JButton btDeletar = new JButton("Deletar");
 		JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
 		btDeletar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				int resposta;
@@ -228,6 +229,7 @@ public class CadastroUsuario extends JFrame {
 
 			
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				Calendar c = Calendar.getInstance();
@@ -294,6 +296,7 @@ public class CadastroUsuario extends JFrame {
 		
 
 		button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				btGravar.setEnabled(true);
@@ -303,6 +306,7 @@ public class CadastroUsuario extends JFrame {
 
 		btGravar.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				Usuario userAux = new Usuario();
@@ -360,6 +364,7 @@ public class CadastroUsuario extends JFrame {
 
 		btEditar.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				if (textFieldNome.getText().length() == 0) {
@@ -408,6 +413,7 @@ public class CadastroUsuario extends JFrame {
 
 		JButton btCancelar = new JButton("Cancelar");
 		btCancelar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				btNovo.setEnabled(true);
 				btDeletar.setEnabled(false);
@@ -424,6 +430,7 @@ public class CadastroUsuario extends JFrame {
 		JButton btnFechar = new JButton("Fechar");
 		btnFechar.setBounds(689, 11, 107, 25);
 		btnFechar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				dispose();
@@ -474,6 +481,7 @@ public class CadastroUsuario extends JFrame {
 
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				if (textFieldID.getText().length() > 0) {
@@ -554,25 +562,24 @@ public class CadastroUsuario extends JFrame {
 									.addComponent(label_6)
 									.addGap(347)
 									.addComponent(label_7))
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-									.addGroup(gl_panel.createSequentialGroup()
-										.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
-										.addGap(18)
-										.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
-									.addGroup(gl_panel.createSequentialGroup()
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-											.addGroup(gl_panel.createSequentialGroup()
-												.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-												.addGap(10)
-												.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
-											.addGroup(gl_panel.createSequentialGroup()
-												.addComponent(label_8)
-												.addGap(152)
-												.addComponent(label_9)))
-										.addGap(69)
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-											.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-											.addComponent(lblNewLabel_2))))))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+											.addGap(10)
+											.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(label_8)
+											.addGap(152)
+											.addComponent(label_9)))
+									.addGap(69)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblNewLabel_2)))))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblNewLabel_1)))
@@ -584,7 +591,7 @@ public class CadastroUsuario extends JFrame {
 					.addContainerGap()
 					.addComponent(lblNewLabel_1)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(6)
@@ -612,6 +619,7 @@ public class CadastroUsuario extends JFrame {
 		panel.setLayout(gl_panel);
 
 		btnNewButton.addActionListener(new ActionListener() {
+			@Override
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				// getPopularTable();
