@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -130,28 +129,7 @@ public class UsuarioDAO {
 		return str;
 	}
 
-	public String[] getloginCombo(String login, int tam, JComboBox combo) throws SQLException {
-		String[] retorno = null;
-		retorno = new String[tam];
-		PreparedStatement stmt = null;
-		try {
-			stmt = connectionAux.getConnection().prepareStatement("select login from usuario");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-
-		ResultSet res = stmt.executeQuery();
-		combo.addItem("----------------");
-
-		while (res.next()) {
-
-			retorno[i] = res.getString(login);
-			i++;
-		}
-		res.close();
-		return retorno;
-	}
+	
 
 	public ComboBoxModel carregaComboBox(JComboBox combo) {
 		try {
@@ -174,6 +152,7 @@ public class UsuarioDAO {
 	}
 
 	public List<Usuario> getCombo() throws SQLException {
+		Usuario usuario = new Usuario();
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 
@@ -184,7 +163,7 @@ public class UsuarioDAO {
 		ResultSet rs = stmt.executeQuery();
 
 		while (rs.next()) {
-			Usuario usuario = new Usuario();
+			
 
 			usuario.setLogin(rs.getString(1));
 

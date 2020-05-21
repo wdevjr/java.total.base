@@ -7,10 +7,7 @@ import java.awt.Frame;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -25,9 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Timer;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import br.com.warhjr.controller.UsuarioController;
@@ -75,7 +70,7 @@ public class LoginUser extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 
 		UsuarioController auxController = new UsuarioController();
-		int tam = auxController.addCombo().size();
+		int tam = auxController.ListaddCombo().size();
 
 		UsuarioController usercombo = new UsuarioController();
 		{

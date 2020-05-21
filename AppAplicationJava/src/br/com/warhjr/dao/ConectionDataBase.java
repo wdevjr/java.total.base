@@ -1,15 +1,13 @@
 package br.com.warhjr.dao;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
 public class ConectionDataBase {
-	private static final String URL_SQLSERVER = "jdbc:jtds:sqlserver://warhjr:1433/agendaUser;integratedSecurity=true";
+	private static final String URL_SQLSERVER = "jdbc:jtds:sqlserver://localhost:1433/agendaUser;integratedSecurity=true";
 	private static final String DRIVER_CLASS = "net.sourceforge.jtds.jdbc.Driver";
 	private static final String USER = "sa";
 	private static final String PASSWORD = "root";

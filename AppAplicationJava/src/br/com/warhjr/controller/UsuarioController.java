@@ -1,18 +1,12 @@
 package br.com.warhjr.controller;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import br.com.warhjr.dao.ArquivoDAO;
 import br.com.warhjr.dao.UsuarioDAO;
 import br.com.warhjr.model.Usuario;
 
@@ -72,15 +66,6 @@ public class UsuarioController {
 			return false;
 	}
 
-	public String[] getloginCombo(String login, int comb, JComboBox combo) throws Exception {
-		UsuarioDAO auxComboDAO = new UsuarioDAO();
-
-		if (login == null) {
-			throw new Exception("Login Vazio, introduza o Campo do Banco! ");
-		}
-
-		return auxComboDAO.getloginCombo(login, comb, combo);
-	}
 
 	@SuppressWarnings("rawtypes")
 	public ComboBoxModel addComboBox(JComboBox combo) throws Exception {
@@ -88,9 +73,9 @@ public class UsuarioController {
 		return userDao.carregaComboBox(combo);
 	}
 
-	public List<Usuario> addCombo() throws Exception {
-		UsuarioDAO auxComb = new UsuarioDAO();
-		return auxComb.getCombo();
+	public List<Usuario> ListaddCombo() throws Exception {
+			UsuarioDAO auxComb = new UsuarioDAO();
+			return auxComb.getCombo();
 	}
 
 	public List<Usuario> buscaUsuarios(String nome) throws Exception {
