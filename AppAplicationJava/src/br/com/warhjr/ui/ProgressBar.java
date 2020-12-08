@@ -30,7 +30,7 @@ public class ProgressBar extends Thread {
 		JProgressBar bar = new JProgressBar();
 		bar.setIndeterminate(true);
 		dialog = new JDialog();
-		dialog.getContentPane().setBackground(SystemColor.info);
+		dialog.getContentPane().setBackground(SystemColor.control);
 		dialog.setUndecorated(true);
 		dialog.setModal(true);
 		dialog.setSize(new Dimension(542, 118));
@@ -47,27 +47,26 @@ public class ProgressBar extends Thread {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(168)
-							.addComponent(lblAguardeProcedimentoSendo))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(36)
-							.addComponent(lblNewLabel)
-							.addGap(28)
-							.addComponent(bar, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(142, Short.MAX_VALUE))
+					.addGap(36)
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(bar, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(33, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(196, Short.MAX_VALUE)
+					.addComponent(lblAguardeProcedimentoSendo)
+					.addGap(176))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(11)
+					.addContainerGap()
 					.addComponent(lblAguardeProcedimentoSendo)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel)
-						.addComponent(bar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(44, Short.MAX_VALUE))
+						.addComponent(bar, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(50, Short.MAX_VALUE))
 		);
 		dialog.getContentPane().setLayout(groupLayout);
 		dialog.setVisible(true);		

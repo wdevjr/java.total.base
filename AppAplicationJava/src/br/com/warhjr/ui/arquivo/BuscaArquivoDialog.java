@@ -249,6 +249,7 @@ public class BuscaArquivoDialog extends JDialog {
 		);
 
 		dstableArquivo = new JTable();
+		dstableArquivo.setShowGrid(false);
 		dstableArquivo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		dstableArquivo.setSurrendersFocusOnKeystroke(true);
 		dstableArquivo.setBorder(new LineBorder(Color.BLUE));
