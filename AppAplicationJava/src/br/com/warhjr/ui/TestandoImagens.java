@@ -17,6 +17,8 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TestandoImagens extends JFrame {
+	
+	
 
 	private JPanel contentPane;
 
