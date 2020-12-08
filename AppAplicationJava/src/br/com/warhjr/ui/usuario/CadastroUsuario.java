@@ -49,6 +49,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 @SuppressWarnings("serial")
 public class CadastroUsuario extends JFrame {
+	
 
 	private JPanel contentPane;
 	private JPanel panel_2;
