@@ -4,6 +4,7 @@ import br.com.warhjr.ui.MenuPrinc;
 import br.com.warhjr.ui.usuario.LoginUser;
 
 public class Main {
+	
 
 	public static void main(String[] args) {
 		try {
