@@ -580,7 +580,12 @@ public class CadastroArquivo extends JFrame {
 
 							try {
 
-								auxSave.SalvarArq(auxArquivo, file.getAbsolutePath());
+								try {
+									auxSave.SalvarArq(auxArquivo, file.getAbsolutePath());
+								} catch (Throwable e1) {
+									
+									e1.printStackTrace();
+								}
 
 							} catch (Exception e1) {
 

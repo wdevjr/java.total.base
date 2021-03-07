@@ -70,7 +70,7 @@ public class ArquivoDAO {
 	}
 
 	@SuppressWarnings("static-access")
-	public void insertArquivo(Arquivo arquivo, String fileArquivo) throws SQLException, FileNotFoundException {
+	public void insertArquivo(Arquivo arquivo, String fileArquivo) throws SQLException, FileNotFoundException, Exception {
 
 		File file = new File(fileArquivo);
 		InputStream fis = new FileInputStream(file);
@@ -84,7 +84,9 @@ public class ArquivoDAO {
 
 			e.printStackTrace();
 		}
-
+  
+		try
+		{
 		statement.setInt(1, incrementa());
 		statement.setInt(2, arquivo.getIdPessoa());
 
@@ -96,6 +98,11 @@ public class ArquivoDAO {
 		statement.setBinaryStream(7, fis, len);
 
 		statement.executeUpdate();
+		  
+		} catch (Exception e1) {
+			throw new Exception(e1.getMessage());
+		}
+	
 
 	}
 
