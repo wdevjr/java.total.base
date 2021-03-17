@@ -48,15 +48,19 @@
 		<filter-name>AuthFilter</filter-name>
 		<url-pattern>/public/user/*</url-pattern>
 	</filter-mapping>
-	<filter>
+	
+	
+<!-- 	<filter>
 		<display-name>FiltroAdministrador</display-name>
 		<filter-name>FiltroAdministrador</filter-name>
 		<filter-class>br.com.warhjr.filtro.FiltroAdministrador</filter-class>
 	</filter>
+	
 	<filter-mapping>
 		<filter-name>FiltroAdministrador</filter-name>
 		<url-pattern>/protected/admin/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
+	
 	<context-param>
 		<param-name>primefaces.UPLOADER</param-name>
 		<param-value>auto</param-value>

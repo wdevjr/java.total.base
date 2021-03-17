@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#protected#admin#template.xhtml"
+  PATH="/protected/admin/template.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#template.xhtml:0" NAME="item"
+   PATH="/protected/admin/template.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logoutOk::#public#index.xhtml" NAME="output"
+    PATH="/public/index.xhtml" TARGET="rules:#public#index.xhtml"
+    TITLE="logoutOk" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#protected#admin#template.xhtml:1"
+   NAME="item1" PATH="/protected/admin/template.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logoutOk::#public#user#index.xhtml"
+    NAME="output" PATH="/public/user/index.xhtml"
+    TARGET="rules:#public#user#index.xhtml" TITLE="logoutOk" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#listUser.xhtml"
+  PATH="/protected/admin/listUser.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#protected#admin#listUser.xhtml:0" NAME="item"
+   PATH="/protected/admin/listUser.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="novoUsuario::#protected#admin#newUser.xhtml"
+    NAME="output" PATH="/protected/admin/newUser.xhtml"
+    TARGET="rules:#protected#admin#newUser.xhtml" TITLE="novoUsuario" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#admin#newUser.xhtml"
+  PATH="/protected/admin/newUser.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#public#index.xhtml"
+  PATH="/public/index.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#public#user#index.xhtml"
+  PATH="/public/user/index.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#public#user#template.xhtml"
+  PATH="/public/user/template.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#public#user#template.xhtml:0" NAME="item"
+   PATH="/public/user/template.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logoutPrincOk::#public#login.xhtml"
+    NAME="output" PATH="/public/login.xhtml"
+    TARGET="rules:#public#login.xhtml" TITLE="logoutPrincOk" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#public#login.xhtml"
+  PATH="/public/login.xhtml" SHAPE="240,401,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
