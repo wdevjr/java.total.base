@@ -31,28 +31,31 @@ public class ArquivoController {
 
 	}
 
-	public void SalvarArq(Arquivo arquivo, String file) throws Throwable{
+	public void SalvarArq(Arquivo arquivo, String file) throws Exception{
 		
 		ArquivoDAO auxDao = new ArquivoDAO();
 		
-//		if (arquivo.getNomearquivo().trim().length() == 0) {
-//			throw new Exception("Nome do Arquivo é importante! ");
-//			//JOptionPane.showMessageDialog(null, "arquivo é importante!");
-//		} //else {
-//		
-//		if (arquivo.getIdPessoa() == 0) {
-//		throw new Exception("Pessoa é importante!");
-//			//JOptionPane.showMessageDialog(null, "Pessoa é importante!");
-//		}// else {
-//		
-//			if (arquivo.getNomePessoa() == "") {
-//				throw new Exception("Nome Pessoa é importante!");
-//				//JOptionPane.showMessageDialog(null, "Pessoa é importante!");
-//			} //else {
-             if (arquivo != null) {
-					auxDao.insertArquivo(arquivo, file);
-					throw new Exception("Arquivo Inserido com Sucesso! ");
+		if (arquivo.getNomearquivo().trim().length() == 0) {
+			throw new Exception("Nome do Arquivo é importante! ");
+			// JOptionPane.showMessageDialog(null, "arquivo é importante!");
+		} else {
+
+			if (arquivo.getIdPessoa() == 0) {
+				throw new Exception("Pessoa é importante!");
+				// JOptionPane.showMessageDialog(null, "Pessoa é importante!");
+			} else {
+
+				if (arquivo.getNomePessoa() == "") {
+					throw new Exception("Nome Pessoa é importante!");
+					// JOptionPane.showMessageDialog(null, "Pessoa é importante!");
+				} else {
+					if (arquivo != null) {
+						auxDao.insertArquivo(arquivo, file);
+						throw new Exception("Arquivo Inserido com Sucesso! ");
+					}
 				}
+			}
+		}
 	}
 			//}
 		//}

@@ -185,6 +185,8 @@ public class CadastroArquivo extends JFrame {
 		final JFormattedTextField dataAtual = new JFormattedTextField();
 
 		final JButton btnNewButton_Extrair = new JButton("Extrair...");
+		
+		final JButton btnLocalizarPessoa = new JButton("");
 
 		// DecimalFormat df = new DecimalFormat("#.##");
 		// String novonumero = df.format((file.length()));
@@ -292,8 +294,15 @@ public class CadastroArquivo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat dns = new SimpleDateFormat("dd/MM/yyyy");
 
-				if ((!textArea__1.getText().equals("")) && (!textFieldCodPessoa.getText().equals(""))
-						&& (!LabelCodigo.getText().equals(""))) {
+				if (textArea__1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Insira um  Arquivo!");
+					return;
+				}
+				if  (textFieldCodPessoa.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
+					return;
+				}
+					
 					// Arquivo auxArquivo = new Arquivo();
 					ArquivoController auxContr = new ArquivoController();
 
@@ -411,8 +420,7 @@ public class CadastroArquivo extends JFrame {
 						}
 					});
 					t2.start();
-				} else
-					JOptionPane.showMessageDialog(null, "Insira um Arquivo e Seleciocione um proprietário!");
+				
 
 			}
 
@@ -557,7 +565,20 @@ public class CadastroArquivo extends JFrame {
 
 				SimpleDateFormat dstn = new SimpleDateFormat("dd/MM/yyyy");
 
-				if ((!textArea__1.getText().equals("")) && (!textFieldCodPessoa.getText().equals(""))) {
+                 if (textArea__1.getText().equals(""))
+                 {
+                	JOptionPane.showMessageDialog(null," Insira um  Arquivo!"); 
+                	//btnCarregar.requestFocus();
+                	return;
+                 }
+                  
+                 if (textFieldCodPessoa.getText().equals(""))
+                 {
+                	 JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
+                	 //btnLocalizarPessoa.requestFocus();
+                	 return;
+                 }
+                 
 					t1 = new Thread(new Runnable() {
 						@Override
 						public void run() {
@@ -578,21 +599,16 @@ public class CadastroArquivo extends JFrame {
 
 							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
-							try {
+						try {
 
-								try {
-									auxSave.SalvarArq(auxArquivo, file.getAbsolutePath());
-								} catch (Throwable e1) {
-									
-									e1.printStackTrace();
-								}
+							auxSave.SalvarArq(auxArquivo, file.getAbsolutePath());
 
-							} catch (Exception e1) {
+						} catch (Exception e1) {
 
-								//labelText.setVisible(true);
-								labelText_1.setText(String.valueOf(e1.getMessage()));
+							// labelText.setVisible(true);
+							labelText_1.setText(String.valueOf(e1.getMessage()));
 
-							}
+						}
 
 							Inserir.setEnabled(true);
 							Inserir.setEnabled(true);
@@ -632,11 +648,7 @@ public class CadastroArquivo extends JFrame {
 						}
 					});
 					t1.start();
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Insira um Arquivo ou Selecione um Proprietário para esse Arquivo!");
-
-				}
+				
 
 			}
 
@@ -712,7 +724,7 @@ public class CadastroArquivo extends JFrame {
 		panel_3.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 		panel_3.setForeground(new Color(0, 0, 0));
 
-		JButton btnLocalizarPessoa = new JButton("");
+
 		btnLocalizarPessoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NumTemp = 0;

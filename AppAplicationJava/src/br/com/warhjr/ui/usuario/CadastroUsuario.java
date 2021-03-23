@@ -441,7 +441,7 @@ public class CadastroUsuario extends JFrame {
 		btnFechar.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		panel = new JPanel();
-		panel.setBackground(new Color(231, 229, 214));
+		panel.setBackground(new Color(237,241,228,255));
 		panel.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
 
 		JLabel label_6 = new JLabel("Nome:");
