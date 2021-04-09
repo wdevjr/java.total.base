@@ -176,12 +176,13 @@ public class CadastroUsuario extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 832, 522);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("Label.background"));
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(153, 180, 209), 1, true));
-		panel_3.setBackground(new Color(231, 229, 214));
+		panel_3.setBackground(new Color(237,241,228,255));
+		
 		JButton btGravar = new JButton("Gravar");
 		btGravar.setEnabled(false);
 		JButton button = new JButton("Inserir");
@@ -263,7 +264,7 @@ public class CadastroUsuario extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1));
-		panel_1.setBackground(SystemColor.inactiveCaption);
+		panel_1.setBackground(new Color(191, 205, 219));
 
 		JLabel label = new JLabel("xxxxx");
 		label.setText(UsuarioDAO.getNomeUser());
@@ -441,7 +442,7 @@ public class CadastroUsuario extends JFrame {
 		btnFechar.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		panel = new JPanel();
-		panel.setBackground(new Color(237,241,228,255));
+		panel.setBackground(new Color(231, 229, 214));
 		panel.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
 
 		JLabel label_6 = new JLabel("Nome:");

@@ -131,7 +131,7 @@ public class CadastroArquivo extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 826, 470);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.menu);
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		JPanel panelAlerta = new JPanel();
@@ -234,7 +234,7 @@ public class CadastroArquivo extends JFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new LineBorder(SystemColor.activeCaption, 1));
-		panel_5.setBackground(new Color(231, 229, 214));
+		panel_5.setBackground(new Color(191, 205, 219));
 
 		JLabel label = new JLabel("Usuario:");
 		label.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -477,11 +477,11 @@ public class CadastroArquivo extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1));
 
-		panel_1.setBackground(new Color(231, 229, 214));
+		panel_1.setBackground(new Color(237,241,228,255));
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(SystemColor.activeCaption, 1));
-		panel_2.setBackground(new Color(231, 229, 214));
+		panel_2.setBackground(new Color(237,241,228,255));
 
 		Inserir.setEnabled(true);
 		Gravar.setEnabled(false);
@@ -720,7 +720,7 @@ public class CadastroArquivo extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Propiet\u00E1rio:");
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(SystemColor.menu);
+		panel_3.setBackground(SystemColor.WHITE);
 		panel_3.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 		panel_3.setForeground(new Color(0, 0, 0));
 

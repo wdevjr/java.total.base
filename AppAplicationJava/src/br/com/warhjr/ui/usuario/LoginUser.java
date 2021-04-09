@@ -77,6 +77,7 @@ public class LoginUser extends JDialog {
 			JPanel buttonPane = new JPanel();
 			getContentPane().add(buttonPane, BorderLayout.CENTER);
 			contentPanel.setBackground(Color.WHITE);
+			
 			contentPanel.setForeground(Color.WHITE);
 			contentPanel.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 			senhaText = new JPasswordField();
