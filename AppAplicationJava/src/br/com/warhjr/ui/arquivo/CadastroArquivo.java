@@ -609,7 +609,7 @@ public class CadastroArquivo extends JFrame {
 
 							auxArquivo.setData(textFieldDataAtual.getText());
 
-							auxArquivo.pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.getArquivo().pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 						try {
 

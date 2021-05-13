@@ -11,7 +11,7 @@ public class Arquivo {
 	private String extencao;
 	private String tamanho;
 	private byte[] dados;
-	private String data;// = (new Date(System.currentTimeMillis())).toString();
+	private String data = (new Date(System.currentTimeMillis())).toString();
 	public Arquivo arquivo;// = new Arquivo();
 	public Pessoa pessoa;// = new Pessoa();
 	

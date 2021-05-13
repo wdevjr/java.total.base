@@ -88,7 +88,7 @@ public class ArquivoDAO {
 		try
 		{
 		statement.setInt(1, incrementa());
-		statement.setInt(2, arquivo.pessoa.getIdPessoa());
+		statement.setInt(2, arquivo.getArquivo().pessoa.getIdPessoa());
 
 		statement.setString(3, arquivo.getNomearquivo());
 		statement.setString(4, arquivo.getExtencao());
