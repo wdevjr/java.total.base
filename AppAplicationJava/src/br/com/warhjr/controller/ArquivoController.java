@@ -40,12 +40,12 @@ public class ArquivoController {
 			// JOptionPane.showMessageDialog(null, "arquivo é importante!");
 		} else {
 
-			if (arquivo.getIdPessoa() == 0) {
+			if (arquivo.getId() == 0) {
 				throw new Exception("Pessoa é importante!");
 				// JOptionPane.showMessageDialog(null, "Pessoa é importante!");
 			} else {
 
-				if (arquivo.getNomePessoa() == "") {
+				if (arquivo.pessoa.getNomePessoa() == "") {
 					throw new Exception("Nome Pessoa é importante!");
 					// JOptionPane.showMessageDialog(null, "Pessoa é importante!");
 				} else {

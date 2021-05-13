@@ -198,8 +198,8 @@ public class BuscaArquivoDialog extends JDialog {
 					Arquivo newfocus = lstrg.next();
 
 					objects[0] = newfocus.getId();
-					objects[1] = newfocus.getIdPessoa();
-					objects[2] = newfocus.getNomePessoa();
+					objects[1] = newfocus.getArquivo().pessoa.getIdPessoa();
+					objects[2] = newfocus.getArquivo().pessoa.getNomePessoa();
 					objects[3] = newfocus.getNomearquivo();
 
 					// objects[4] = newfocus.getEndereco();

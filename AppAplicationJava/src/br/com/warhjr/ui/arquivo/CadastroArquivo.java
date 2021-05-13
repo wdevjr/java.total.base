@@ -60,6 +60,7 @@ public class CadastroArquivo extends JFrame {
 	private Container contentor;
 	private JTextField textFieldEndereco;
 	private InputStream inputStrean;
+	private MaskFormatter Formatter = null;
 	public File file;
 	private JPanel panel_sucesso;
 	private JLabel lbLabelGif;
@@ -97,9 +98,9 @@ public class CadastroArquivo extends JFrame {
 	MaskFormatter cpfFormatter;
 	// private JFormattedTextField dataAtual;
 	private SimpleDateFormat sdft;
-	private JFormattedTextField dataAtual_1;
 	private Date Date;
 	private static JProgressBar progressBar = new JProgressBar();
+	private JTextField textFieldDataAtual;
 
 	/**
 	 * Launch the application.
@@ -160,6 +161,14 @@ public class CadastroArquivo extends JFrame {
 		textFieldexten.setForeground(Color.BLUE);
 		textFieldexten.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 		textFieldexten.setColumns(10);
+		
+		final JFormattedTextField textFieldDataAtual = new JFormattedTextField();
+		//textFieldDataAtual.setBackground(new Color(255,255,255,255));
+		textFieldDataAtual.setForeground(Color.BLUE);
+		textFieldDataAtual.setText("  /  /    ");
+		textFieldDataAtual.setEditable(false);
+		textFieldDataAtual.setColumns(10);
+		textFieldDataAtual.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
 		final JButton Deletar = new JButton("Deletar");
 		Deletar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -174,7 +183,8 @@ public class CadastroArquivo extends JFrame {
 		final JButton Editar = new JButton("Editar");
 		Editar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		Editar.setIcon(new ImageIcon(CadastroArquivo.class.getResource("/br/com/warhjr/img/telas/alterar.gif")));
-
+        Editar.setEnabled(false);
+		
 		final JButton Consultar = new JButton("Consultar");
 		Consultar.setIcon(new ImageIcon(CadastroArquivo.class.getResource("/br/com/warhjr/img/Procurar2.jpg")));
 		Consultar.setEnabled(false);
@@ -182,7 +192,7 @@ public class CadastroArquivo extends JFrame {
 		JButton Fechar = new JButton("Fechar ...");
 		Fechar.setIcon(new ImageIcon(CadastroArquivo.class.getResource("/br/com/warhjr/img/Alerts/ip.gif")));
 
-		final JFormattedTextField dataAtual = new JFormattedTextField();
+
 
 		final JButton btnNewButton_Extrair = new JButton("Extrair...");
 		
@@ -212,7 +222,7 @@ public class CadastroArquivo extends JFrame {
 
 		LabelCodigo.setForeground(Color.RED);
 
-		MaskFormatter Formatter = null;
+		
 		try {
 			Formatter = new MaskFormatter("##/##/####");
 		} catch (ParseException e1) {
@@ -220,9 +230,6 @@ public class CadastroArquivo extends JFrame {
 			e1.printStackTrace();
 		}
 		Formatter.setPlaceholderCharacter('_');
-		dataAtual_1 = new JFormattedTextField(Formatter);
-		dataAtual_1.setEditable(false);
-		dataAtual_1.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
 		final JButton Gravar = new JButton("Gravar");
 		Gravar.setIcon(new ImageIcon(CadastroArquivo.class.getResource("/br/com/warhjr/img/Alerts/ok_16x10.gif")));
@@ -292,7 +299,7 @@ public class CadastroArquivo extends JFrame {
 				.setIcon(new ImageIcon(CadastroArquivo.class.getResource("/br/com/warhjr/img/Alerts/download.gif")));
 		Editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SimpleDateFormat dns = new SimpleDateFormat("dd/MM/yyyy");
+				
 
 				if (textArea__1.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Insira um  Arquivo!");
@@ -314,8 +321,8 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setExtencao(textFieldexten.getText());
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
-							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
-							auxArquivo.setData(dataAtual_1.getText());
+							auxArquivo.getArquivo().pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setData(textFieldDataAtual.getText());
 
 							Inserir.setEnabled(true);
 							Gravar.setEnabled(false);
@@ -369,8 +376,8 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setExtencao(textFieldexten.getText());
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
-							auxArquivo.setData(dataAtual_1.getText());
-							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setData(textFieldDataAtual.getText());
+							auxArquivo.getArquivo().pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 							Inserir.setEnabled(true);
 							Gravar.setEnabled(false);
@@ -447,7 +454,7 @@ public class CadastroArquivo extends JFrame {
 					textFieldCodPessoa.setText("");
 					LabelNomePessoa.setText("");
 					LabelCodigo.setText("Código!");
-					dataAtual_1.setText("");
+					textFieldDataAtual.setText("");
 					JOptionPane.showMessageDialog(null, "Dados Excluidos!", "Situação dos Dados",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -464,8 +471,13 @@ public class CadastroArquivo extends JFrame {
 				Deletar.setEnabled(false);
 				Cancelar.setEnabled(true);
 				Consultar.setEnabled(true);
-
-				dataAtual_1.setText("");
+                textArea__1.setText("");
+                textFieldexten.setText("");
+                textFieldTamanho.setText("");
+				textFieldDataAtual.setText("");
+				
+				textFieldCodPessoa.setText("");
+				LabelNomePessoa.setText("");
 			}
 		});
 		Cancelar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -503,7 +515,7 @@ public class CadastroArquivo extends JFrame {
 				try {
 
 					cc.consultarArquivo(LabelCodigo, textArea__1, textFieldexten, textFieldTamanho, textFieldCodPessoa,
-							LabelNomePessoa, dataAtual_1);
+							LabelNomePessoa, textFieldDataAtual);
 
 				} catch (ParseException e1) {
 
@@ -548,7 +560,7 @@ public class CadastroArquivo extends JFrame {
 				Cancelar.setEnabled(true);
 				Consultar.setEnabled(false);
 
-				dataAtual_1.setText(formatador.format(data));
+				textFieldDataAtual.setText(formatador.format(data));
 				try {
 					LabelCodigo.setText(String.valueOf(auxCodInc.incrementa()));
 					// auxCodInc.incrementa();
@@ -595,9 +607,9 @@ public class CadastroArquivo extends JFrame {
 
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 
-							auxArquivo.setData(dataAtual_1.getText());
+							auxArquivo.setData(textFieldDataAtual.getText());
 
-							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 						try {
 
@@ -686,6 +698,7 @@ public class CadastroArquivo extends JFrame {
 					Inserir.setEnabled(false);
 					Gravar.setEnabled(true);
 					if (LabelCodigo.getText() != null) {
+					
 						Editar.setEnabled(false);
 					} else {
 						Editar.setEnabled(true);
@@ -703,7 +716,13 @@ public class CadastroArquivo extends JFrame {
 					textFieldTamanho.setText(df.format(number).toString());
 
 					textFieldexten.setText(ArquivoController.getExtensao(file.getName()));
-					// textFieldEndereco.setText(file.getAbsolutePath());
+					SimpleDateFormat dns = new SimpleDateFormat("dd/MM/yyyy");
+
+						Date dataatual = new Date(System.currentTimeMillis());
+						textFieldDataAtual.setText(dns.format(dataatual));
+					
+				  
+										// textFieldEndereco.setText(file.getAbsolutePath());
 					// Editar.setVisible(true);
 					NumTemp = 1;
 					// }
@@ -847,14 +866,13 @@ public class CadastroArquivo extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Data Cadastro:");
 
-		dataAtual_1.setBackground(new Color(250, 250, 210));
-		dataAtual_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		dataAtual_1.setForeground(new Color(0, 128, 0));
-		dataAtual_1.setBorder(new LineBorder(SystemColor.WHITE, 0, false));
+
 
 		scrollPane_1.setViewportView(textArea__1);
 		
 		JLabel lblMb = new JLabel("MB");
+		
+
 		
 
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -888,7 +906,7 @@ public class CadastroArquivo extends JFrame {
 									.addGap(40)
 									.addComponent(lblNewLabel)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(dataAtual_1, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldDataAtual, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addComponent(lblNewLabel_3)
 									.addGap(126)
@@ -927,8 +945,8 @@ public class CadastroArquivo extends JFrame {
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(1)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(dataAtual_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel)))
+								.addComponent(lblNewLabel)
+								.addComponent(textFieldDataAtual, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 							.addComponent(textFieldTamanho, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(lblMb)))

@@ -3,15 +3,32 @@ package br.com.warhjr.model;
 import java.util.Arrays;
 import java.util.Date;
 
-public class Arquivo extends Pessoa {
+public class Arquivo {
 
 	private Integer id;
-	private Pessoa pessoa;
+	//private Pessoa pessoa;
 	private String nomearquivo;
 	private String extencao;
 	private String tamanho;
 	private byte[] dados;
-	private String data = (new Date(System.currentTimeMillis())).toString();
+	private String data;// = (new Date(System.currentTimeMillis())).toString();
+	public Arquivo arquivo;// = new Arquivo();
+	public Pessoa pessoa;// = new Pessoa();
+	
+	
+	public Arquivo getArquivo()
+	{
+		if (this.arquivo == null)
+		{
+			this.arquivo = new Arquivo();
+			this.arquivo.pessoa = new Pessoa();
+		}
+		
+		return arquivo;
+	}
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -64,10 +81,25 @@ public class Arquivo extends Pessoa {
 		this.dados = dados;
 	}
 
+
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+
+
+	public void setArquivo(Arquivo arquivo) {
+		this.arquivo = arquivo;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((arquivo == null) ? 0 : arquivo.hashCode());
 		result = prime * result + Arrays.hashCode(dados);
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + ((extencao == null) ? 0 : extencao.hashCode());
@@ -78,6 +110,8 @@ public class Arquivo extends Pessoa {
 		return result;
 	}
 
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,6 +121,11 @@ public class Arquivo extends Pessoa {
 		if (getClass() != obj.getClass())
 			return false;
 		Arquivo other = (Arquivo) obj;
+		if (arquivo == null) {
+			if (other.arquivo != null)
+				return false;
+		} else if (!arquivo.equals(other.arquivo))
+			return false;
 		if (!Arrays.equals(dados, other.dados))
 			return false;
 		if (data == null) {
@@ -122,11 +161,16 @@ public class Arquivo extends Pessoa {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Arquivo [id=" + id + ", pessoa=" + pessoa + ", nomearquivo=" + nomearquivo + ", extencao=" + extencao
-				+ ", tamanho=" + tamanho + ", dados=" + Arrays.toString(dados) + ", data=" + data + "]";
+		return "Arquivo [id=" + id + ", nomearquivo=" + nomearquivo + ", extencao=" + extencao + ", tamanho=" + tamanho
+				+ ", dados=" + Arrays.toString(dados) + ", data=" + data + ", arquivo=" + arquivo + ", pessoa=" + pessoa
+				+ "]";
 	}
+
+
 
 	
 }
