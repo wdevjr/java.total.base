@@ -47,6 +47,7 @@ import br.com.warhjr.ui.ProgressBar;
 
 public class CadastroArquivo extends JFrame {
 	
+	
 
 	private JLabel LabelCodigo;
 	private JLabel labelpessoa;
