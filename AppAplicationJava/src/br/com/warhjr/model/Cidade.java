@@ -2,7 +2,7 @@ package br.com.warhjr.model;
 
 import java.io.Serializable;
 
-public class Cidade implements Serializable {
+public class Cidade {
 
 	private Integer id_cidade;
 	private String nomecidade;
