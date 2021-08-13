@@ -68,9 +68,9 @@ public class CadastroArquivo extends JFrame {
 	private ArquivoController auxSave;
 	// private JDateChooser dateChooser_1;
 
-	Thread t1;
-	private Timer t2;
-	int i = 0;
+	public Thread t1;
+	public Timer t2;
+	public int i = 0;
 	private JLabel LabelSucesso;
 	private JLabel LabelLoadinAjax;
 	private JTextField textFieldCodPessoa;
@@ -84,7 +84,7 @@ public class CadastroArquivo extends JFrame {
 	private JLabel Alert;
 	private JButton btnNewButton;
 	private JFileChooser fileChooser;
-	private Arquivo auxArquivo = new Arquivo();
+	
 	private JScrollPane scrollPane;
 	private int NumTemp = 0;
 	private int resposta;
@@ -102,6 +102,7 @@ public class CadastroArquivo extends JFrame {
 	private Date Date;
 	private static JProgressBar progressBar = new JProgressBar();
 	private JTextField textFieldDataAtual;
+	public Arquivo auxArquivo = new Arquivo();
 
 	/**
 	 * Launch the application.
@@ -300,7 +301,7 @@ public class CadastroArquivo extends JFrame {
 				.setIcon(new ImageIcon(CadastroArquivo.class.getResource("/br/com/warhjr/img/Alerts/download.gif")));
 		Editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Arquivo auxArquivo = new Arquivo();
 
 				if (textArea__1.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Insira um  Arquivo!");
@@ -322,7 +323,7 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setExtencao(textFieldexten.getText());
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
-							auxArquivo.getArquivo().pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 							auxArquivo.setData(textFieldDataAtual.getText());
 
 							Inserir.setEnabled(true);
@@ -378,7 +379,7 @@ public class CadastroArquivo extends JFrame {
 							auxArquivo.setTamanho(textFieldTamanho.getText());
 							// auxArquivo.setEndereco(textFieldEndereco.getText());
 							auxArquivo.setData(textFieldDataAtual.getText());
-							auxArquivo.getArquivo().pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
 
 							Inserir.setEnabled(true);
 							Gravar.setEnabled(false);
@@ -547,10 +548,12 @@ public class CadastroArquivo extends JFrame {
 
 				LabelCodigo.setText("");
 				textArea__1.setText("");
+				//auxArquivo.setNomearquivo(".");
+				
 				textFieldexten.setText("");
 				textFieldTamanho.setText((""));
 				// textFieldEndereco.setText("");
-				textFieldCodPessoa.setText("");
+				textFieldCodPessoa.setText("0");
 				LabelNomePessoa.setText("");
 
 				LabelCodigo.setVisible(true);
@@ -577,6 +580,7 @@ public class CadastroArquivo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				SimpleDateFormat dstn = new SimpleDateFormat("dd/MM/yyyy");
+				
 
                  if (textArea__1.getText().equals(""))
                  {
@@ -585,18 +589,19 @@ public class CadastroArquivo extends JFrame {
                 	return;
                  }
                   
-                 if (textFieldCodPessoa.getText().equals(""))
-                 {
-                	 JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
-                	 //btnLocalizarPessoa.requestFocus();
-                	 return;
-                 }
+//                 if (textFieldCodPessoa.getText().equals(""))
+//                 {
+//                	 JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
+//                	 //btnLocalizarPessoa.requestFocus();
+//                	 return;
+//                 }
                  
-					t1 = new Thread(new Runnable() {
-						@Override
-						public void run() {
-							ProgressBar bar = new ProgressBar();
-							bar.iniciaBar();
+//					t1 = new Thread(new Runnable() {
+//						
+//						@Override
+//						public void run() {
+//							ProgressBar bar = new ProgressBar();
+//							bar.iniciaBar();
 
 							Gravar.setBackground(Color.blue);
 
@@ -610,16 +615,24 @@ public class CadastroArquivo extends JFrame {
 
 							auxArquivo.setData(textFieldDataAtual.getText());
 
-							auxArquivo.getArquivo().pessoa.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							auxArquivo.setNomePessoa(LabelNomePessoa.getText());
 
 						try {
+							
 
 							auxSave.SalvarArq(auxArquivo, file.getAbsolutePath());
+							
+							
 
 						} catch (Exception e1) {
 
 							// labelText.setVisible(true);
+
 							labelText_1.setText(String.valueOf(e1.getMessage()));
+                            //auxArquivo = null;
+							
+							
 
 						}
 
@@ -644,11 +657,13 @@ public class CadastroArquivo extends JFrame {
 										} catch (InterruptedException e1) {
 											// TODO Auto-generated catch block
 											e1.printStackTrace();
+											
 										}
 									} else {
 										panelAlerta.setVisible(true);
 										labelText_1.setVisible(true);
 										Alert_1.setVisible(true);
+										
 
 									}
 								}
@@ -657,14 +672,14 @@ public class CadastroArquivo extends JFrame {
 
 
 							Gravar.setBackground(new Color(240, 240, 240));
-							bar.paraBar();
+							//bar.paraBar();
 						}
-					});
-					t1.start();
+//					});
+//					t1.start();
 				
 
-			}
-
+//			}
+//
 		});
 
 		Fechar.addActionListener(new ActionListener() {
@@ -755,6 +770,8 @@ public class CadastroArquivo extends JFrame {
 				ccd.setAlwaysOnTop(true);
 				ccd.setLocationRelativeTo(null);
 				LabelNomePessoa.setVisible(true);
+				Gravar.setEnabled(true);
+				Inserir.setEnabled(false);
 				if (Gravar.isEnabled() == false) {
 					Editar.setEnabled(true);
 				} else

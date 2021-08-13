@@ -15,17 +15,7 @@ public class Arquivo extends Pessoa{
 	public Arquivo arquivo;// = new Arquivo();
 	public Pessoa pessoa;// = new Pessoa();
 	
-	
-	public Arquivo getArquivo()
-	{
-		if (this.arquivo == null)
-		{
-			this.arquivo = new Arquivo();
-			this.arquivo.pessoa = new Pessoa();
-		}
-		
-		return arquivo;
-	}
+
 	
 	
 	

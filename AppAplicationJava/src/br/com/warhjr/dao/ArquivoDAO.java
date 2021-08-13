@@ -88,7 +88,7 @@ public class ArquivoDAO {
 		try
 		{
 		statement.setInt(1, incrementa());
-		statement.setInt(2, arquivo.getArquivo().pessoa.getIdPessoa());
+		statement.setInt(2, arquivo.getIdPessoa());
 
 		statement.setString(3, arquivo.getNomearquivo());
 		statement.setString(4, arquivo.getExtencao());
@@ -139,7 +139,7 @@ public class ArquivoDAO {
 
 		stmt = ConectionDataBase.getConnection().prepareStatement(update);
 
-		stmt.setInt(1, arquivo.getArquivo().pessoa.getIdPessoa());
+		stmt.setInt(1, arquivo.getIdPessoa());
 		stmt.setString(2, arquivo.getNomearquivo());
 		stmt.setString(3, arquivo.getExtencao());
 		stmt.setString(4, arquivo.getTamanho());
@@ -161,7 +161,7 @@ public class ArquivoDAO {
 		stmts = conectionAux.getConnection().prepareStatement(updates);
 
 		stmts.setInt(6, arqui.getId());
-		stmts.setInt(1, arqui.getArquivo().pessoa.getIdPessoa());
+		stmts.setInt(1, arqui.getIdPessoa());
 		stmts.setString(2, arqui.getNomearquivo());
 		stmts.setString(3, arqui.getExtencao());
 		stmts.setString(4, arqui.getTamanho());
@@ -229,8 +229,8 @@ public class ArquivoDAO {
 				Arquivo arquivo = new Arquivo();
 
 				arquivo.setId(rs.getInt(1));
-				arquivo.getArquivo().pessoa.setIdPessoa(new Integer(rs.getString(2)));
-				arquivo.getArquivo().pessoa.setNomePessoa(rs.getString(3));
+				arquivo.setIdPessoa(new Integer(rs.getString(2)));
+				arquivo.setNomePessoa(rs.getString(3));
 				arquivo.setNomearquivo(rs.getString(4));
 				arquivo.setExtencao(rs.getString(5));
 				arquivo.setTamanho(rs.getString(6));

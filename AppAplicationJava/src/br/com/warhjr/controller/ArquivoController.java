@@ -1,28 +1,30 @@
 package br.com.warhjr.controller;
 
-import java.awt.event.KeyEvent;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
-import javax.swing.JTextField;
-
-import org.codehaus.groovy.control.messages.ExceptionMessage;
+import javax.swing.Timer;
 
 //import com.toedter.calendar.JDateChooser;
 
 import br.com.warhjr.dao.ArquivoDAO;
+import br.com.warhjr.ui.arquivo.*;
 import br.com.warhjr.model.Arquivo;
+import br.com.warhjr.ui.ProgressBar;
 
 public class ArquivoController {
 
-	SimpleDateFormat ds = new SimpleDateFormat("dd/MM/YYYY");
 
-	public static String getExtensao(String nomeArquivo) {
+
+	SimpleDateFormat ds = new SimpleDateFormat("dd/MM/YYYY");
+	
+	public static final String msgArquivo="Insira um Arquivo!";
+	public static final String msgPessoa="Informe uma Pessoa-Busque na lupa!";
+
+
+	public static final String getExtensao(String nomeArquivo) {
 		int i = nomeArquivo.lastIndexOf('.');
 
 		if (i > 0 && i < (nomeArquivo.length() - 1))
@@ -31,32 +33,40 @@ public class ArquivoController {
 
 	}
 
-	public void SalvarArq(Arquivo arquivo, String file) throws Exception{
+	public void SalvarArq(Arquivo arquivo, String file) throws Exception {
 		
 		ArquivoDAO auxDao = new ArquivoDAO();
-		
-		if (arquivo.getNomearquivo().trim().length() == 0) {
-			throw new Exception("Nome do Arquivo é importante! ");
-			// JOptionPane.showMessageDialog(null, "arquivo é importante!");
-		} else {
 
-			if (arquivo.getArquivo().pessoa.getIdPessoa() == 0) {
-				throw new Exception("Pessoa é importante!");
-				// JOptionPane.showMessageDialog(null, "Pessoa é importante!");
+		
+//		if (Integer.parseInt(arquivo.getNomearquivo()) == 0) {
+//			//throw new Exception(msgArquivo);
+//			JOptionPane.showMessageDialog(null, "arquivo é importante!");
+//		} else {
+
+			if (arquivo.getIdPessoa() == 0) {
+				throw new Exception(msgPessoa);
+				//JOptionPane.showMessageDialog(null, msgPessoa);
 			} else {
 
-				if (arquivo.getArquivo().pessoa.getNomePessoa() == "") {
-					throw new Exception("Nome Pessoa é importante!");
-					// JOptionPane.showMessageDialog(null, "Pessoa é importante!");
-				} else {
-					if (arquivo != null) {
-						auxDao.insertArquivo(arquivo, file);
-						throw new Exception("Arquivo Inserido com Sucesso! ");
-					}
-				}
+//		if (arquivo.getNomePessoa().trim().length() == 0) {
+//			 throw new Exception(msgPessoa);
+//			//JOptionPane.showMessageDialog(null, msgPessoa);
+//			//return;
+//		} else {
+			if (arquivo != null) {
+				auxDao.insertArquivo(arquivo, file);
+				throw new Exception("Arquivo Inserido com Sucesso! ");
 			}
 		}
 	}
+//}
+	
+
+	//}
+
+
+		//}
+	//}
 			//}
 		//}
 
