@@ -46,8 +46,7 @@ import br.com.warhjr.dao.UsuarioDAO;
 import br.com.warhjr.model.Arquivo;
 import br.com.warhjr.ui.ProgressBar;
 
-public class CadastroArquivo extends JFrame {
-	
+public class CadastroArquivo extends JFrame{
 
 	private JLabel LabelCodigo;
 	private JLabel labelpessoa;
