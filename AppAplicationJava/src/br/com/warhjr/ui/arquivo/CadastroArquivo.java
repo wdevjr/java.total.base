@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -46,7 +47,6 @@ import br.com.warhjr.model.Arquivo;
 import br.com.warhjr.ui.ProgressBar;
 
 public class CadastroArquivo extends JFrame {
-	
 	
 
 	private JLabel LabelCodigo;
@@ -103,6 +103,8 @@ public class CadastroArquivo extends JFrame {
 	private static JProgressBar progressBar = new JProgressBar();
 	private JTextField textFieldDataAtual;
 	public Arquivo auxArquivo = new Arquivo();
+	private AbstractButton textArea__1;
+	private AbstractButton LabelNomePessoa;
 
 	/**
 	 * Launch the application.
@@ -148,6 +150,7 @@ public class CadastroArquivo extends JFrame {
 				final JLabel labelText_1 = new JLabel("New label");
 				labelText_1.setForeground(Color.BLUE);
 		final JTextArea textArea__1 = new JTextArea();
+		textArea__1.setEditable(false);
 		// textArea__1.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
 		final JLabel LabelNomePessoa = new JLabel("");
@@ -303,21 +306,20 @@ public class CadastroArquivo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Arquivo auxArquivo = new Arquivo();
 
-				if (textArea__1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Insira um  Arquivo!");
-					return;
-				}
-				if  (textFieldCodPessoa.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
-					return;
-				}
+//				if (textArea__1.getText().equals("")) {
+//					JOptionPane.showMessageDialog(null, "Insira um  Arquivo!");
+//					return;
+//				}
+//				if  (textFieldCodPessoa.getText().equals("")) {
+//					JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
+//					return;
+//				}
 					
 					// Arquivo auxArquivo = new Arquivo();
 					ArquivoController auxContr = new ArquivoController();
 
 					if (NumTemp == 1) {
-						if ((!textArea__1.getText().equals("")) && (!textFieldCodPessoa.getText().equals(""))
-								&& (!LabelCodigo.getText().equals(""))) {
+
 							auxArquivo.setId(Integer.parseInt(LabelCodigo.getText()));
 							auxArquivo.setNomearquivo(textArea__1.getText());
 							auxArquivo.setExtencao(textFieldexten.getText());
@@ -340,6 +342,7 @@ public class CadastroArquivo extends JFrame {
 								//labelText.setVisible(true);
 								labelText_1.setText(String.valueOf(e1.getMessage()));
 							}
+					
 							t2 = new javax.swing.Timer(600, new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
@@ -365,14 +368,9 @@ public class CadastroArquivo extends JFrame {
 								}
 							});
 							t2.start();
-						} else
-							JOptionPane.showMessageDialog(null, "Insira um Arquivo e Seleciocione um proprietário!");
-					} else
+						
+					} else {
 
-					{
-						if ((!textArea__1.getText().equals("")) && (!textFieldCodPessoa.getText().equals(""))
-								&& (!LabelCodigo.getText().equals(""))) 
-						{
 							auxArquivo.setId(Integer.parseInt(LabelCodigo.getText()));
 							auxArquivo.setNomearquivo(textArea__1.getText());
 							auxArquivo.setExtencao(textFieldexten.getText());
@@ -395,8 +393,7 @@ public class CadastroArquivo extends JFrame {
 								labelText_1.setText(String.valueOf(e1.getMessage()));
 							}
 							
-						} else
-							JOptionPane.showMessageDialog(null, "Insira um Arquivo e Selecione um proprietário!");
+
 						Inserir.setEnabled(true);
 						Gravar.setEnabled(false);
 						Editar.setEnabled(false);
@@ -424,22 +421,24 @@ public class CadastroArquivo extends JFrame {
 								Alert_1.setVisible(true);
 								labelText_1.setVisible(true);
 								
-
 							}
-						}
+						
+							}
+						
 					});
 					t2.start();
-				
+		
 
 			}
+	});
 
-		});
 		// Editar.setEnabled(false);
 
 		Deletar.addActionListener(new ActionListener() {
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
-
+				
+				
 				resposta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja Excluir o registro ?",
 						"Exclusão de Registro", JOptionPane.YES_NO_OPTION);
 
@@ -457,11 +456,12 @@ public class CadastroArquivo extends JFrame {
 					LabelNomePessoa.setText("");
 					LabelCodigo.setText("Código!");
 					textFieldDataAtual.setText("");
-					JOptionPane.showMessageDialog(null, "Dados Excluidos!", "Situação dos Dados",
-							JOptionPane.INFORMATION_MESSAGE);
 				}
+				
+
 			}
-		});
+				
+			});
 		// Deletar.setEnabled(false);
 
 		Cancelar.addActionListener(new ActionListener() {
@@ -582,12 +582,12 @@ public class CadastroArquivo extends JFrame {
 				SimpleDateFormat dstn = new SimpleDateFormat("dd/MM/yyyy");
 				
 
-                 if (textArea__1.getText().equals(""))
-                 {
-                	JOptionPane.showMessageDialog(null," Insira um  Arquivo!"); 
-                	//btnCarregar.requestFocus();
-                	return;
-                 }
+				
+				  if (textArea__1.getText().equals("")) {
+				  JOptionPane.showMessageDialog(null," Insira um  Arquivo!");
+				  //btnCarregar.requestFocus(); 
+				  return; }
+				 
                   
 //                 if (textFieldCodPessoa.getText().equals(""))
 //                 {
@@ -770,7 +770,6 @@ public class CadastroArquivo extends JFrame {
 				ccd.setAlwaysOnTop(true);
 				ccd.setLocationRelativeTo(null);
 				LabelNomePessoa.setVisible(true);
-				Gravar.setEnabled(true);
 				Inserir.setEnabled(false);
 				if (Gravar.isEnabled() == false) {
 					Editar.setEnabled(true);
