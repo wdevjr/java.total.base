@@ -14,7 +14,8 @@ import br.com.warhjr.ui.arquivo.*;
 import br.com.warhjr.model.Arquivo;
 import br.com.warhjr.ui.ProgressBar;
 
-public class ArquivoController {
+public class ArquivoController 
+{
 
 
 
