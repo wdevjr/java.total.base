@@ -772,7 +772,9 @@ public class CadastroArquivo extends JFrame {
 				ccd.setAlwaysOnTop(true);
 				ccd.setLocationRelativeTo(null);
 				LabelNomePessoa.setVisible(true);
+				
 				Inserir.setEnabled(false);
+				
 				if (Gravar.isEnabled() == false) {
 					Editar.setEnabled(true);
 				} else
