@@ -38,39 +38,14 @@ public class ArquivoController
 		
 		ArquivoDAO auxDao = new ArquivoDAO();
 
-		
-//		if (Integer.parseInt(arquivo.getNomearquivo()) == 0) {
-//			//throw new Exception(msgArquivo);
-//			JOptionPane.showMessageDialog(null, "arquivo é importante!");
-//		} else {
 
-			if (arquivo.getIdPessoa() == 0) {
-				throw new Exception(msgPessoa);
-				//JOptionPane.showMessageDialog(null, msgPessoa);
-			} else {
-
-//		if (arquivo.getNomePessoa().trim().length() == 0) {
-//			 throw new Exception(msgPessoa);
-//			//JOptionPane.showMessageDialog(null, msgPessoa);
-//			//return;
-//		} else {
 			if (arquivo != null) {
 				auxDao.insertArquivo(arquivo, file);
 				throw new Exception("Arquivo Inserido com Sucesso! ");
 			}
-		}
-	}
-//}
+     }
 	
-
-	//}
-
-
-		//}
-	//}
-			//}
-		//}
-
+	
 	public void EditaArq(Arquivo arquivo, String file) throws Exception {
 		ArquivoDAO auxDao = new ArquivoDAO();
 
