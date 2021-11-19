@@ -780,8 +780,22 @@ public class CadastroArquivo extends JFrame{
 				ccd.setLocationRelativeTo(null);
 				LabelNomePessoa.setVisible(true);
 				Inserir.setEnabled(false);
-				Editar.setEnabled(false);
-				Gravar.setEnabled(true);
+//				if (Gravar.isVisible() == false)
+//				{
+//				Editar.setEnabled(true);
+//				} else {
+//				if (Editar.isVisible() == false)
+//				{
+//				Gravar.setEnabled(true);
+//				}
+//				}
+
+				if (LabelCodigo.getText() != null) {
+
+					Editar.setEnabled(true);
+				} else {
+					Editar.setEnabled(false);
+				}
 
 			}
 		});
