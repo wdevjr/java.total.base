@@ -548,8 +548,9 @@ public class CadastroArquivo extends JFrame{
 				SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 
 				LabelCodigo.setText("");
-				textArea__1.setText("");
-				//auxArquivo.setNomearquivo(".");
+				//textArea__1.setText("");
+				//textArea__1.setText(".");
+				
 				
 				textFieldexten.setText("");
 				textFieldTamanho.setText((""));
@@ -585,9 +586,8 @@ public class CadastroArquivo extends JFrame{
 				
 
 				
-				  if (textArea__1.getText() == "") {
-				  JOptionPane.showMessageDialog(null," Insira um  Arquivo!");
-				  //btnCarregar.requestFocus(); 
+				  if (textArea__1.getText().length() == 0) {
+				  JOptionPane.showMessageDialog(null," Insira um  Arquivo!"); 
 				  return; 
 				  }
 				  
