@@ -548,7 +548,7 @@ public class CadastroArquivo extends JFrame{
 				SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 
 				LabelCodigo.setText("");
-				//textArea__1.setText("");
+				textArea__1.setText("");
 				//textArea__1.setText(".");
 				
 				
