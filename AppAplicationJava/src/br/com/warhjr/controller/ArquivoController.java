@@ -43,16 +43,17 @@ public class ArquivoController
 				auxDao.insertArquivo(arquivo, file);
 				throw new Exception("Arquivo Inserido com Sucesso! ");
 			}
-     }
+		}
+     
 	
 	
 	public void EditaArq(Arquivo arquivo, String file) throws Exception {
 		ArquivoDAO auxDao = new ArquivoDAO();
 
-		if (arquivo.getNomearquivo() == "") {
-			throw new Exception("Erro nome do arquivo é necessario");
-
-		} else
+//		if (arquivo.getNomearquivo() == "") {
+//			throw new Exception("Erro nome do arquivo é necessario");
+//
+//		} else
 			auxDao.UpdateArquivo(arquivo, file);
 		throw new Exception("Arquivo Editado com Sucesso! ");
 	}
@@ -60,13 +61,13 @@ public class ArquivoController
 	public void EditaArquivoSemFile(Arquivo arquivo) throws Exception {
 		ArquivoDAO auxDao = new ArquivoDAO();
 
-		if (arquivo.getNomearquivo() == "") {
-			throw new Exception("O nome do arquivo é necessario, ok?");
-		} else {
+//		if (arquivo.getNomearquivo() == "") {
+//			throw new Exception("O nome do arquivo é necessario, ok?");
+//		} else {
 
 			auxDao.updateSemFile(arquivo);
 			throw new Exception("Arquivo Editado com Sucesso! ");
-		}
+		//}
 	}
 
 	public void ExtrairArquivoEx(String nomeArquivo, String cod, JButton bot) throws Exception {

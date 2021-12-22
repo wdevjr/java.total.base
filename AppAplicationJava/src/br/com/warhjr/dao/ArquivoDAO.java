@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import br.com.warhjr.model.Arquivo;
+import br.com.warhjr.model.Pessoa;
 import br.com.warhjr.model.Usuario;
 
 public class ArquivoDAO {
@@ -39,6 +40,7 @@ public class ArquivoDAO {
 	public void insertFile(Arquivo arquivo, String filearq) throws Exception {
 		File f = new File(filearq);
 
+
 		try {
 			PreparedStatement ps = ConectionDataBase.getConnection()
 					.prepareStatement("insert into arquivo(id,cod_pessoa, nomearquivo,extencao,tamanho,"
@@ -52,7 +54,7 @@ public class ArquivoDAO {
 				offset += numRead;
 			}
 			ps.setInt(1, incrementa());
-			ps.setInt(2, arquivo.pessoa.getIdPessoa());
+			ps.setInt(2, arquivo.getIdPessoa());
 			ps.setString(3, arquivo.getNomearquivo());
 			ps.setString(4, arquivo.getExtencao());
 			ps.setString(5, arquivo.getTamanho());
@@ -214,6 +216,7 @@ public class ArquivoDAO {
 
 	public List<Arquivo> findArquivos(String nomepessoa, String nomearquivo) throws SQLException, ParseException {
 
+		
 		List<Arquivo> arquivos = new ArrayList<Arquivo>();
 		SimpleDateFormat dnst = new SimpleDateFormat("dd/MM/yyyy");
 		String select = "select AQ.id,AQ.COD_PESSOA,PE.nomePessoa,AQ.NOMEARQUIVO,AQ.EXTENCAO,AQ.TAMANHO,AQ.DATA from ARQUIVO AS AQ "
@@ -229,7 +232,7 @@ public class ArquivoDAO {
 				Arquivo arquivo = new Arquivo();
 
 				arquivo.setId(rs.getInt(1));
-				arquivo.setIdPessoa(new Integer(rs.getString(2)));
+				arquivo.setIdPessoa(new Integer(rs.getInt(2)));
 				arquivo.setNomePessoa(rs.getString(3));
 				arquivo.setNomearquivo(rs.getString(4));
 				arquivo.setExtencao(rs.getString(5));

@@ -65,7 +65,7 @@ public class CadastroArquivo extends JFrame{
 	private JPanel panel_sucesso;
 	private JLabel lbLabelGif;
 	private ArquivoController auxSave;
-	// private JDateChooser dateChooser_1;
+    
 
 	public Thread t1;
 	public Timer t2;
@@ -590,12 +590,6 @@ public class CadastroArquivo extends JFrame{
 				  JOptionPane.showMessageDialog(null," Insira um  Arquivo!"); 
 				  return; 
 				  }
-				  
-//				  if (!textFieldData.getText().equals("")) {
-//				  JOptionPane.showMessageDialog(null," Insira uma data!");
-//				  //btnCarregar.requestFocus(); 
-//				  return; 
-//				  } 
 				 
                   
                  if (LabelNomePessoa.getText() == "")
@@ -615,22 +609,23 @@ public class CadastroArquivo extends JFrame{
 							Gravar.setBackground(Color.blue);
 
 							ArquivoController auxSave = new ArquivoController();
+							Arquivo arquivo = new  Arquivo();
 
-							auxArquivo.setNomearquivo(file.getName());
+							arquivo.setNomearquivo(file.getName());
 
-							auxArquivo.setExtencao(textFieldexten.getText());
+							arquivo.setExtencao(textFieldexten.getText());
 
-							auxArquivo.setTamanho(textFieldTamanho.getText());
+							arquivo.setTamanho(textFieldTamanho.getText());
 
-							auxArquivo.setData(textFieldDataAtual.getText());
+							arquivo.setData(textFieldDataAtual.getText());
 
-							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
-							auxArquivo.setNomePessoa(LabelNomePessoa.getText());
+							arquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));
+							arquivo.setNomePessoa(LabelNomePessoa.getText());
 
 						try {
 							
 
-							auxSave.SalvarArq(auxArquivo, file.getAbsolutePath());
+							auxSave.SalvarArq(arquivo, file.getAbsolutePath());
 							
 							
 

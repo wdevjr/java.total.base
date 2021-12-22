@@ -3,7 +3,7 @@ package br.com.warhjr.model;
 import java.util.Arrays;
 import java.util.Date;
 
-public class Arquivo extends Pessoa{
+public class Arquivo extends Pessoa {
 
 	private Integer id;
 	//private Pessoa pessoa;
@@ -159,6 +159,8 @@ public class Arquivo extends Pessoa{
 				+ ", dados=" + Arrays.toString(dados) + ", data=" + data + ", arquivo=" + arquivo + ", pessoa=" + pessoa
 				+ "]";
 	}
+
+
 
 
 
