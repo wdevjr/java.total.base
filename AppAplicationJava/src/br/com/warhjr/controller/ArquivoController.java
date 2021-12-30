@@ -37,13 +37,20 @@ public class ArquivoController
 	public void SalvarArq(Arquivo arquivo, String file) throws Exception {
 		
 		ArquivoDAO auxDao = new ArquivoDAO();
-
+//		if (new Integer(arquivo.getNomearquivo())==0) {
+//		throw new Exception("Insira um arquivo!");
+//		}
+//		if (arquivo.getIdPessoa() == 0) {
+//		throw new Exception("Pessoa é necessario");
+//
+//	} else {
 
 			if (arquivo != null) {
 				auxDao.insertArquivo(arquivo, file);
 				throw new Exception("Arquivo Inserido com Sucesso! ");
 			}
-		}
+		//}
+	}
      
 	
 	

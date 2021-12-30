@@ -555,7 +555,7 @@ public class CadastroArquivo extends JFrame{
 				textFieldexten.setText("");
 				textFieldTamanho.setText((""));
 				// textFieldEndereco.setText("");
-				//textFieldCodPessoa.setText("0");
+				textFieldCodPessoa.setText("");
 				LabelNomePessoa.setText("");
 
 				LabelCodigo.setVisible(true);
@@ -635,7 +635,7 @@ public class CadastroArquivo extends JFrame{
 
 							labelText_1.setText(String.valueOf(e1.getMessage()));
                             //auxArquivo = null;
-							
+							labelText_1.setVisible(true);
 							
 
 						}
