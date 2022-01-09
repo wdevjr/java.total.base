@@ -584,14 +584,11 @@ public class CadastroArquivo extends JFrame{
 
 				SimpleDateFormat dstn = new SimpleDateFormat("dd/MM/yyyy");
 				
-
-				
 				  if (textArea__1.getText().length() == 0) {
 				  JOptionPane.showMessageDialog(null," Insira um  Arquivo!"); 
 				  return; 
 				  }
 				 
-                  
                  if (LabelNomePessoa.getText() == "")
                  {
                 	 JOptionPane.showMessageDialog(null, "Informe uma Pessoa!");
