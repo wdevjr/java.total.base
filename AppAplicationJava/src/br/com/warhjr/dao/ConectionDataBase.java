@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class ConectionDataBase {
+	
 	private static final String URL_SQLSERVER = "jdbc:jtds:sqlserver://localhost:1433/agendaUser;integratedSecurity=true";
 	private static final String DRIVER_CLASS = "net.sourceforge.jtds.jdbc.Driver";
 	private static final String USER = "sa";
@@ -20,7 +21,9 @@ public class ConectionDataBase {
 //	private static final String PASSWORD = "root";
 
 	public static Connection getConnection() {
+		
 		Connection con = null;
+		
 		System.out.println("Conectando ao Banco de Dados");
 		try {
 			Class.forName(DRIVER_CLASS);

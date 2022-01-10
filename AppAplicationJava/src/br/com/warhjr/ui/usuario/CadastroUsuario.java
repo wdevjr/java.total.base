@@ -47,6 +47,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+
 @SuppressWarnings("serial")
 public class CadastroUsuario extends JFrame {
 	
@@ -483,20 +484,22 @@ public class CadastroUsuario extends JFrame {
 
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
+			private HashMap parameterMap;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				if (textFieldID.getText().length() > 0) {
 					ConectionDataBase con = new ConectionDataBase();
 
-					HashMap parameterMap = new HashMap();
+					parameterMap = new HashMap();
 					String imagemLogo = "br/com/warhjr/report/img/Adm.jpg";
 					parameterMap.put("logoUser", imagemLogo);
 					parameterMap.put("iduser", new Integer(textFieldID.getText()));
 
+
 					try {
-						InputStream arquivo = getClass()
-								.getResourceAsStream("/br/com/warhjr/report/reportUsuarios.jasper");
+						InputStream arquivo = getClass().getResourceAsStream("/br/com/warhjr/report/reportUsuarios.jasper");
 						JasperReport report = (JasperReport) JRLoader.loadObject(arquivo);
 
 						JasperPrint relatorio = JasperFillManager.fillReport(report, parameterMap, con.getConnection());
