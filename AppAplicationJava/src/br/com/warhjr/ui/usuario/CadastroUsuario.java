@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.ListIterator;
 
 import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -46,6 +47,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
 
 @SuppressWarnings("serial")
@@ -74,19 +77,19 @@ public class CadastroUsuario extends JFrame {
 	// protected AbstractButton btnEditar;
 	UsuarioController auxControllerUser = new UsuarioController();;
 	private JLabel msg;
-	private JTextField textFieldNome;
-	private JTextField textFieldLogin;
 	private JLabel datalabel;
 	private Date data;
 	SimpleDateFormat sdt;
 	private JTextField textFieldnome;
 	private JTable tableUsers;
 	private JTextField textFieldID;
-	private JPasswordField textFieldSenha;
 	private JTextField datatext;
-	private JTextField textFieldData;
 	private JPanel panel;
 	private JButton btnNewButton_1;
+	private JTextField textFieldNome;
+	private JTextField textFieldLogin;
+	private JPasswordField textFieldSenha;
+	private JTextField textFieldData;
 
 	/**
 	 * Launch the application.
@@ -184,20 +187,21 @@ public class CadastroUsuario extends JFrame {
 		panel_3.setBorder(new LineBorder(new Color(153, 180, 209), 1, true));
 		panel_3.setBackground(new Color(237,241,228,255));
 		
+
+		JButton btnFechar = new JButton("Fechar");
+		btnFechar.setBounds(689, 11, 107, 25);
+		
 		JButton btGravar = new JButton("Gravar");
 		btGravar.setEnabled(false);
 		JButton button = new JButton("Inserir");
 		JButton btEditar = new JButton("Editar");
 		JButton btnNewButton = new JButton("Pesquisar");
-		JComboBox textFieldTipo = new JComboBox();
-		textFieldTipo.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
-		textFieldTipo.addItem("Administrador");
-		textFieldTipo.addItem("Usuário");
-		textFieldTipo.addItem("Super");
 		tableUsers = new JTable();
 		JButton btDeletar = new JButton("Deletar");
-		JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
+		//JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
 		btDeletar.addActionListener(new ActionListener() {
+			private JComboBox textFieldTipo;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -224,9 +228,7 @@ public class CadastroUsuario extends JFrame {
 		btDeletar.setIcon(new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/telas/delete.png")));
 		btDeletar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btDeletar.setEnabled(false);
-
-		JButton btInserir = new JButton("Novo");
-
+		
 		JButton btNovo = new JButton("Novo");
 		btNovo.addActionListener(new ActionListener() {
 
@@ -250,7 +252,7 @@ public class CadastroUsuario extends JFrame {
 
 				btGravar.setEnabled(true);
 				btNovo.setEnabled(false);
-				btnNewButton_1.setEnabled(false);
+				//btnNewButton_1.setEnabled(false);
 
 			}
 		});
@@ -295,8 +297,53 @@ public class CadastroUsuario extends JFrame {
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		label_5.setText(UsuarioDAO.getTipo());
+		JLabel label_6 = new JLabel("Nome:");
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
+		JButton btnImprimir = new JButton("Imprimir");
 		
+		textFieldNome = new JTextField();
+		textFieldNome.setColumns(10);
+		textFieldNome.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
+		textFieldNome.setBackground(Color.WHITE);
+		
+		JLabel label_7 = new JLabel("Login:");
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		textFieldLogin = new JTextField();
+		textFieldLogin.setColumns(10);
+		textFieldLogin.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
+		textFieldLogin.setBackground(Color.WHITE);
+		
+		JLabel label_8 = new JLabel("Senha:");
+		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		textFieldSenha = new JPasswordField();
+		textFieldSenha.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
+		
+		JLabel label_9 = new JLabel("Tipo:");
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		JComboBox textFieldTipo = new JComboBox();
+		textFieldTipo.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
+		textFieldTipo.addItem("Administrador");
+		textFieldTipo.addItem("Usuário");
+		textFieldTipo.addItem("Super");
+		
+		JLabel lblNewLabel_2 = new JLabel("Data Cadastro:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		textFieldData = new JTextField();
+		textFieldData.setEditable(false);
+		textFieldData.setColumns(10);
+		textFieldData.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
+		
+		btEditar.setBounds(198, 11, 94, 25);
+		btEditar.setIcon(new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/telas/alterar.gif")));
+		btEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btEditar.setEnabled(false);
+
+		JButton btCancelar = new JButton("Cancelar");
 
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -351,7 +398,7 @@ public class CadastroUsuario extends JFrame {
 					btGravar.setEnabled(false);
 					btDeletar.setEnabled(true);
 					btEditar.setEnabled(false);
-					btnNewButton_1.setEnabled(true);
+					//btnNewButton_1.setEnabled(true);
 
 					// } else {
 					// JOptionPane.showMessageDialog(null, "Dados
@@ -409,12 +456,7 @@ public class CadastroUsuario extends JFrame {
 
 		});
 
-		btEditar.setBounds(198, 11, 94, 25);
-		btEditar.setIcon(new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/telas/alterar.gif")));
-		btEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btEditar.setEnabled(false);
 
-		JButton btCancelar = new JButton("Cancelar");
 		btCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -422,7 +464,7 @@ public class CadastroUsuario extends JFrame {
 				btDeletar.setEnabled(false);
 				btGravar.setEnabled(false);
 				btEditar.setEnabled(false);
-				btnNewButton_1.setEnabled(true);
+				//btnNewButton_1.setEnabled(true);
 			}
 		});
 		btCancelar.setBounds(392, 11, 124, 25);
@@ -430,8 +472,6 @@ public class CadastroUsuario extends JFrame {
 				new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/AlertsDois/warning_large.gif")));
 		btCancelar.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		JButton btnFechar = new JButton("Fechar");
-		btnFechar.setBounds(689, 11, 107, 25);
 		btnFechar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -446,31 +486,6 @@ public class CadastroUsuario extends JFrame {
 		panel.setBackground(new Color(231, 229, 214));
 		panel.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
 
-		JLabel label_6 = new JLabel("Nome:");
-		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		JLabel label_7 = new JLabel("Login:");
-		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		textFieldNome = new JTextField();
-		textFieldNome.setColumns(10);
-		textFieldNome.setBackground(SystemColor.text);
-		textFieldNome.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
-
-		textFieldLogin = new JTextField();
-		textFieldLogin.setColumns(10);
-		textFieldLogin.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
-		textFieldLogin.setBackground(SystemColor.text);
-
-		JLabel label_8 = new JLabel("Senha:");
-		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		JLabel label_9 = new JLabel("Tipo:");
-		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		JLabel lblNewLabel_2 = new JLabel("Data Cadastro:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-
 		JLabel lblNewLabel_1 = new JLabel("ID:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 
@@ -479,16 +494,43 @@ public class CadastroUsuario extends JFrame {
 		textFieldID.setColumns(10);
 		textFieldID.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
-		textFieldSenha = new JPasswordField();
-		textFieldSenha.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 
+
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(231, 229, 214));
+		panel_4.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 806, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+		);
 		
-		btnNewButton_1.addActionListener(new ActionListener() {
-			private HashMap parameterMap;
+		JPanel panel_5 = new JPanel();
+		panel_5.setForeground(Color.BLUE);
+		panel_5.setBorder(new TitledBorder(new TitledBorder(new TitledBorder(new LineBorder(new Color(130, 135, 144)), "Dados do Usu\u00E1rio", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), "Dados  do Usu\u00E1rio", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)), "Dados do Usu\u00E1rio", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+		
 
-			@Override
+		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				HashMap parameterMap;
 				if (textFieldID.getText().length() > 0) {
 					ConectionDataBase con = new ConectionDataBase();
 
@@ -519,108 +561,96 @@ public class CadastroUsuario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Consulte um Usuário e Selecione no Grid (Tabela) Abaixo !");
 				}
 			}
+			
 		});
-		btnNewButton_1.setForeground(Color.BLACK);
-		btnNewButton_1.setBackground(SystemColor.menu);
-		btnNewButton_1.setIcon(
-				new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/Alerts/website_development.png")));
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(231, 229, 214));
-		panel_4.setBorder(new LineBorder(SystemColor.activeCaption, 1, true));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-				.addComponent(panel_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-				.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-				.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE));
-		gl_contentPane
-				.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-						gl_contentPane.createSequentialGroup()
-								.addComponent(panel, GroupLayout.PREFERRED_SIZE, 193, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)));
-
-		textFieldData = new JTextField();
-		textFieldData.setEditable(false);
-		textFieldData.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
-		textFieldData.setColumns(10);
-
+		btnImprimir.setBackground(Color.WHITE);
+		btnImprimir.setIcon(new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/Alerts/website_development.png")));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(10)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(510)
-									.addComponent(btnNewButton_1))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(label_6)
-									.addGap(347)
-									.addComponent(label_7))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-											.addGap(10)
-											.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel.createSequentialGroup()
-											.addComponent(label_8)
-											.addGap(152)
-											.addComponent(label_9)))
-									.addGap(69)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel_2)))))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblNewLabel_1)))
-					.addContainerGap(65, Short.MAX_VALUE))
+						.addComponent(lblNewLabel_1)
+						.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 618, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+							.addGap(31))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addGap(153))))
+		);
+		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
+		gl_panel_5.setHorizontalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_5.createSequentialGroup()
+							.addGap(10)
+							.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_6)
+								.addGroup(gl_panel_5.createSequentialGroup()
+									.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNewLabel_2)
+										.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))))
+						.addGroup(gl_panel_5.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_5.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(label_8)
+							.addGap(159)
+							.addComponent(label_9)
+							.addGap(158)
+							.addComponent(label_7)))
+					.addGap(17))
+		);
+		gl_panel_5.setVerticalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_6)
 						.addComponent(label_7))
 					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(8)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_5.createSequentialGroup()
+							.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_9)
+								.addComponent(lblNewLabel_2))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_5.createSequentialGroup()
 							.addComponent(label_8)
-							.addComponent(label_9))
-						.addComponent(lblNewLabel_2))
-					.addGap(11)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textFieldData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(27))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textFieldSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textFieldTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(26))
 		);
+		panel_5.setLayout(gl_panel_5);
 		panel.setLayout(gl_panel);
 
 		btnNewButton.addActionListener(new ActionListener() {
