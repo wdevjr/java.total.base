@@ -24,10 +24,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/postgresql-9.4.1212.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/start-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/postgresql-42.2.18.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

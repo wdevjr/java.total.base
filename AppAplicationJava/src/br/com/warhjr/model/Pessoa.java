@@ -21,6 +21,7 @@ public class Pessoa extends Endereco {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
 
 	public String getNomePessoa() {
 		return nomePessoa;

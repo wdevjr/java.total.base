@@ -1,6 +1,7 @@
 package br.com.warhjr.ui.usuario;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -34,8 +35,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.warhjr.controller.UsuarioController;
@@ -90,11 +93,37 @@ public class CadastroUsuario extends JFrame {
 	private JTextField textFieldLogin;
 	private JPasswordField textFieldSenha;
 	private JTextField textFieldData;
+	private DefaultTableCellRenderer CellRe = new DefaultTableCellRenderer();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
+//      for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//        if ("Nimbus".equals(info.getName())) {
+//          try {
+//			UIManager.setLookAndFeel(info.getClassName());
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InstantiationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (UnsupportedLookAndFeelException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//         break;
+//		   }
+//		} 
+
+
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -170,9 +199,21 @@ public class CadastroUsuario extends JFrame {
 		}
 		// return null;
 	}
+	
+	
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+    {  
+      Component comp = CellRe.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);  
+      
+      if(isSelected)
+          comp.setForeground(Color.red);
+      return comp;  
+   }  
+
+
 
 	@SuppressWarnings("deprecation")
-	public CadastroUsuario() throws Exception {
+	public CadastroUsuario()  throws Exception {
 		setTitle("Treina swing java Contriole de Usu\u00E1rios- v10.0");
 
 		// setAlwaysOnTop(true);
@@ -197,8 +238,17 @@ public class CadastroUsuario extends JFrame {
 		JButton btEditar = new JButton("Editar");
 		JButton btnNewButton = new JButton("Pesquisar");
 		tableUsers = new JTable();
+		tableUsers.setBackground(new Color(204, 255, 255));
+		tableUsers.setShowGrid(true);
+		tableUsers.setSelectionBackground(new Color(57, 105, 138));
+		tableUsers.setSelectionForeground(Color.WHITE);
+		DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
+
 		JButton btDeletar = new JButton("Deletar");
 		//JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
+		
+		
+		
 		btDeletar.addActionListener(new ActionListener() {
 			private JComboBox textFieldTipo;
 
@@ -803,6 +853,7 @@ public class CadastroUsuario extends JFrame {
 		// setLocationRelativeTo(null);
 
 	}
+
 
 	public JTable getTable() {
 		return tableUsers;
