@@ -217,9 +217,9 @@ public class BuscaArquivoDialog extends JDialog {
 
 				dstableArquivo.setRowHeight(25);
 
-				MeuRenderer auxrend = new MeuRenderer();
-				TableCellRenderer renderer = new MeuRenderer();
-				dstableArquivo.setDefaultRenderer(Object.class, renderer);
+				//MeuRenderer auxrend = new MeuRenderer();
+				//TableCellRenderer renderer = new MeuRenderer();
+				//dstableArquivo.setDefaultRenderer(Object.class, renderer);
 			}
 
 			// }
@@ -251,9 +251,10 @@ public class BuscaArquivoDialog extends JDialog {
 		dstableArquivo = new JTable();
 		dstableArquivo.setShowGrid(false);
 		dstableArquivo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		dstableArquivo.setSurrendersFocusOnKeystroke(true);
-		dstableArquivo.setBorder(new LineBorder(Color.BLUE));
-		dstableArquivo.setBackground(new Color(255, 255, 204));
+		dstableArquivo.setBackground(new Color(204, 255, 255));
+		dstableArquivo.setShowGrid(true);
+		dstableArquivo.setSelectionBackground(new Color(57, 105, 138));
+		dstableArquivo.setSelectionForeground(Color.WHITE);
 		dstableArquivo.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
 		scrollPane.setViewportView(dstableArquivo);
 		panel_1.setLayout(gl_panel_1);

@@ -36,6 +36,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class BuscaPessoaDialog extends JDialog {
 
@@ -74,15 +75,16 @@ public class BuscaPessoaDialog extends JDialog {
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-
+		dsTablePessoa = new JTable();
 		JScrollPane scrollPane = new JScrollPane();
 
-		scrollPane.setViewportBorder(new LineBorder(Color.BLUE));
+		//scrollPane.setViewportBorder(new LineBorder(Color.BLUE));
 
 		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.menu);
+		//panel.setBackground(SystemColor.menu);
 
 		textFieldPessoa = new JTextField();
+
 		textFieldPessoa.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -151,9 +153,9 @@ public class BuscaPessoaDialog extends JDialog {
 //					
 						dsTablePessoa.setRowHeight(25);
 
-						MeuRenderer auxrend = new MeuRenderer();
-						TableCellRenderer renderer = new MeuRenderer();
-						dsTablePessoa.setDefaultRenderer(Object.class, renderer);
+						//MeuRenderer auxrend = new MeuRenderer();
+						//TableCellRenderer renderer = new MeuRenderer();
+						//dsTablePessoa.setDefaultRenderer(Object.class, renderer);
 
 					} catch (Exception ex) {
 						// TODO Auto-generated catch block
@@ -168,6 +170,13 @@ public class BuscaPessoaDialog extends JDialog {
 
 			}
 		});
+		dsTablePessoa.setForeground(Color.BLACK);
+		dsTablePessoa.setFont(new Font("Arial", Font.PLAIN, 14));
+		scrollPane.setViewportView(dsTablePessoa);
+		dsTablePessoa.setBackground(new Color(204, 255, 255));
+		dsTablePessoa.setShowGrid(true);
+		dsTablePessoa.setSelectionBackground(new Color(57, 105, 138));
+		dsTablePessoa.setSelectionForeground(Color.WHITE);
 		textFieldPessoa.setForeground(Color.BLUE);
 		textFieldPessoa.setColumns(10);
 
@@ -197,8 +206,8 @@ public class BuscaPessoaDialog extends JDialog {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)));
 
-		dsTablePessoa = new JTable();
-		scrollPane.setViewportView(dsTablePessoa);
+		
+
 		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
