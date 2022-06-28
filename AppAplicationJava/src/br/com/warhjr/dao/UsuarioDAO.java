@@ -174,11 +174,54 @@ public class UsuarioDAO {
 		stmt.close();
 		return usuarios;
 	}
+	
+	
+	
+	public List<Usuario> consultaCostumizadaCodigoUsuario(Long id) throws SQLException
+	{
+		
+		List<Usuario> user = new ArrayList<Usuario>();
+		String select = "select * from USUARIO where idusuario="+id;
+		PreparedStatement stmt = connectionAux.getConnection().prepareStatement(select);
+		ResultSet rs = stmt.executeQuery();
+		
+		while (rs.next())
+		{
+			Usuario usuario = new Usuario();
 
-	public List<Usuario> findUsuarios(String nomeUsuario) throws SQLException {
+			usuario.setId(rs.getInt("idusuario"));
+			usuario.setNome(rs.getString("nomeusuario"));
+			usuario.setLogin(rs.getString("login"));
+			usuario.setSenha(rs.getString("senha"));
+			usuario.setData(rs.getString("data"));
+			usuario.setTipo(rs.getString("tipo"));
 
-		List<Usuario> usuarios = new ArrayList<Usuario>();
+			user.add(usuario);
 
+		}
+		rs.close();
+		stmt.close();
+		return user;
+	}
+	
+	
+	public List<Usuario> findUsuarios(String nomeUsuario) throws SQLException 
+	{
+
+//		
+//		if (nomeUsuario.equals("%"))
+//		{
+//			//usuarios.clear();
+//			List<Usuario> usuariosAux = new ArrayList<Usuario>();
+//			usuariosAux.clear();
+//
+//			usuariosAux = null;
+//			usuariosAux = new ArrayList();
+//			return usuariosAux;
+//			
+//		} else {
+
+			List<Usuario> usuarios = new ArrayList<Usuario>();
 		String select = "select * from USUARIO where nomeusuario LIKE '%" + nomeUsuario
 				+ "%' ORDER BY nomeusuario DESC";
 		;
@@ -203,6 +246,7 @@ public class UsuarioDAO {
 		rs.close();
 		stmt.close();
 		return usuarios;
+   // }
 	}
 
 	public void inserir(Usuario usuarios) throws SQLException {

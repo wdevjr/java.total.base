@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.InputStream;
+import java.io.ObjectStreamField;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +41,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import org.codehaus.groovy.tools.shell.commands.ClearCommand;
 
 import br.com.warhjr.controller.UsuarioController;
 import br.com.warhjr.dao.ConectionDataBase;
@@ -83,7 +86,7 @@ public class CadastroUsuario extends JFrame {
 	private JLabel datalabel;
 	private Date data;
 	SimpleDateFormat sdt;
-	private JTextField textFieldnome;
+	private JTextField textConsulta;
 	private JTable tableUsers;
 	private JTextField textFieldID;
 	private JTextField datatext;
@@ -152,7 +155,7 @@ public class CadastroUsuario extends JFrame {
 		DefaultTableModel model = new DefaultTableModel();
 		UsuarioController cc = new UsuarioController();
 		
-		if (textFieldnome.getText().length() != 0) {
+		if (textConsulta.getText().length() != 0) {
 			Object[] tableColumes = new Object[6];
 
 			tableColumes[0] = "Código";
@@ -168,7 +171,61 @@ public class CadastroUsuario extends JFrame {
 			try {
 				Object[] objects = new Object[6];
 
-				ListIterator<Usuario> lstg = userTable.buscaUsuarios(textFieldnome.getText()).listIterator();
+				ListIterator<Usuario> lstg = userTable.buscaUsuarios(textConsulta.getText()).listIterator();
+
+				while (lstg.hasNext()) {
+					Usuario userAux = lstg.next();
+
+					objects[0] = userAux.getId();
+					objects[1] = userAux.getNome();
+					objects[2] = userAux.getLogin();
+					objects[3] = userAux.getSenha();
+					objects[4] = userAux.getTipo();
+					objects[5] = userAux.getData();
+
+					model.addRow(objects);
+				}
+
+				tableUsers.setModel(model);
+				tableUsers.setRowHeight(20);
+				tableUsers.getColumnModel().getColumn(0).setPreferredWidth(2);
+				tableUsers.getColumnModel().getColumn(1).setPreferredWidth(200);
+
+				tableUsers.getColumnModel().getColumn(3).setMaxWidth(0);
+				tableUsers.getColumnModel().getColumn(3).setMinWidth(0);
+				tableUsers.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(0);
+				tableUsers.getTableHeader().getColumnModel().getColumn(3).setMinWidth(0);
+
+			} catch (Exception eq) {
+				JOptionPane.showInternalMessageDialog(null, eq.getMessage().toString());
+			}
+		}
+		// return null;
+	}
+	
+	
+	public void getPopularTableComParametro() {
+		UsuarioController userTable = new UsuarioController();
+		DefaultTableModel model = new DefaultTableModel();
+		UsuarioController cc = new UsuarioController();
+		
+		if (textConsulta.getText().length() != 0) {
+			Object[] tableColumes = new Object[6];
+
+			tableColumes[0] = "Código";
+			tableColumes[1] = "Nome";
+			tableColumes[2] = "Login";
+			tableColumes[3] = "Senha";
+			tableColumes[4] = "Tipo Usuário";
+			tableColumes[5] = "Data Cadastro";
+
+			model.setColumnIdentifiers(tableColumes);
+			tableUsers.setModel(model);
+
+			try {
+				Object[] objects = new Object[6];
+
+				ListIterator<Usuario> lstg = userTable.buscaUserId(Long.parseLong(textFieldID.getText())).listIterator();
 
 				while (lstg.hasNext()) {
 					Usuario userAux = lstg.next();
@@ -247,7 +304,9 @@ public class CadastroUsuario extends JFrame {
 		JButton btDeletar = new JButton("Deletar");
 		//JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
 		
-		
+		textConsulta = new JTextField();
+		textConsulta.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
+		textConsulta.setColumns(10);
 		
 		btDeletar.addActionListener(new ActionListener() {
 			private JComboBox textFieldTipo;
@@ -267,7 +326,7 @@ public class CadastroUsuario extends JFrame {
 					textFieldNome.setText(null);
 					textFieldLogin.setText(null);
 					textFieldSenha.setText(null);
-					textFieldTipo.setSelectedItem(null);
+					//textFieldTipo.setSelectedItem(null);
 					textFieldData.setText(null);
 					JOptionPane.showMessageDialog(null, "Dados Excluidos com Sucesso", "Sucesso!",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -411,17 +470,6 @@ public class CadastroUsuario extends JFrame {
 
 				Usuario userAux = new Usuario();
 
-				if (textFieldNome.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "O Nome do Usuário deve ser informado!", "Atenção!",
-							JOptionPane.INFORMATION_MESSAGE);
-				} else if (textFieldLogin.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "O nome de login deve ser informado!", "Atenção!",
-							JOptionPane.INFORMATION_MESSAGE);
-				} else if (textFieldSenha.getPassword().toString().length() == 0) {
-					JOptionPane.showMessageDialog(null, "A Senha também deve ser informada!", "Atenção!",
-							JOptionPane.INFORMATION_MESSAGE);
-				} else {
-
 					try {
 						userAux.setNome(textFieldNome.getText());
 						userAux.setLogin(textFieldLogin.getText());
@@ -430,31 +478,25 @@ public class CadastroUsuario extends JFrame {
 						userAux.setData(textFieldData.getText());
 
 						auxControllerUser.SalvaUsuarios(userAux);
-						if (textFieldnome.getText().length() != 0) {
-							getPopularTable();
-						}
-						JOptionPane.showMessageDialog(null, "Dados Inseridos com Sucesso!");
+//						if (textConsulta.getText().length() != 0) {
+//							getPopularTable();
+//							requestFocus();
+//						}
+						//JOptionPane.showMessageDialog(null, "Dados Inseridos com Sucesso!");
+
 					} catch (Exception e1) {
 
 						e1.printStackTrace();
 					}
-
-					// } catch (Exception ex) {
-					// msg.setVisible(true);
-					// msg.setText(ex.getMessage());
-					// }
-
+					
+					if (!userAux.getNome().equals("") && !userAux.getLogin().equals("") && !userAux.getSenha().equals(""))
+					{
 					btNovo.setEnabled(true);
 					btGravar.setEnabled(false);
 					btDeletar.setEnabled(true);
 					btEditar.setEnabled(false);
-					//btnNewButton_1.setEnabled(true);
-
-					// } else {
-					// JOptionPane.showMessageDialog(null, "Dados
-					// Incompletos!","Atenção!",JOptionPane.INFORMATION_MESSAGE);
-					// }
-				}
+					JOptionPane.showMessageDialog(null, "Dados Inseridos com Sucesso!");
+					}
 			}
 
 		});
@@ -490,7 +532,10 @@ public class CadastroUsuario extends JFrame {
 						usuarios.setData(textFieldData.getText());
 
 						auxControllerUser.UpdateUsuarios(usuarios);
-						getPopularTable();
+						//getPopularTable();
+						getPopularTableComParametro();
+      				    tableUsers.selectAll();
+						
 
 						btEditar.setEnabled(false);
 						btNovo.setEnabled(true);
@@ -704,21 +749,30 @@ public class CadastroUsuario extends JFrame {
 		panel.setLayout(gl_panel);
 
 		btnNewButton.addActionListener(new ActionListener() {
+			private Object[] objects;
+			private UsuarioController userTable;
+
 			@Override
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				// getPopularTable();
+				
+//				if (textConsulta.getText().equals("%")) {
+//					JOptionPane.showMessageDialog(null, "O Nome do Usuário Não ser % !", "Atenção!", JOptionPane.INFORMATION_MESSAGE);
+//				    return;
+//				}
 
-				UsuarioController userTable = new UsuarioController();
+				userTable = new UsuarioController();
 				DefaultTableModel model = new DefaultTableModel();
 				UsuarioController cc = new UsuarioController();
-				if (textFieldnome.getText().length() != 0) {
+				if (textConsulta.getText().length() != 0) 
+				{
 					Object[] tableColumes = new Object[6];
 
 					tableColumes[0] = "Código";
 					tableColumes[1] = "Nome";
 					tableColumes[2] = "Login";
-					tableColumes[3] = "Senha";
+				    tableColumes[3] = "Senha";
 					tableColumes[4] = "Tipo Usuário";
 					tableColumes[5] = "Data Cadastro";
 
@@ -726,9 +780,10 @@ public class CadastroUsuario extends JFrame {
 					tableUsers.setModel(model);
 
 					try {
-						Object[] objects = new Object[6];
 
-						ListIterator<Usuario> lstg = userTable.buscaUsuarios(textFieldnome.getText()).listIterator();
+						objects = new Object[6];
+
+						ListIterator<Usuario> lstg = userTable.buscaUsuarios(textConsulta.getText()).listIterator();
 
 						while (lstg.hasNext()) {
 							Usuario userAux = lstg.next();
@@ -752,18 +807,19 @@ public class CadastroUsuario extends JFrame {
 						tableUsers.getColumnModel().getColumn(3).setMinWidth(0);
 						tableUsers.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(0);
 						tableUsers.getTableHeader().getColumnModel().getColumn(3).setMinWidth(0);
-
-					} catch (Exception eq) {
-						JOptionPane.showInternalMessageDialog(null, eq.getMessage().toString());
+						
+							} catch (Exception eq) {
+								JOptionPane.showInternalMessageDialog(null, eq.getMessage().toString());
+							}
+						//}
 					}
+
 				}
 
-			}
+			
 		});
 
-		textFieldnome = new JTextField();
-		textFieldnome.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
-		textFieldnome.setColumns(10);
+
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.addMouseListener(new MouseAdapter() {
@@ -779,12 +835,12 @@ public class CadastroUsuario extends JFrame {
 								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
 								.addGroup(gl_panel_4.createSequentialGroup().addComponent(btnNewButton)
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textFieldnome, GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)))
+										.addComponent(textConsulta, GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)))
 						.addContainerGap()));
 		gl_panel_4.setVerticalGroup(gl_panel_4.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
 				gl_panel_4.createSequentialGroup().addContainerGap(47, Short.MAX_VALUE)
 						.addGroup(gl_panel_4.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton)
-								.addComponent(textFieldnome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								.addComponent(textConsulta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)

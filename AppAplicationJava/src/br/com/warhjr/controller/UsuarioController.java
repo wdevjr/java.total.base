@@ -1,6 +1,7 @@
 package br.com.warhjr.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
@@ -15,7 +16,23 @@ public class UsuarioController {
 	private UsuarioDAO userDaoAux = new UsuarioDAO();
 
 	public void SalvaUsuarios(Usuario usuarios) {
-		try {
+		
+			if (usuarios.getNome().equals(""))
+			{
+				JOptionPane.showMessageDialog(null, "Informe o Nome do Usuario","Nome!",JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+			if (usuarios.getLogin().equals(""))
+			{
+				JOptionPane.showMessageDialog(null, "Informe o Login do Usuario","Login!",JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+			if (usuarios.getSenha().equals(""))
+			{
+				JOptionPane.showMessageDialog(null, "Informe a Senha do Usuario","Senha!",JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+			try {
 			userDaoAux.inserir(usuarios);
 		} catch (SQLException e) {
 
@@ -24,7 +41,22 @@ public class UsuarioController {
 	}
 
 	public void UpdateUsuarios(Usuario usuarios) {
-
+		
+		if (usuarios.getNome().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Informe o Nome do Usuario","Nome!",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		if (usuarios.getLogin().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Informe o Login do Usuario","Login!",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		if (usuarios.getSenha().equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Informe a Senha do Usuario","Senha!",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		try {
 			userDaoAux.updateUsuarios(usuarios);
 
@@ -82,6 +114,13 @@ public class UsuarioController {
 
 		UsuarioDAO usedao = new UsuarioDAO();
 		return usedao.findUsuarios(nome);
+
+    }
+
+	public List<Usuario> buscaUserId(Long idUser) throws Exception {
+
+		UsuarioDAO usedao = new UsuarioDAO();
+		return usedao.consultaCostumizadaCodigoUsuario(idUser);
 	}
 
 }

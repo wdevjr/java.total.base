@@ -491,7 +491,7 @@ public class CadastroArquivo extends JFrame{
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1));
 
-		panel_1.setBackground(new Color(237,241,228,255));
+		panel_1.setBackground(new Color(231, 229, 214));
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(SystemColor.activeCaption, 1));
