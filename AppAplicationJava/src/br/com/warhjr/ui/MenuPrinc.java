@@ -161,6 +161,8 @@ public class MenuPrinc extends JFrame {
 	
 	@SuppressWarnings("unused")
 	public MenuPrinc() {
+		setAlwaysOnTop(true);
+		setAutoRequestFocus(false);
 		requestFocus(true);
 		setTitle("Menu Principal - Treinamentos 2015 - V1.0.00");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -196,6 +198,8 @@ public class MenuPrinc extends JFrame {
         ClockPane relogio = new ClockPane();
         relogio = new ClockPane();
         panelStatusBar.add(relogio);
+        panelStatusBar.add(new JSeparator(1));
+        panelStatusBar.add(new JLabel("Post Meridiem: "+"PM             "));
         panelStatusBar.add(new JSeparator(1));
 		
 		JMenuBar menuBar = new JMenuBar();

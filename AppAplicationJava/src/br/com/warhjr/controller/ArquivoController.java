@@ -43,28 +43,23 @@ public class ArquivoController
 		ArquivoDAO auxDao = new ArquivoDAO();
 		
 		if (file.isEmpty()) {
-		//throw new Exception("Insira um Arquivo!");
-		JOptionPane.showMessageDialog(null, "Arquivo, vazio ! Insira um Arquivo!","Arquivos!",JOptionPane.WARNING_MESSAGE);
-		return;
-		}
-
+		throw new Exception("Insira um Arquivo!");
+		//JOptionPane.showMessageDialog(null, "Arquivo, vazio ! Insira um Arquivo!","Arquivos!",JOptionPane.WARNING_MESSAGE);
+		//return;
+		} else {
 		if (arquivo.getNomearquivo().equals("")) {
-		//throw new Exception("Insira um Arquivo!");
-		JOptionPane.showMessageDialog(null, "Nome do Arquivo, Não Informado !","Arquivos!",JOptionPane.WARNING_MESSAGE);
-		return;
-		}
-
-		if ((arquivo.getIdPessoa() == 0)) {
-	    //throw new Exception("Insira uma Pessoa!");
-	    JOptionPane.showMessageDialog(null, msgPessoa,"Arquivos!",JOptionPane.WARNING_MESSAGE);	
-	    return;
-		}
-
+		throw new Exception("Insira um Arquivo!");
+		//JOptionPane.showMessageDialog(null, "Nome do Arquivo, Não Informado !","Arquivos!",JOptionPane.WARNING_MESSAGE);
+		//return;
+		} else {
+		if ((arquivo.getIdPessoa()  <= 0)) {
+	    throw new Exception("Insira uma Pessoa!");
+	    //JOptionPane.showMessageDialog(null, msgPessoa,"Arquivos!",JOptionPane.WARNING_MESSAGE);	
+	   // return;
+		} else {
 			try {
 				auxDao.insertArquivo(arquivo, file);
-				//throw new Exception("Dados Inseridos com Sucesso!!");
-				Thread.sleep(7000);
-				JOptionPane.showMessageDialog(null, "Dados Inseridos com Sucesso!");
+				throw new Exception("Dados Inseridos com Sucesso!!");
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -73,6 +68,9 @@ public class ArquivoController
 				e.printStackTrace();
 			}
 		}
+	 }
+   }
+}
 	
 			
 			

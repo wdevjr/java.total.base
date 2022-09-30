@@ -64,7 +64,6 @@ public class CadastroArquivo extends JFrame{
 	public File file;
 	private JPanel panel_sucesso;
 	private JLabel lbLabelGif;
-	private ArquivoController auxSave = new ArquivoController();
 
 	public Thread t1;
 	public Timer t2;
@@ -556,13 +555,14 @@ public class CadastroArquivo extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 
 				SimpleDateFormat dstn = new SimpleDateFormat("dd/MM/yyyy");
+				ArquivoController auxSave = new ArquivoController();
                  
 					t1 = new Thread(new Runnable() {
 						
 						@Override
 						public void run() {
-							ProgressBar bar = new ProgressBar();
-							bar.iniciaBar();
+							//ProgressBar bar = new ProgressBar();
+							//bar.iniciaBar();
 
 							//Gravar.setBackground(Color.blue);
 				try {
@@ -579,18 +579,16 @@ public class CadastroArquivo extends JFrame{
 
 							auxArquivo.setIdPessoa(Integer.parseInt(textFieldCodPessoa.getText()));		
 
+					
 							auxSave.SalvarArq(auxArquivo, NomeFileCaminho);
-
 						} catch (Exception e2) {
-                           //e2.printStackTrace();
-						  // labelText.setVisible(true);
-
+							labelText_1.setVisible(true);
 							labelText_1.setText(String.valueOf(e2.getMessage()));
-                          //  auxArquivo = null;
-							//labelText_1.setVisible(true);
-//							
-
+							auxArquivo = null;
+							labelText_1.setVisible(true);
+							e2.printStackTrace();
 						}
+
 
                       if ((!textArea__1.getText().equals("")) && (!textFieldCodPessoa.getText().equals("0")) && (!NomeFileCaminho.equals("")))
                       {
@@ -604,36 +602,36 @@ public class CadastroArquivo extends JFrame{
 					 }
                       	
 			
-//							t2 = new javax.swing.Timer(600, new ActionListener() {
-//								@Override
-//								public void actionPerformed(ActionEvent e) {
-//									if (Alert_1.isVisible() == true) {
-//										Alert_1.setVisible(false);
-//										labelText_1.setVisible(false);
-//										Alert_1.setVisible(false);
-//										panelAlerta.setVisible(false);
-//										try {
-//											Thread.sleep(4000);
-//											t2.stop();
-//										} catch (InterruptedException e1) {
-//											// TODO Auto-generated catch block
-//											e1.printStackTrace();
-//											
-//										}
-//									} else {
-//										panelAlerta.setVisible(true);
-//										labelText_1.setVisible(true);
-//										Alert_1.setVisible(true);
-//										
-//
-//									}
-//								}
-//							});
-//							t2.start();
+							t2 = new javax.swing.Timer(600, new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									if (Alert_1.isVisible() == true) {
+										Alert_1.setVisible(false);
+										labelText_1.setVisible(false);
+										Alert_1.setVisible(false);
+										panelAlerta.setVisible(false);
+										try {
+											Thread.sleep(4000);
+											t2.stop();
+										} catch (InterruptedException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+											
+										}
+									} else {
+										panelAlerta.setVisible(true);
+										labelText_1.setVisible(true);
+										Alert_1.setVisible(true);
+										
+
+									}
+								}
+							});
+							t2.start();
 
 
 							//Gravar.setBackground(new Color(240, 240, 240));
-							bar.paraBar();
+							//bar.paraBar();
 							
 						}
 					});
