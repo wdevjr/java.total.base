@@ -276,7 +276,7 @@ public class CadastroUsuario extends JFrame {
 		// setAlwaysOnTop(true);
 		// requestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 832, 522);
+		setBounds(100, 100, 832, 488);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -373,39 +373,6 @@ public class CadastroUsuario extends JFrame {
 		UsuarioDAO user = new UsuarioDAO();
 		SimpleDateFormat sdt = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = new Date();
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(SystemColor.activeCaption, 1));
-		panel_1.setBackground(new Color(191, 205, 219));
-
-		JLabel label = new JLabel("xxxxx");
-		label.setText(UsuarioDAO.getNomeUser());
-		label.setForeground(Color.BLUE);
-		label.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		JLabel label_1 = new JLabel("Usuario:");
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-
-		JLabel label_2 = new JLabel("Login:");
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-
-		JLabel label_3 = new JLabel("xxxxxxx");
-		label_3.setForeground(new Color(0, 128, 0));
-		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		label_3.setText(UsuarioDAO.getLoginUser());
-
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setForeground(Color.GRAY);
-
-		JLabel label_4 = new JLabel("Tipo:");
-		label_4.setFont(new Font("Tahoma", Font.BOLD, 13));
-
-		JLabel label_5 = new JLabel("xxxxx");
-		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		label_5.setText(UsuarioDAO.getTipo());
 		JLabel label_6 = new JLabel("Nome:");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -598,24 +565,22 @@ public class CadastroUsuario extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 806, Short.MAX_VALUE)
 					.addContainerGap())
+				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+					.addGap(38))
 		);
 		
 		JPanel panel_5 = new JPanel();
@@ -877,34 +842,6 @@ public class CadastroUsuario extends JFrame {
 		panel_3.add(btDeletar);
 		panel_3.add(btCancelar);
 		panel_3.add(btnFechar);
-
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(6).addComponent(label_1)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE).addGap(10)
-						.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18).addComponent(label_2).addGap(10)
-						.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE).addGap(29)
-						.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(4).addComponent(label_4).addGap(6)
-						.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addComponent(separator, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-				.addComponent(label_2).addComponent(label_3, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-				.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-				.addComponent(label_4)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(2).addComponent(label_5, GroupLayout.PREFERRED_SIZE,
-						14, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(2)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(label_1)
-								.addComponent(label, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap()));
-		panel_1.setLayout(gl_panel_1);
 		contentPane.setLayout(gl_contentPane);
 		// setLocationRelativeTo(null);
 
