@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportUsuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0c44b95-38fe-4d57-aac2-6d3fd1661b83">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="agendaUserProducao.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="iduser" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoUser" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM usuario WHERE idusuario=$P{iduser}]]>
+	</queryString>
+	<field name="idusuario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idusuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="idusuario"/>
+	</field>
+	<field name="nomeusuario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nomeusuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="nomeusuario"/>
+	</field>
+	<field name="login" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="login"/>
+		<property name="com.jaspersoft.studio.field.label" value="login"/>
+	</field>
+	<field name="senha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="senha"/>
+		<property name="com.jaspersoft.studio.field.label" value="senha"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+	</field>
+	<field name="data" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="data"/>
+		<property name="com.jaspersoft.studio.field.label" value="data"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="163" y="30" width="295" height="20" forecolor="#009933" uuid="fdc385ba-22ae-4a49-876d-aa682ab175a7"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Treinamento - Relatório de Usuarios]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="403" y="0" width="152" height="20" forecolor="#6666FF" uuid="220e80fe-f585-4311-8d03-6335980b51e1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="12" y="10" width="78" height="40" uuid="0051ec9f-de6b-418a-be21-09892d421d8b"/>
+				<imageExpression><![CDATA[$P{logoUser}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="51" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="14" width="53" height="20" uuid="2380960d-dae8-4919-b372-9acb4d9613d7"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="40" width="553" height="1" uuid="8e2bd1a7-1027-449f-9aeb-825fe4cd4a45"/>
+				<graphicElement>
+					<pen lineStyle="Double" lineColor="#CC0033"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="0" width="553" height="1" uuid="0bf07bc5-5743-47a6-9bcf-ed7bd04a57d6"/>
+				<graphicElement>
+					<pen lineStyle="Double" lineColor="#CC0033"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="90" y="14" width="160" height="20" uuid="a131fd2f-366d-4dc4-962e-c2a6f6800657"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="14" width="65" height="20" uuid="0a56ad64-9ea3-4559-b72d-40fa7a0daf07"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Login]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="14" width="104" height="20" uuid="3d3c41b2-2369-4632-be22-e9cb0709912b"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="14" width="113" height="20" uuid="f04c1671-4dcd-4e65-9381-6dde0927be3c"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Cadastro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="80" splitType="Stretch">
+			<textField>
+				<reportElement x="246" y="-1" width="65" height="20" uuid="3ecaccbe-a2e1-4308-82bd-ae7bd679cc67"/>
+				<textFieldExpression><![CDATA[$F{login}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="-1" width="104" height="20" uuid="73bcabae-e9bf-4629-a82f-fd4531a7f651"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="-1" width="112" height="20" uuid="46886b57-f675-46c3-8884-17233223d588"/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="1" width="160" height="20" uuid="4ee776b4-f2d3-414e-bc27-1aab0318a44e"/>
+				<textFieldExpression><![CDATA[$F{nomeusuario}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="0" width="80" height="80" uuid="55f5d935-5d5a-4bca-9e84-921aa520f68b"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$F{idusuario}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
