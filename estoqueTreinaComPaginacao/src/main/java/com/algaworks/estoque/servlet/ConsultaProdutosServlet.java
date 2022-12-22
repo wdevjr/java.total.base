@@ -40,19 +40,11 @@ public class ConsultaProdutosServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		RequestDispatcher dispatcher = request.getRequestDispatcher(
-//				"/paginas/consulta-produtos.jsp");
-//		dispatcher.forward(request, response);
-		// this.doGet(request, response);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		EntityManager manager = JpaUtil.getEntityManager();
 		ProdutosRepository produtos = new ProdutosRepository(manager);
-		HttpServletResponse res = (HttpServletResponse) response;
-		HttpServletRequest req = (HttpServletRequest) request;
-
-		HttpSession session = req.getSession();
 
 		nome = request.getParameter("nome");
 		if (request.getParameter("page") != null) {
@@ -61,13 +53,13 @@ public class ConsultaProdutosServlet extends HttpServlet {
 		} else {
 			paginaAtual = 1;
 		}
-		if (cont != null) {
-			maxPorPagina = new Integer(cont);
-		}
+
+			maxPorPagina = 3;
+
 		if (paginaAtual == 1) {
 		} else {
 			paginaAtual = paginaAtual - 1;
-			paginaAtual = (((paginaAtual * maxPorPagina + 1) / new Integer(cont)) + 1);
+			paginaAtual = (((paginaAtual * maxPorPagina + 1) / 3) + 1);
 		}
 
 		String mensagem = null;
@@ -81,7 +73,6 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			request.setAttribute("paginacao", getlistanome());
 			cont = String.valueOf(getlistanome().size());
 			request.setAttribute("cont", cont);
-
 			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/paginas/consulta-produtos.jsp");
 			try {
 				dispatcher2.forward(request, response);
@@ -95,8 +86,6 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			request.setAttribute("produtos", "");
 			request.setAttribute("agora", new Date());
 			cont = String.valueOf(ListaNenhum.size());
-			// response.sendRedirect(request.getContextPath() +
-			// "/paginas/consulta-produtos.jsp");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("/paginas/consulta-produtos.jsp");
 			try {
 				dispatcher1.forward(request, response);
