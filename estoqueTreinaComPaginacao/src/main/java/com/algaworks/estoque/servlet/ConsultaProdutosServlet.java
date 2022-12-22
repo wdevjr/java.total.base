@@ -54,12 +54,12 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			paginaAtual = 1;
 		}
 
-			maxPorPagina = 3;
+			maxPorPagina = 5;
 
 		if (paginaAtual == 1) {
 		} else {
 			paginaAtual = paginaAtual - 1;
-			paginaAtual = (((paginaAtual * maxPorPagina + 1) / 3) + 1);
+			paginaAtual = ((((paginaAtual * maxPorPagina) + 1) / 5) + 1);
 		}
 
 		String mensagem = null;
