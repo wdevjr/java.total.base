@@ -77,7 +77,7 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 	}
 
 	@Override
-	public int totalDeProdutos() {
+	public int todosProdutosComNome() {
 		try {
 			int total = ((Long) manager.createQuery("select count(l) from Produto l").getSingleResult()).intValue();
 			return total;
@@ -86,6 +86,16 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 		}
 	}
 
+	@Override
+	public int totalDeProdutos() {
+		try {
+			int total = ((Long) manager.createQuery("select count(l) from Produto l").getSingleResult()).intValue();
+			return total - 3;
+		} finally {
+			manager.close();
+		}
+	}
+	
 	public Produto consultarPorId(Long id) {
 
 		Produto produto = null;

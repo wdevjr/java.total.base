@@ -14,6 +14,8 @@ public interface InterfaceProdutosDAO {
 	
 	public abstract int totalDeProdutos();
 
-	List<Produto> todosProdutosComNome(String nome);
+	public abstract List<Produto> todosProdutosComNome(String nome);
+
+	public abstract int todosProdutosComNome();
 
 }
