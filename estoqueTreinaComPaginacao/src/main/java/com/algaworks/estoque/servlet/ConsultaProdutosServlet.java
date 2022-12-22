@@ -126,4 +126,11 @@ public class ConsultaProdutosServlet extends HttpServlet {
 		return ldao.totalDeProdutos();
 	}
 
+	//desnecessario ----
+	public int todosProdutosComNomeTotal(List<Produto> list) {
+			int total = (list.size());
+			return total;
+
+	}
+  
 }

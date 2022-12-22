@@ -85,6 +85,8 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 			manager.close();
 		}
 	}
+	
+	
 
 	@Override
 	public int totalDeProdutos() {
