@@ -23,7 +23,7 @@ import com.algaworks.estoque.util.JpaUtil;
 public class ConsultaProdutosServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private List<Produto> ListaNenhum = new ArrayList<Produto>();
+	private List ListaNenhum;
 	private List<Produto> listatodos = new ArrayList<Produto>();
 	private List<Produto> todosProdutosComNome = new ArrayList<Produto>();
 
@@ -67,7 +67,7 @@ public class ConsultaProdutosServlet extends HttpServlet {
 		if (nome != null) {
 			nometemp = this.nome;
 		}
-		if (nometemp != null) {
+		if ((nometemp != null) && (nometemp != "")) {
 			request.setAttribute("produtos", getTodos());
 			request.setAttribute("agora", new Date());
 			request.setAttribute("paginacao", getlistanome());
@@ -82,10 +82,10 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			}
 
 		} else {
-			ListaNenhum.clear();
-			request.setAttribute("produtos", "");
+			
+			request.setAttribute("produtos", ListaNenhum);
 			request.setAttribute("agora", new Date());
-			cont = String.valueOf(ListaNenhum.size());
+			cont = "0";
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("/paginas/consulta-produtos.jsp");
 			try {
 				dispatcher1.forward(request, response);
