@@ -48,8 +48,8 @@
 				<h1>Login</h1>
 
 				<c:if test="${not empty mensagem}">
-					<img src="<c:out value="/src/main/java/estoque/com/algaworks/estoque/img/warnning.gif"/>"/>
-					<img src="/img/warning.png" />
+					<img src="<c:out value="com/algaworks/estoque/img/warnning.gif"/>"/>
+					<img src="../../img/warning.png" />
 					<img src='<c:url value="../../paginas/warning.png" />' />
 					<img src="<c:url value="/img/warnning.png"/>" />
 					<strong style="color: red; font: normal; font-size: 11;">${mensagem}</strong>
