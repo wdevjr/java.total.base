@@ -2,80 +2,86 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="aw" tagdir="/WEB-INF/tags"%>
-<html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="Styles/yui-datatable/yui-database.css">
-<link rel="stylesheet" href="Styles/tablecloth.css">
-<link rel="stylesheet" href="Styles/Yahoo-Ocean/stylesheet.css">
-
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"></link>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-<style type="text/css">
-body {
-
-	text-align: center;
-}
-
-#tudo {
-
-    position: relative;
-    height: 400px";
-	margin-left: 50%;
-	left: 10%;
-	text-align: left;
-	
-}
-</style>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Cadastro de Posts</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="tudo">
-
-				<strong>Cadastro de produtos</strong>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<strong>Cadastro de Produtos</strong>
+		</div>
+		<div class="panel-body">
 
 			<div class="panel-body">
-				<c:if test="${not empty mensagem}">
-					<strong>${mensagem}</strong>
+				<form action="cadastro-produto" class="form-horizontal"
+					method="POST" style="margin: 10px">
+					<div class="form-group">
+						<fieldset>
+							<div class="form-group row">
+								<c:if test="${not empty mensagem}">
+									<strong>${mensagem}</strong>
 
-				</c:if>
+								</c:if>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4">
 
-				<div class="panel-footer"
-					style="background: buttonface; width: 391px; height: 227px">
-
-					<form action="cadastro-produto" class="form-horizontal"
-						method="post">
-						<br>
-						<div class="form-group">
-							<fieldset>
-								<div class="form-group row">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nome:&nbsp;<input type="text" name="nome" size="32"
-										value="${form.nome}" /><br />
+									<div class="form-group row">
+										<label>Nome</label> <input type="text"
+											class="form-control input-sm" name="nome" size="32"
+											value="${form.nome}" autofocus="autofocus" maxlength="150"
+											placeholder="Informe o Nome" />
+									</div>
 								</div>
-								<div class="form-group row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<label>Preço Custo:&nbsp;</label><input type="text"
-										name="preco" size="8" value="${form.preco}" /><br />
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label>Preço Custo</label> <input type="text"
+											class="form-control input-sm" name="preco" size="17"
+											value="${form.preco}" autofocus="autofocus"
+											placeholder="Informe o Preço Custo!" />
+									</div>
 								</div>
-								<div class="form-group row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<label>Quantidade Estoque:&nbsp;</label> <input type="text"
-										name="quantidade" size="8" value="${form.quantidade}" /><br />
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4">
+									<div class="form-group row">
+										<label>Quantidade</label> <input type="text"
+											class="form-control input-sm" name="quantidade" size="8"
+											value="${form.quantidade}"
+											placeholder="Informe a quantidade!" />
+									</div>
 								</div>
-
-							</fieldset>
-						</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="form-group row">
+						<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+						<a class="btn btn-sm btn-default" href="javascript:history.back()" />Cancela</a>
+					</div>
+				</form>
+				<div class="form-group row">
+					<div class="col-md-4">
 						<div class="form-group row">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-sm btn-success"
-								value="Cadastrar" />
+							<c:import url="/paginas/rodape.jsp" />
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	
-	<%-- <c:import url="/paginas/rodape.jsp" /> --%>
 
-
+	</div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "produto")
@@ -16,7 +17,11 @@ public class Produto{
 
 	private Long id;
 	private String nome;
+	
+
 	private Integer quantidadeEstoque;
+	
+
 	private BigDecimal precoCusto;
 
 	@Id
@@ -37,7 +42,8 @@ public class Produto{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+     
+	
 	@Column(name = "quantidade_estoque", nullable = false)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;

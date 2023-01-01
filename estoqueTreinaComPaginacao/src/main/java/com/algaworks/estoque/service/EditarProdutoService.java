@@ -15,15 +15,10 @@ public class EditarProdutoService {
 		this.produtos = produtos;
 	}
 	
-    public void EditaProduto(Produto produto)
+    public void EditaProduto(Produto produto) throws ServiceException
     {
-    	try {
 			validarProduto(produto);
 			this.produtos.editar(produto);
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		}
-    	
     }
 	
 	public Produto listarProd(Long id) throws ServiceException {
@@ -35,13 +30,13 @@ public class EditarProdutoService {
 	private void validarProduto(Produto produto) throws ServiceException {
 		if (produto.getNome() == null || produto.getNome().equals("")) {
 			throw new ServiceException("Nome deve ser informado.");
-		} else if (produto.getPrecoCusto() == null) {
+		} else if ((produto.getPrecoCusto() == null) || (produto.getPrecoCusto().compareTo(BigDecimal.ZERO)) == 0.0) {
 			throw new ServiceException("Preço de custo deve ser informado.");
-		} else if (produto.getQuantidadeEstoque() == null) {
+		} else if ((produto.getQuantidadeEstoque() == null) | (produto.getQuantidadeEstoque()) == 0) {
 			throw new ServiceException("Quantidade em estoque deve ser informada.");
 		} else if (produto.getPrecoCusto().compareTo(BigDecimal.ZERO) < 0) {
 			throw new ServiceException("Preço de custo deve ser maior que zero.");
-		} else if (produto.getQuantidadeEstoque() < 0) {
+		} else if ((produto.getQuantidadeEstoque() < 0)) {
 			throw new ServiceException("Quantidade em estoque deve ser maior que zero.");
 		}
 	}

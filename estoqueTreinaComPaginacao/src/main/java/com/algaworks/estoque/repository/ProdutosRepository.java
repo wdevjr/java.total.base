@@ -85,8 +85,6 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 			manager.close();
 		}
 	}
-	
-	
 
 	@Override
 	public int totalDeProdutos() {
@@ -97,7 +95,7 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 			manager.close();
 		}
 	}
-	
+
 	public Produto consultarPorId(Long id) {
 
 		Produto produto = null;
