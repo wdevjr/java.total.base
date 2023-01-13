@@ -40,7 +40,7 @@ body {
 
 			<form action="edita-produto" class="form-horizontal" method="post"
 				style="margin: 70px; height: 154px; width: 384px">
-				<input type="hidden" name="id" size="20" value="${produtos.id}" />
+				<input type="hidden" name="idproduto" size="20" value="${produtos.id}" />
 				<br>
 				<div class="form-group">
 					<div class="form-group row">

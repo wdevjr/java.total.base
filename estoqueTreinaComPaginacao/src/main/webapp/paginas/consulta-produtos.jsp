@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="aw" tagdir="/WEB-INF/tags"%>
-<jsp:useBean id="dao"
-	class="com.algaworks.estoque.servlet.ConsultaProdutosServlet" />
+<jsp:useBean id="Consultid" class="com.algaworks.warhjr.estoque.servlet.ConsultaProdutosServlet" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
