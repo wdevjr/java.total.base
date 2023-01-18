@@ -16,6 +16,12 @@ public interface InterfaceProdutosDAO {
 
 	public abstract List<Produto> todosProdutosComNome(String nome);
 
-	public abstract int todosProdutosComNome();
+	public abstract List<Produto> todosProdutosNomeComParam(String nome, int maximo, int atual);
+
+	public abstract int todosProdutosComContagem();
+
+	public abstract List<Produto> todosProdutosCount();
+
+
 
 }

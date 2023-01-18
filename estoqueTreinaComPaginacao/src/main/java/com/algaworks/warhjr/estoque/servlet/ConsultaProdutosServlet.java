@@ -101,9 +101,9 @@ public class ConsultaProdutosServlet extends HttpServlet {
 		EntityManager manager = JpaUtil.getEntityManager();
 		InterfaceProdutosDAO ldao = new ProdutosRepository(manager);
 		if (this.nome != null) {
-			return listatodos = ldao.todosProdutos(this.nome, this.maxPorPagina, this.paginaAtual);
+			return listatodos = ldao.todosProdutosNomeComParam(this.nome, this.maxPorPagina, this.paginaAtual);
 		} else {
-			return listatodos = ldao.todosProdutos(this.nometemp, this.maxPorPagina, this.paginaAtual);
+			return listatodos = ldao.todosProdutosNomeComParam(this.nometemp, this.maxPorPagina, this.paginaAtual);
 		}
 	}
 

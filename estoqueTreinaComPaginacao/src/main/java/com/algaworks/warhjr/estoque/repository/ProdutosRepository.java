@@ -37,7 +37,7 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 	}
 
 	@Override
-	public List<Produto> todosProdutos() {
+	public List<Produto> todosProdutosCount() {
 
 		try {
 			Query q = manager.createQuery("select object(l) from Produto as l");
@@ -50,8 +50,8 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 
 	}
 
-	@Override
-	public List<Produto> todosProdutos(String nome, int maximo, int atual) {
+
+	public List<Produto> todosProdutosNomeComParam(String nome, int maximo, int atual) {
 		try {
 			TypedQuery<Produto> query = manager
 					.createQuery("from Produto where upper(nome) like upper(:nome)", Produto.class)
@@ -77,13 +77,11 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 	}
 
 	@Override
-	public int todosProdutosComNome() {
-		try {
+	public int todosProdutosComContagem() {
+
 			int total = ((Long) manager.createQuery("select count(l) from Produto l").getSingleResult()).intValue();
 			return total;
-		} finally {
-			manager.close();
-		}
+
 	}
 
 	@Override
@@ -104,5 +102,19 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 
 		return produto;
 	}
+
+	@Override
+	public List todosProdutos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List todosProdutos(String nome, int m, int p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

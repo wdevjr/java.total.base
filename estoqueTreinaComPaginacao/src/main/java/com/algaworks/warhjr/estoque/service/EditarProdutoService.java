@@ -1,7 +1,6 @@
 package com.algaworks.warhjr.estoque.service;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import com.algaworks.warhjr.estoque.model.Produto;
 import com.algaworks.warhjr.estoque.repository.ProdutosRepository;

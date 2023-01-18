@@ -34,7 +34,7 @@
 	<filter>
 		<display-name>AuthFilter</display-name>
 		<filter-name>AuthFilter</filter-name>
-		<filter-class>com.algaworks.estoque.filtro.AuthFilter</filter-class>
+		<filter-class>com.algaworks.warhjr.estoque.filtro.AuthFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthFilter</filter-name>
@@ -43,7 +43,7 @@
 
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.algaworks.estoque.servlet.LoginServlet</servlet-class>
+		<servlet-class>com.algaworks.warhjr.estoque.servlet.LoginServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
