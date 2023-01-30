@@ -1,0 +1,46 @@
+/* table style */
+table.tablecloth-theme
+{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#555555;
+    border-collapse:collapse;
+    border-style:none;
+    border-width:0px;
+}
+
+/* header cell style */
+.tablecloth-theme th
+{
+    background:#328AA4 url(Img/tr_back.gif) repeat-x;
+    color:#FFFFFF;    
+}  
+
+/* the sort header link */
+.tablecloth-theme th a 
+{
+    display:block;
+    text-decoration:none;
+    color:#FFFFFF;
+}
+
+/* common cell styles */
+.tablecloth-theme th, .tablecloth-theme td
+{
+    border:1px solid #FFFFFF;
+    padding:0.5em;
+    text-align:left;
+    font-size: 9.7pt;
+}
+
+/* alternating row style */
+.tablecloth-theme .alt-data-row { background-color:#E5F1F4; }
+
+/* mouseover row style */
+.tablecloth-theme .row-over { background-color:#ECFBD4; }
+
+/* mouseover row style */
+.tablecloth-theme .row-select 
+{ 
+    background:#BCE774;
+    color:#555;
+}
