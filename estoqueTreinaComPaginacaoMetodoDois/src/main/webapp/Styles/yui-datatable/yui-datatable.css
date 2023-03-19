@@ -1,0 +1,58 @@
+/* table style */
+table.yui-datatable-theme
+{
+	font-family: arial;
+	font-size: small;
+	border: solid 1px #7f7f7f;
+}
+
+/* the sort header link */
+.yui-datatable-theme th a
+{
+    font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+    color: #000;
+	display: block;
+}
+
+/* header cell styles */
+.yui-datatable-theme th
+{
+    background: url(img/yui-datatable/sprite.png) repeat-x 0px 0px;
+    border-color: #989898 #cbcbcb #989898 #989898;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px medium;
+    color: #000;
+    padding: 4px 5px 4px 10px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+/* data data cell style */
+.yui-datatable-theme td
+{
+    border-color: #CCC #CCC #CCC #CCC;
+    border-style: solid solid solid none;
+    border-width: 0.5px 0.5px 0.5px medium;
+    color: #000;
+    padding: 4px 5px 4px 10px;
+    text-align: center;
+    vertical-align: bottom;	
+}
+
+/* alternating row style */
+.yui-datatable-theme .alt-data-row { background-color:#edf5ff; }
+
+/* mouseover row style */
+.yui-datatable-theme .row-over { background-color:#b2d2ff; }
+
+/* select row style */
+.yui-datatable-theme .row-select
+{ 
+	background-color:#426fd9; 
+	color:#fff;
+}
+
+ 
+

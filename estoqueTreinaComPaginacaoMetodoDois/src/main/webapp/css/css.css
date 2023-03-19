@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+body {
+	  background: url(css/ph-10032.jpg) no-repeat center center fixed;
+  	-webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+    padding-top:100px;
+}
