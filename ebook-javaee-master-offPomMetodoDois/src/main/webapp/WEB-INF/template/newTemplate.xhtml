@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<h:outputStylesheet library="algaworks" name="estilo.css" />
+	<h:outputStylesheet library="css" name="cssLayout.css" />
+	<h:outputStylesheet library="css" name="default.css" />
+	<title>Financeiro CRUD - Treina - 2023</title>
+</h:head>
+
+<h:body>
+
+	<div id="top">
+		<ui:insert name="top">Financeiro Treinamento - v1.0 - 2023 - JSF - PrimeFaces - 6.2</ui:insert>
+
+	</div>
+	<div>
+		<div id="left" style="width: 96px; ">
+			<ui:insert name="left">
+
+ 	<h:form>
+		<p:panelMenu style="width:126px"> 
+ 			<p:submenu label="Home">
+ 			  <p:menuitem value="Inicio" action="/financeiro/inicio?faces-redirect=true" />
+			</p:submenu>
+ 			<p:submenu label="Cadastros">
+ 			    <p:menuitem icon="pi-users" value="Usuários" />
+				<p:menuitem value="Pessoas" />
+				<p:menuitem value="Lançamentos" action="/financeiro/CadastroLancamento?faces-redirect=true" />
+			</p:submenu> 
+			<p:submenu label="Consultas">
+			    <p:menuitem value="Usuários" />
+				<p:menuitem value="Pessoas" />
+				<p:menuitem icon="pi-credit-card" value="Lançamentos" action="/financeiro/ConsultaLancamentos?faces-redirect=true" ajax="false" />
+			</p:submenu>
+			<p:submenu label="Sistema">
+				<p:menuitem value="Sair" action="#{loginBean.logout}" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+
+			</ui:insert>
+		</div>
+		<div id="content" class="left_content">
+			<ui:insert name="content">
+
+
+			</ui:insert>
+		</div>
+	</div>
+	<div id="bottom">
+		<ui:insert name="bottom">Treina - Financeiro - CRUD - algaWorks - warhjr - (C)</ui:insert>
+	</div>
+
+</h:body>
+
+</html>
