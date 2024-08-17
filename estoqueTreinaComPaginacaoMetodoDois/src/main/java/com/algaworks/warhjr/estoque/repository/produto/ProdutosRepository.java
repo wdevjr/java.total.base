@@ -69,7 +69,7 @@ public class ProdutosRepository implements InterfaceProdutosDAO {
 		try {
 			TypedQuery<Produto> query = manager.createQuery("from Produto where upper(nome) like upper(:nome)",
 					Produto.class);
-			query.setParameter("nome", nome + "%");
+			query.setParameter("nome","%"+ nome + "%");
 			return query.getResultList();
 		} finally {
 			manager.close();

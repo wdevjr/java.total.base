@@ -36,13 +36,15 @@ public class ExcluirProdutoServlet extends HttpServlet{
    			
    		} catch (Exception e) {
    			request.setAttribute("mensagem", "Produtos/problemas para Excluir ....  "+e.getMessage());
-   			doGet(request, response);
+   			//doGet(request, response);
    			response.sendRedirect("exclui-produtos");
    		}
-           
+          
+          if(!response.isCommitted()) {
    		RequestDispatcher dispatcher = request.getRequestDispatcher(
    				"/produto/public/exclui-produto.jsp");
    		dispatcher.forward(request, response);
+          }
    	}
            
           

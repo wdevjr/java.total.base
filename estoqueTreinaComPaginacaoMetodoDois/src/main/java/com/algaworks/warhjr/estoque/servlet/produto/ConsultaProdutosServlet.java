@@ -55,6 +55,7 @@ public class ConsultaProdutosServlet extends HttpServlet {
 		}
 
 			maxPorPagina = 4;
+			request.setAttribute("maxPorPagina", maxPorPagina);
 
 		if (paginaAtual == 1) {
 		} else {
@@ -73,6 +74,7 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			request.setAttribute("paginacao", getlistanome());
 			cont = String.valueOf(getlistanome().size());
 			request.setAttribute("cont", cont);
+
 			RequestDispatcher dispatcher2 = request.getRequestDispatcher("/produto/public/consulta-produtos.jsp");
 			try {
 				dispatcher2.forward(request, response);
@@ -85,7 +87,6 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			
 			request.setAttribute("produtos", ListaNenhum);
 			request.setAttribute("agora", new Date());
-			cont = "0";
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("/produto/public/consulta-produtos.jsp");
 			try {
 				dispatcher1.forward(request, response);
@@ -132,5 +133,8 @@ public class ConsultaProdutosServlet extends HttpServlet {
 			return total;
 
 	}
+
+
+	
   
 }

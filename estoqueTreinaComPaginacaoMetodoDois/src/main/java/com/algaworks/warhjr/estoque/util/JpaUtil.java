@@ -16,13 +16,7 @@ public class JpaUtil {
 		return factory.createEntityManager();
 	}
 
-	static {
-		factory = Persistence.createEntityManagerFactory("LogisticaPU");
-	}
 
-	public static EntityManager getEntityManagerLogistica() {
-		return factory.createEntityManager();
-	}
 
 
 }

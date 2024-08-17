@@ -48,10 +48,14 @@ public class EditaProdutosServlet extends HttpServlet {
 			// doGet(request, response);
 			// response.sendRedirect("edita-produto");
 		}
+		if(!response.isCommitted()) {
+		request.getRequestDispatcher("/produto/public/edita-produto.jsp").forward(request,response);
+		
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/produto/public/edita-produto.jsp");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/produto/public/edita-produto.jsp");
-		dispatcher.forward(request, response);
-		// response.sendRedirect("edita-produto");
+		//dispatcher.forward(request, response);
+		}
+		
 
 	}
 
