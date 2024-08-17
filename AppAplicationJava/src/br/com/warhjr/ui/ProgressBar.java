@@ -1,19 +1,17 @@
 package br.com.warhjr.ui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JDialog;
-import javax.swing.JProgressBar;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.SystemColor;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class ProgressBar extends Thread {

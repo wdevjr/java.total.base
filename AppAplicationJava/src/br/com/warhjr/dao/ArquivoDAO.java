@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,22 +20,17 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import br.com.warhjr.model.Arquivo;
-import br.com.warhjr.model.Pessoa;
 import br.com.warhjr.model.Usuario;
 
 public class ArquivoDAO {
 
 	private static ConectionDataBase conectionAux = new ConectionDataBase();
-	private JFileChooser fileChooser;
-	private File file;
-	private InputStream stream;
-	private JButton auxButton;
+
 	private int len;
-	private FileInputStream output;
-	private static int cont;
-	private Arquivo arquivo;
+
 	public Timer t;
 
+	@SuppressWarnings({ "resource", "unused" })
 	public void insertFile(Arquivo arquivo, String filearq) throws Exception {
 		File f = new File(filearq);
 
@@ -152,6 +146,7 @@ public class ArquivoDAO {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public void updateSemFile(Arquivo arqui) throws Exception {
 
 		String updates = "update arquivo set cod_pessoa = ? ,nomearquivo = ? ,extencao = ? ,tamanho = ? ,data= ?"
@@ -171,6 +166,7 @@ public class ArquivoDAO {
 		stmts.executeUpdate();
 	}
 
+	@SuppressWarnings("static-access")
 	public void excluirArquivo(String cod) {
 		String delete = "delete from Arquivo where id=" + cod;
 		try {
@@ -184,6 +180,7 @@ public class ArquivoDAO {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public List<Usuario> findUsuarios(String nomeUsuario) throws SQLException {
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -213,11 +210,11 @@ public class ArquivoDAO {
 		return usuarios;
 	}
 
+	@SuppressWarnings("static-access")
 	public List<Arquivo> findArquivos(String nomepessoa, String nomearquivo) throws SQLException, ParseException {
 
 		
 		List<Arquivo> arquivos = new ArrayList<Arquivo>();
-		SimpleDateFormat dnst = new SimpleDateFormat("dd/MM/yyyy");
 		String select = "select AQ.id,AQ.COD_PESSOA,PE.nomePessoa,AQ.NOMEARQUIVO,AQ.EXTENCAO,AQ.TAMANHO,AQ.DATA from ARQUIVO AS AQ "
 				+ "left join PESSOA AS PE on (PE.IDPessoa = AQ.COD_PESSOA) " + "where PE.nomePessoa like '%"
 				+ nomepessoa + "%' OR AQ.nomeArquivo like '%" + nomearquivo + "%'"
@@ -249,6 +246,7 @@ public class ArquivoDAO {
 		return arquivos;
 	}
 
+	@SuppressWarnings("static-access")
 	public File SalvarArquivoExtr(String nome, String cod, JButton auxButton) throws SQLException, IOException {
 
 		JFileChooser jFileChooser = new JFileChooser();
@@ -266,6 +264,7 @@ public class ArquivoDAO {
 		if (rs.next()) {
 
 			InputStream stream = rs.getBinaryStream("dados");
+			@SuppressWarnings("unused")
 			String nomearquivo = rs.getString("nomearquivo");
 
 			if (jFileChooser.showSaveDialog(auxButton) == JFileChooser.APPROVE_OPTION) {

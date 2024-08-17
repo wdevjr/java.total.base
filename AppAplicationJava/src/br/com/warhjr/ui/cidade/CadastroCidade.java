@@ -1,28 +1,28 @@
 package br.com.warhjr.ui.cidade;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.text.ParseException;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.com.warhjr.ui.usuario.CadastroUsuario;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.SystemColor;
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-
+@SuppressWarnings("serial")
 public class CadastroCidade extends JFrame {
 
 	private JPanel contentPane;
@@ -33,6 +33,7 @@ public class CadastroCidade extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@SuppressWarnings("unused")
 			@Override
 			public void run() {
 				try {
@@ -55,6 +56,7 @@ public class CadastroCidade extends JFrame {
 	 * @param CadastroUsuario
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("rawtypes")
 	public CadastroCidade() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 744, 357);

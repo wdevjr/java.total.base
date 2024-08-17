@@ -2,18 +2,17 @@ package br.com.warhjr.ui.arquivo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ListIterator;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -23,17 +22,14 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 import br.com.warhjr.controller.ArquivoController;
 import br.com.warhjr.model.Arquivo;
-import br.com.warhjr.ui.MeuRenderer;
-import java.awt.SystemColor;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.ListSelectionModel;
 
 public class BuscaArquivoDialog extends JDialog {
 
@@ -43,7 +39,6 @@ public class BuscaArquivoDialog extends JDialog {
 	private JLabel labelcodigo = null;
 	private JLabel nomePessoa = null;
 	private JTextArea nomearquivo = null;
-	// private JTextField endereco=null;
 	public JFormattedTextField data = null;
 	public String dataNum;
 	private JTextField extencao = null;
@@ -56,9 +51,25 @@ public class BuscaArquivoDialog extends JDialog {
 
 	public static void main(String[] args) {
 		try {
+//			try {
+//			    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//			        if ("Nimbus".equals(info.getName())) {
+//			            UIManager.setLookAndFeel(info.getClassName());
+//			            break;
+//			        }
+//			    }
+//			} catch (Exception e) {
+//			   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//			}
+	        try {
+	            // select Look and Feel
+	        	UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
 			BuscaArquivoDialog dialog = new BuscaArquivoDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +81,6 @@ public class BuscaArquivoDialog extends JDialog {
 
 		this.labelcodigo = tflabelcodigo;
 		this.nomearquivo = tftextFieldArquivoNome;
-		// this.endereco=tfendereco;
 		this.extencao = tfextencao;
 		this.tamanho = tftamanho;
 		this.nomePessoa = labelNomePessoa;
@@ -119,7 +129,7 @@ public class BuscaArquivoDialog extends JDialog {
 		JButton btnNewButton_1 = new JButton("Ok");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SimpleDateFormat ds = new SimpleDateFormat("dd/MM/yyyy");
+				//SimpleDateFormat ds = new SimpleDateFormat("dd/MM/yyyy");
 				int linha = dstableArquivo.getSelectedRow();
 
 				labelcodigo.setText("" + dstableArquivo.getValueAt(linha, 0));
@@ -127,15 +137,12 @@ public class BuscaArquivoDialog extends JDialog {
 
 				nomePessoa.setText("" + dstableArquivo.getValueAt(linha, 2));
 				nomearquivo.setText("" + dstableArquivo.getValueAt(linha, 3));
-				// endereco.setText(""+dstableArquivo.getValueAt(linha, 4));
 				extencao.setText("" + dstableArquivo.getValueAt(linha, 4));
 
 				tamanho.setText("" + dstableArquivo.getValueAt(linha, 5));
 
 				data.setText(("" + dstableArquivo.getValueAt(linha, 6).toString()));
-				// dataNum=data;
-				// data = "16/09/2016";
-				// dispose();
+
 				setVisible(false);
 			}
 
@@ -162,9 +169,11 @@ public class BuscaArquivoDialog extends JDialog {
 		buttonPane.setLayout(gl_buttonPane);
 
 		textField = new JTextField();
+		textField.setBounds(26, 6, 627, 28);
 		textField.setColumns(10);
 
 		JButton btnNewButton = new JButton("Consultar");
+		btnNewButton.setBounds(665, 6, 102, 28);
 		btnNewButton.setIcon(
 				new ImageIcon(BuscaArquivoDialog.class.getResource("/br/com/warhjr/img/Alerts/icon_find.gif")));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -172,12 +181,11 @@ public class BuscaArquivoDialog extends JDialog {
 
 				DefaultTableModel aModel = new DefaultTableModel();
 				Object[] tableColumnNames = new Object[7];
-				tableColumnNames[0] = "Código";
-				tableColumnNames[1] = "Código Pessoa";
+				tableColumnNames[0] = "CÃ³digo";
+				tableColumnNames[1] = "CÃ³digo Pessoa";
 				tableColumnNames[2] = "Nome Pessoa";
 				tableColumnNames[3] = "Nome Arquivo";
-				// tableColumnNames[4] = "Nome Endereço";
-				tableColumnNames[4] = "Extenção";
+				tableColumnNames[4] = "ExtenÃ§Ã£o";
 				tableColumnNames[5] = "Tamanho";
 				tableColumnNames[6] = "Data Cadastro";
 
@@ -216,6 +224,8 @@ public class BuscaArquivoDialog extends JDialog {
 				// dstableArquivo.getColumnModel().getColumn(5).setPreferredWidth(200);
 
 				dstableArquivo.setRowHeight(25);
+				
+				 //JOptionPane.showMessageDialog(null, new JScrollPane(dstableArquivo));
 
 				//MeuRenderer auxrend = new MeuRenderer();
 				//TableCellRenderer renderer = new MeuRenderer();
@@ -224,17 +234,9 @@ public class BuscaArquivoDialog extends JDialog {
 
 			// }
 		});
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-				gl_panel.createSequentialGroup().addGap(26)
-						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnNewButton).addGap(33)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
-				.createSequentialGroup().addContainerGap()
-				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton).addComponent(
-						textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(17, Short.MAX_VALUE)));
-		panel.setLayout(gl_panel);
+		panel.setLayout(null);
+		panel.add(textField);
+		panel.add(btnNewButton);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -256,6 +258,15 @@ public class BuscaArquivoDialog extends JDialog {
 		dstableArquivo.setSelectionBackground(new Color(57, 105, 138));
 		dstableArquivo.setSelectionForeground(Color.WHITE);
 		dstableArquivo.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
+		
+		
+		//UIManager.put("TableHeader.background", Color.BLUE);
+		//dstableArquivo.getTableHeader().setOpaque(false);
+	   // dstableArquivo.getTableHeader().setBackground(Color.white);
+
+	      
+	     
+		
 		scrollPane.setViewportView(dstableArquivo);
 		panel_1.setLayout(gl_panel_1);
 		contentPanel.setLayout(gl_contentPanel);

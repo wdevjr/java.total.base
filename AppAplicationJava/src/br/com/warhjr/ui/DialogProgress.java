@@ -1,27 +1,16 @@
 package br.com.warhjr.ui;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import br.com.warhjr.dao.ArquivoDAO;
-
-import javax.swing.JProgressBar;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.SystemColor;
-import java.sql.SQLException;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+
+
 
 public class DialogProgress extends Thread {
 
@@ -73,8 +62,7 @@ public class DialogProgress extends Thread {
 		dialog.setLocationRelativeTo(null);
 
         try { // try da Thread
-         int value = progressBar.getValue();
-         ArquivoDAO auxDAO = new ArquivoDAO();
+
          progressBar.setMinimum(0);
         // progressBar.setMaximum(auxDAO.tamanho);
 		 	     	     		

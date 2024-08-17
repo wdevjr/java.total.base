@@ -1,7 +1,4 @@
-
-
-
-Manifest-Version: 1.0
+Manifest-Version: agenda 1.0
 Archiver-Version: warhjr - Projetos
 Created-By: Walter Junior
 Build-Jdk: 1.8.0_151

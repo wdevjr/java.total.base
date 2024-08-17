@@ -1,6 +1,5 @@
 package br.com.warhjr.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +14,7 @@ public class PessoaDAO {
 
 	private ConectionDataBase auxConection = new ConectionDataBase();
 
+	@SuppressWarnings("static-access")
 	public List<Pessoa> findPessoas(String nomePessoa) throws SQLException {
 
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();

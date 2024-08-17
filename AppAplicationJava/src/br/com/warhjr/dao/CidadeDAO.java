@@ -24,6 +24,7 @@ public class CidadeDAO {
 
 		String select = "select * from CIDADE where nomecidade like '%" + nomeCidade + "%' order by nomecidade desc";
 
+		@SuppressWarnings("static-access")
 		PreparedStatement stmt = connectionAux.getConnection().prepareStatement(select);
 
 		// stmt.setString(1, "'%"+nomeCidade+"%'");

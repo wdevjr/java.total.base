@@ -1,7 +1,6 @@
 package br.com.warhjr.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ComboBoxModel;
@@ -61,7 +60,7 @@ public class UsuarioController {
 			userDaoAux.updateUsuarios(usuarios);
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage().toString(), "Atenção Possivel Erro!",
+			JOptionPane.showMessageDialog(null, e.getMessage().toString(), "Atenï¿½ï¿½o Possivel Erro!",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

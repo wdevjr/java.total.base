@@ -6,26 +6,22 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
-import org.codehaus.groovy.ast.stmt.ThrowStatement;
 
-//import com.toedter.calendar.JDateChooser;
 
 import br.com.warhjr.dao.ArquivoDAO;
-import br.com.warhjr.ui.arquivo.*;
 import br.com.warhjr.model.Arquivo;
-import br.com.warhjr.ui.ProgressBar;
+
 
 public class ArquivoController 
 {
 
-
+	public static boolean msgConfima = false;
 
 	SimpleDateFormat ds = new SimpleDateFormat("dd/MM/YYYY");
 	
 	//public static final String msgArquivo="Insira um Arquivo!";
+	@SuppressWarnings("unused")
 	private String msgPessoa="Informe uma Pessoa-Busque na lupa!";
 
 
@@ -39,32 +35,38 @@ public class ArquivoController
 	}
 
 	public void SalvarArq(Arquivo arquivo, String file) throws Exception {
-		
+	
 		ArquivoDAO auxDao = new ArquivoDAO();
-		
 		if (file.isEmpty()) {
-		throw new Exception("Insira um Arquivo!");
+			msgConfima = false;
+		
+	    throw new Exception(" Insira um Arquivo!");
 		//JOptionPane.showMessageDialog(null, "Arquivo, vazio ! Insira um Arquivo!","Arquivos!",JOptionPane.WARNING_MESSAGE);
 		//return;
 		} else {
 		if (arquivo.getNomearquivo().equals("")) {
+			msgConfima = false;
+
 		throw new Exception("Insira um Arquivo!");
-		//JOptionPane.showMessageDialog(null, "Nome do Arquivo, Não Informado !","Arquivos!",JOptionPane.WARNING_MESSAGE);
+		//JOptionPane.showMessageDialog(null, "Nome do Arquivo, Nï¿½o Informado !","Arquivos!",JOptionPane.WARNING_MESSAGE);
 		//return;
 		} else {
-		if ((arquivo.getIdPessoa()  <= 0)) {
+		if ((arquivo.getIdPessoa() == 0)) {
+			msgConfima = false;
+	
 	    throw new Exception("Insira uma Pessoa!");
 	    //JOptionPane.showMessageDialog(null, msgPessoa,"Arquivos!",JOptionPane.WARNING_MESSAGE);	
 	   // return;
 		} else {
+			 msgConfima = true;
 			try {
 				auxDao.insertArquivo(arquivo, file);
+			
 				throw new Exception("Dados Inseridos com Sucesso!!");
+               
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -72,40 +74,69 @@ public class ArquivoController
    }
 }
 	
-			
-			
-
-		//JOptionPane.showMessageDialog(null, "Arquivo Inserido com Sucesso!","Arquivos!",JOptionPane.INFORMATION_MESSAGE);
 		
-	//	}
-	
-
-    
-     
-	
 	
 	public void EditaArq(Arquivo arquivo, String file) throws Exception {
+		
+		
 		ArquivoDAO auxDao = new ArquivoDAO();
+		if (file.isEmpty()) {
+			msgConfima = false;
+			throw new Exception(" Insira um Arquivo!");
+			// JOptionPane.showMessageDialog(null, "Arquivo, vazio ! Insira um
+			// Arquivo!","Arquivos!",JOptionPane.WARNING_MESSAGE);
+			// return;
+		} else {
+			if (arquivo.getNomearquivo().equals("")) {
+				msgConfima = false;
+				throw new Exception("Insira um Arquivo!");
+				// JOptionPane.showMessageDialog(null, "Nome do Arquivo, Nï¿½o Informado
+				// !","Arquivos!",JOptionPane.WARNING_MESSAGE);
+				// return;
+			} else {
+				if ((arquivo.getIdPessoa() <= 0)) {
+					msgConfima = false;
+					throw new Exception("Insira uma Pessoa!");
+					// JOptionPane.showMessageDialog(null,
+					// msgPessoa,"Arquivos!",JOptionPane.WARNING_MESSAGE);
+					// return;
+				} else {
+					msgConfima = true;
 
-//		if (arquivo.getNomearquivo() == "") {
-//			throw new Exception("Erro nome do arquivo é necessario");
-//
-//		} else
-			auxDao.UpdateArquivo(arquivo, file);
-		throw new Exception("Arquivo Editado com Sucesso! ");
+					auxDao.UpdateArquivo(arquivo, file);
+					throw new Exception("Arquivo Editado com Sucesso! ");
+				}
+			}
+		}
 	}
 
 	public void EditaArquivoSemFile(Arquivo arquivo) throws Exception {
+		
 		ArquivoDAO auxDao = new ArquivoDAO();
 
-//		if (arquivo.getNomearquivo() == "") {
-//			throw new Exception("O nome do arquivo é necessario, ok?");
-//		} else {
+			if (arquivo.getNomearquivo().equals("")) {
+				msgConfima = false;
+				throw new Exception("Insira um Arquivo!");
+				// JOptionPane.showMessageDialog(null, "Nome do Arquivo, Nï¿½o Informado
+				// !","Arquivos!",JOptionPane.WARNING_MESSAGE);
+				// return;
+			} else {
+				if ((arquivo.getIdPessoa() <= 0)) {
+					msgConfima = false;
+					throw new Exception("Insira uma Pessoa!");
+					// JOptionPane.showMessageDialog(null,
+					// msgPessoa,"Arquivos!",JOptionPane.WARNING_MESSAGE);
+					// return;
+				} else {
+					msgConfima = true;
 
-			auxDao.updateSemFile(arquivo);
-			throw new Exception("Arquivo Editado com Sucesso! ");
-		//}
-	}
+					auxDao.updateSemFile(arquivo);
+					throw new Exception("Arquivo Editado com Sucesso! ");
+					// }
+				}
+			}
+  }
+	
 
 	public void ExtrairArquivoEx(String nomeArquivo, String cod, JButton bot) throws Exception {
 		ArquivoDAO auxExtr = new ArquivoDAO();

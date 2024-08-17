@@ -11,6 +11,9 @@ import javax.swing.table.TableCellRenderer;
 public class MeuRenderer implements TableCellRenderer {
 
 	public static final DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();
+	
+	@SuppressWarnings("unused")
+	private Color foreground,background;
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
@@ -20,8 +23,6 @@ public class MeuRenderer implements TableCellRenderer {
 				column);
 
 		((JLabel) renderer).setOpaque(true);
-
-		Color foreground, background;
 
 		if (row % 2 == 0) {
 			foreground = Color.BLACK;

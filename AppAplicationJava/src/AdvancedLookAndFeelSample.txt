@@ -1,0 +1,614 @@
+/*
+ * JTattoo AdvancedLookAndFeelSample (c) 2013 by MH Software-Entwicklung
+ *
+ * This sample shows how to dynamicly select a look and feel.
+ */
+
+package com.jtattoo.samples;
+
+import com.jtattoo.plaf.AbstractLookAndFeel;
+import com.jtattoo.plaf.BaseRootPaneUI;
+import com.jtattoo.plaf.texture.TextureUtils;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.JTree;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+/**
+ *
+ * @author Michael Hagen
+ */
+public class AdvancedLookAndFeelSample extends JFrame {
+    
+    // A list of possible look and feels
+    private JList lafList = null;
+    private int selectedLaf = 0;
+    private ListSelectionListener lafListener = null;
+    
+    // List of themes assosiated with a look and feel
+    private JList themeList = null;
+    private int selectedTheme = 0;
+    private ListSelectionListener themeListener = null;
+
+    private JSplitPane lafSplitPane = null;
+    
+    private JPanel contentPanel = null;
+    
+    private JSplitPane contentSplitPane = null;
+    private JPanel contentLayoutPanel = null;
+    
+    // The controls for the titlebar
+    private TitlebarCheckBox checkBox = null;
+    private TitlebarButton button = null;
+    private TitlebarMenuButton menuButton = null;
+    private JPanel titlebarPanel = null;
+    
+    public AdvancedLookAndFeelSample() {
+        super("AdvancedLookAndFeelSample");
+        // Setup menu
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("File");
+        menu.setMnemonic('F');
+        JMenuItem menuItem = new JMenuItem("New");
+        menuItem.setMnemonic('N');
+        menuItem.setEnabled(false);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Open...");
+        menuItem.setMnemonic('O');
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                if (fc.showOpenDialog(AdvancedLookAndFeelSample.this) == JFileChooser.APPROVE_OPTION) {
+                    JOptionPane.showMessageDialog(AdvancedLookAndFeelSample.this, "Your selection: " + fc.getSelectedFile().getName());
+                }
+            }
+        });
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Save");
+        menuItem.setMnemonic('S');
+        menuItem.setEnabled(false);
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Save as");
+        menuItem.setMnemonic('a');
+        menuItem.setEnabled(false);
+        menu.add(menuItem);
+        menu.addSeparator();
+        menuItem = new JMenuItem("Exit");
+        menuItem.setMnemonic('x');
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+        menu.add(menuItem);
+        menu.add(menuItem);
+        menuBar.add(menu);
+        setJMenuBar(menuBar);
+
+        // Setup widgets
+        // Create a list with all look and feels we want to test
+        lafList = new JList(Constants.LAF_NAMES);
+        lafList.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        lafList.setSelectedIndex(0);
+        lafList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lafListener = new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    if (lafList.getSelectedIndex() != -1) {
+                        if (selectedLaf != lafList.getSelectedIndex()) {
+                            selectedLaf = lafList.getSelectedIndex();
+                            // We change the look and feel after all pending events are dispatched,
+                            // otherwise there will be some serious redrawing problems.
+                            SwingUtilities.invokeLater(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    setLookAndFeel(true);
+                                }
+                            });
+                        }
+                    } else {
+                        // We don't want the list to be unselected, so if user unselects the list
+                        // we do select the last selected entry
+                        lafList.setSelectedIndex(selectedLaf);
+                    }
+                }
+            }
+        };
+        lafList.addListSelectionListener(lafListener);
+        JScrollPane lafScrollPane = new JScrollPane(lafList);
+        lafScrollPane.setBorder(new TitleBorder("LookAndFeels"));
+        
+        themeList = new JList();
+        themeList.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        themeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        fillThemeList();
+        themeListener = new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    if (themeList.getSelectedIndex() != -1) {
+                        if (selectedTheme != themeList.getSelectedIndex()) {
+                            selectedTheme = themeList.getSelectedIndex();
+                            // We change the look and feel after all pending events are dispatched,
+                            // otherwise there will be some serious redrawing problems.
+                            SwingUtilities.invokeLater(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    setLookAndFeel(false);
+                                }
+                            });
+                        }
+                    } else {
+                        // We don't want the list to be unselected, so if user unselects the list
+                        // we just select the last selected entry
+                        themeList.setSelectedIndex(selectedTheme);
+                    }
+                }
+            }
+        };
+        themeList.addListSelectionListener(themeListener);
+        JScrollPane themeScrollPane = new JScrollPane(themeList);
+        themeScrollPane.setBorder(new TitleBorder("Themes"));
+
+        lafSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, lafScrollPane, themeScrollPane);
+        // We want to paint the same background texture as in the window title bar
+        lafSplitPane.putClientProperty("textureType", new Integer(TextureUtils.WINDOW_TEXTURE_TYPE));
+        lafSplitPane.setDividerLocation(200);
+        lafSplitPane.setOneTouchExpandable(true);
+        
+        contentPanel = new JPanel(new BorderLayout());
+        JScrollPane westPanel = new JScrollPane(new JTree());
+        westPanel.setBorder(new TitleBorder("Tree"));
+        JTextArea textArea = new JTextArea("Hello World");
+        JScrollPane eastPanel = new JScrollPane(textArea);
+        eastPanel.setBorder(new TitleBorder("TextArea"));
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, westPanel, eastPanel);
+        splitPane.setDividerLocation(150);
+        splitPane.putClientProperty("textureType", new Integer(TextureUtils.WINDOW_TEXTURE_TYPE));
+        contentPanel.add(splitPane, BorderLayout.CENTER);
+
+        contentSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, lafSplitPane, contentPanel);
+        // We want to paint the same background texture as in the window title bar
+        contentSplitPane.putClientProperty("textureType", new Integer(TextureUtils.WINDOW_TEXTURE_TYPE));
+        contentSplitPane.setDividerLocation(160);
+        
+        contentLayoutPanel = new JPanel(new BorderLayout());
+        contentLayoutPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        // We want to paint the same background texture as in the window title bar
+        contentLayoutPanel.putClientProperty("textureType", new Integer(TextureUtils.WINDOW_TEXTURE_TYPE));
+        contentLayoutPanel.add(contentSplitPane, BorderLayout.CENTER);
+        
+        setContentPane(contentLayoutPanel);
+
+        // Setup titlebar controls
+        checkBox = new TitlebarCheckBox("Check");
+        button = new TitlebarButton("Button");
+        menuButton = new TitlebarMenuButton("Menu");
+
+        // We need a normal panel to place it in the titlebar.
+        titlebarPanel = new JPanel(new TitlebarLayoutManager());
+        // The panel should be transparent for better visual appearance.
+        titlebarPanel.setOpaque(false);
+
+        // Adding the controls to the titlebarPanel. The TitlebarLayoutManager will be responsible for the positions.
+        titlebarPanel.add(checkBox);
+        titlebarPanel.add(button);
+        titlebarPanel.add(menuButton);
+        
+        // Customize the titlebar. This could only be done if one of the JTattoo look and feels
+        // is active. So check this first.
+        if (getRootPane().getUI() instanceof BaseRootPaneUI) {
+            BaseRootPaneUI rootPaneUI = (BaseRootPaneUI)getRootPane().getUI();
+            // Here is the magic. Just add the panel to the titlebar
+            rootPaneUI.getTitlePane().setCustomizedTitlePanel(titlebarPanel);
+        }
+        
+        // Add listeners
+        addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        
+    }
+    
+    private void setLookAndFeel(boolean loadThemes) {
+        try {
+            String theme = "Default";
+            if (!loadThemes) {
+                theme = (String)themeList.getSelectedValue();
+            }
+            switch (selectedLaf) {
+                case Constants.LAF_ACRYL :
+                    // First set the theme of the look and feel. This must be done first because there
+                    // is some static initializing (color values etc.) when calling setTheme.
+                    // Another reason is that the theme variables are shared with all look and feels, so
+                    // without calling the setTheme method the look and feel will look ugly (wrong colors).
+                    com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme(theme);
+                    // Now we can set the look and feel
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+                    break;
+                case Constants.LAF_AERO :
+                    com.jtattoo.plaf.aero.AeroLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                    break;
+                case Constants.LAF_ALUMINIUM :
+                    com.jtattoo.plaf.aluminium.AluminiumLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+                    break;
+                case Constants.LAF_BERNSTEIN :
+                    com.jtattoo.plaf.bernstein.BernsteinLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+                    break;
+                case Constants.LAF_FAST :
+                    com.jtattoo.plaf.fast.FastLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+                    break;
+                case Constants.LAF_GRAPHITE :
+                    com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+                    break;
+                case Constants.LAF_HIFI :
+                    com.jtattoo.plaf.hifi.HiFiLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+                    break;
+                case Constants.LAF_LUNA :
+                    com.jtattoo.plaf.luna.LunaLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+                    break;
+                case Constants.LAF_MCWIN :
+                    com.jtattoo.plaf.mcwin.McWinLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+                    break;
+                case Constants.LAF_MINT :
+                    com.jtattoo.plaf.mint.MintLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+                    break;
+                case Constants.LAF_NOIRE :
+                    com.jtattoo.plaf.noire.NoireLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                    break;
+                case Constants.LAF_SMART :
+                    com.jtattoo.plaf.smart.SmartLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                    break;
+                case Constants.LAF_TEXTURE :
+                    com.jtattoo.plaf.texture.TextureLookAndFeel.setTheme(theme);
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+                    break;
+            }
+            Window windows[] = Window.getWindows();
+            for (Window window : windows) {
+                if (window.isDisplayable()) {
+                    SwingUtilities.updateComponentTreeUI(window);
+                }
+            }
+            if (loadThemes) {
+                fillThemeList();
+            }
+            scrollSelectedToVisible(lafList);
+            scrollSelectedToVisible(themeList);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    } // end setLookAndFeel
+    
+    private void fillThemeList() {
+        // We don't want to get changed events while setup the new theme
+        // so we remove the selection listener
+        themeList.removeListSelectionListener(themeListener);
+        // Setup the theme list with data from the look and feel classes
+        LookAndFeel laf = UIManager.getLookAndFeel();
+        if (laf instanceof com.jtattoo.plaf.acryl.AcrylLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.acryl.AcrylLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.aero.AeroLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.aero.AeroLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.aluminium.AluminiumLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.aluminium.AluminiumLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.bernstein.BernsteinLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.bernstein.BernsteinLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.fast.FastLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.fast.FastLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.graphite.GraphiteLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.graphite.GraphiteLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.hifi.HiFiLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.hifi.HiFiLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.luna.LunaLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.luna.LunaLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.mcwin.McWinLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.mcwin.McWinLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.mint.MintLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.mint.MintLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.noire.NoireLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.noire.NoireLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.smart.SmartLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.smart.SmartLookAndFeel.getThemes().toArray());
+        } else if (laf instanceof com.jtattoo.plaf.texture.TextureLookAndFeel) {
+            themeList.setListData(com.jtattoo.plaf.texture.TextureLookAndFeel.getThemes().toArray());
+        } else {
+            themeList.setListData((Object[])null);
+        }
+        if (UIManager.getLookAndFeel() instanceof AbstractLookAndFeel) {
+            themeList.setSelectedValue("Default", true);
+        }
+        selectedTheme = themeList.getSelectedIndex();
+        // Add the selection listener we have removed above
+        themeList.addListSelectionListener(themeListener);
+    } // end fillThemeList
+    
+    private void scrollSelectedToVisible(JList list) {
+        // Because of the different font size the selected item
+        // maybe out of the visible area. So we correct this.
+        int idx = list.getLeadSelectionIndex();
+        Rectangle rect = list.getCellBounds(idx, idx);
+        if (rect != null) {
+            list.scrollRectToVisible(rect);
+        }
+    } // end scrollSelectedToVisible
+
+    
+//------------------------------------------------------------------------------
+// inner classes for title bar controls
+//------------------------------------------------------------------------------
+    public class TitlebarCheckBox extends JCheckBox {
+
+        public TitlebarCheckBox(String title) {
+            super(title);
+            // Foreground color should be the same as the window title color
+            setForeground(UIManager.getColor("activeCaptionText"));
+            setOpaque(false);
+            setFocusable(false);
+        }
+
+        @Override
+        public void updateUI() {
+            super.updateUI();
+            // update the foreground color if look and feel changes
+            setForeground(UIManager.getColor("activeCaptionText"));
+        }
+        
+    } // end TitlebarCheckBox
+
+//------------------------------------------------------------------------------
+    public class TitlebarButton extends JButton {
+
+        public TitlebarButton(String title) {
+            super(title);
+            // Setup the button. We just want a square border with color of the window border.
+            setFocusable(false);
+            Border innerBorder = BorderFactory.createEmptyBorder(2, 4, 2, 4);
+            Border outerBorder = BorderFactory.createLineBorder(UIManager.getColor("activeCaptionBorder"));
+            setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
+        }
+
+        @Override
+        public void updateUI() {
+            super.updateUI();
+            // update the border if look and feel changes
+            Border innerBorder = BorderFactory.createEmptyBorder(2, 4, 2, 4);
+            Border outerBorder = BorderFactory.createLineBorder(UIManager.getColor("activeCaptionBorder"));
+            setBorder(BorderFactory.createCompoundBorder(outerBorder, innerBorder));
+        }
+        
+    } // end TitlebarButton
+
+//------------------------------------------------------------------------------
+    public class TitlebarMenuButton extends JButton {
+
+        public TitlebarMenuButton(String title) {
+            super(title, com.jtattoo.samples.icons.ImageHelper.loadImage("DownArrow.gif"));
+
+            // Setup the menu button
+            setHorizontalAlignment(SwingConstants.CENTER);
+            setHorizontalTextPosition(SwingConstants.LEFT);
+            // Foreground color should be the same as the window title color
+            setForeground(UIManager.getColor("activeCaptionText"));
+            setContentAreaFilled(false);
+            setBorderPainted(false);
+            setFocusable(false);
+
+            // Add listeners
+            addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    setForeground(Color.black);
+                    setContentAreaFilled(true);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    setForeground(UIManager.getColor("activeCaptionText"));
+                    setContentAreaFilled(false);
+                }
+            });
+            addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    showPopup();
+                }
+            });
+        }
+
+        @Override
+        public void updateUI() {
+            super.updateUI();
+            // update the foreground color if look and feel changes
+            setForeground(UIManager.getColor("activeCaptionText"));
+        }
+
+        private void showPopup() {
+            // create a popup menu
+            JPopupMenu popupMenu = new JPopupMenu();
+            JMenuItem menuItem = new JMenuItem("Menu #1");
+            menuItem.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(AdvancedLookAndFeelSample.this, "Menu #1 clicked");
+                }
+            });
+            popupMenu.add(menuItem);
+            menuItem = new JMenuItem("Menu #2");
+            menuItem.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(AdvancedLookAndFeelSample.this, "Menu #2 clicked");
+                }
+            });
+            popupMenu.add(menuItem);
+            menuItem = new JMenuItem("Menu #3");
+            menuItem.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(AdvancedLookAndFeelSample.this, "Menu #3 clicked");
+                }
+            });
+            popupMenu.add(menuItem);
+            
+            // show the popup
+            popupMenu.show(this, 0, getHeight() - 1);
+        }
+
+    } // end TitlebarMenuButton
+
+//------------------------------------------------------------------------------
+    /**
+     * A special layout manager for the custom title panel.
+     */
+    public class TitlebarLayoutManager implements LayoutManager {
+        
+        private Dimension preferredSize = null;
+
+        @Override
+        public void addLayoutComponent(String name, Component comp) {
+        }
+
+        @Override
+        public void removeLayoutComponent(Component comp) {
+        }
+
+        @Override
+        public Dimension preferredLayoutSize(Container parent) {
+            layoutContainer(parent);
+            return preferredSize;
+        }
+
+        @Override
+        public Dimension minimumLayoutSize(Container parent) {
+            return parent.getMinimumSize();
+        }
+
+        @Override
+        public void layoutContainer(Container parent) {
+            // Calculate the new positions of the titlebar controls and the preferred size of the panel
+            int width = 0;
+            int count = parent.getComponentCount();
+            int w[] = new int[count];
+            for (int i = 0; i < count; i++) {
+                Component c = parent.getComponent(i);
+                if (c.isVisible()) {
+                    w[i] = c.getPreferredSize().width;
+                    width += w[i];
+                    width += 4;
+                }
+            }
+            if (preferredSize == null) {
+                preferredSize = new Dimension(width, parent.getHeight());
+            } else {
+                preferredSize.width = width;
+                preferredSize.height = parent.getHeight();
+            }
+            int x = parent.getWidth() - width;
+            if (!parent.getComponentOrientation().isLeftToRight()) {
+                x = 0;
+            }
+            int y = 0;
+            int h = parent.getHeight() - 2;
+            for (int i = 0; i < count; i++) {
+                Component c = parent.getComponent(i);
+                if (c.isVisible()) {
+                    c.setBounds(x, y, w[i], h);
+                    x += w[i] + 4;
+                }
+            }
+        }
+    } // end TitlebarLayoutManager
+    
+    
+//------------------------------------------------------------------------------    
+    public static void main(String[] args) {
+//------------------------------------------------------------------------------    
+        try {
+            // Select the Look and Feel
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+
+            SwingUtilities.invokeLater(new Runnable() {
+
+                @Override
+                public void run() {
+                    // Start the application
+                    AdvancedLookAndFeelSample app = new AdvancedLookAndFeelSample();
+                    app.setSize(640, 480);
+                    app.setLocationRelativeTo(null);
+                    app.setVisible(true);
+                }
+            });
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    } // end main
+    
+}

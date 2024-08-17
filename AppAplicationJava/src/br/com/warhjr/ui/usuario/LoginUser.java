@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -22,27 +21,26 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import br.com.warhjr.controller.UsuarioController;
-import br.com.warhjr.model.Usuario;
 import br.com.warhjr.ui.MenuPrinc;
-import br.com.warhjr.ui.arquivo.CadastroArquivo;
 
+@SuppressWarnings("serial")
 public class LoginUser extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
 	private JButton cancelButton;
-	private JLabel lblMsg;
-	private JLabel lblNewLabel_3;
 	private Timer t;
 	private JPasswordField senhaText;
-	private Usuario usuario;
-	private String[] listaLogin;
-	private ArrayList<Usuario> listaCombox;
+
+	@SuppressWarnings({ "unused", "rawtypes" })
 	private JComboBox logintext1;
+	@SuppressWarnings({ "rawtypes"})
 	private JComboBox loginTextComboBox;
 
 	/**
@@ -50,6 +48,19 @@ public class LoginUser extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+//			try {
+//			    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//			        if ("Nimbus".equals(info.getName())) {
+//			            UIManager.setLookAndFeel(info.getClassName());
+//			            break;
+//			        }
+//			    }
+//			} catch (Exception e) {
+//				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//			}
+	        try {
+	            // select Look and Feel
+	            UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
 			LoginUser frame = new LoginUser();
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
@@ -57,22 +68,26 @@ public class LoginUser extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
+ }
+	
 
 	/**
 	 * Create the dialog.
 	 * 
 	 * @throws Exception
 	 */
+	@SuppressWarnings("rawtypes")
 	public LoginUser() throws Exception {
 
+		
 		setBounds(100, 100, 418, 391);
 		getContentPane().setLayout(new BorderLayout());
-
+        
 		UsuarioController auxController = new UsuarioController();
-		int tam = auxController.ListaddCombo().size();
 
-		UsuarioController usercombo = new UsuarioController();
 		{
 			JPanel buttonPane = new JPanel();
 			getContentPane().add(buttonPane, BorderLayout.CENTER);
@@ -144,7 +159,7 @@ public class LoginUser extends JDialog {
 				});
 				okButton.addActionListener(new ActionListener() {
 					@Override
-					@SuppressWarnings("deprecation")
+	
 					public void actionPerformed(ActionEvent e) {
 						UsuarioController objclic = new UsuarioController();
 
@@ -152,7 +167,6 @@ public class LoginUser extends JDialog {
 							if (objclic.LogarEx(loginTextComboBox.getSelectedItem(),
 									new String(senhaText.getPassword())) == true) {
 
-								CadastroArquivo frame = new CadastroArquivo();
 								MenuPrinc auxMenu = new MenuPrinc();
 								auxMenu.setVisible(true);
 								auxMenu.setLocationRelativeTo(null);
@@ -215,56 +229,66 @@ public class LoginUser extends JDialog {
 							.addComponent(contentPanel, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
 							.addContainerGap()));
 			GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-			gl_contentPanel.setHorizontalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_contentPanel.createSequentialGroup().addGap(127).addComponent(lblMsg_1,
-							GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPanel.createSequentialGroup().addGap(10)
-							.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPanel.createSequentialGroup().addGap(10).addGroup(gl_contentPanel
-							.createParallelGroup(Alignment.TRAILING)
+			gl_contentPanel.setHorizontalGroup(
+				gl_contentPanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPanel.createSequentialGroup()
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_contentPanel.createSequentialGroup()
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-											.addComponent(lblNewLabel).addComponent(loginTextComboBox,
-													GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE))
-									.addGap(6))
-							.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-									.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 54,
-											GroupLayout.PREFERRED_SIZE)
-									.addGroup(gl_contentPanel.createSequentialGroup().addGap(60)
-											.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-													.addGroup(gl_contentPanel.createSequentialGroup().addGap(18)
-															.addComponent(lblNewLabel_4))
-													.addGroup(gl_contentPanel.createSequentialGroup().addGap(15)
-															.addComponent(lblNewLabel_5))
-													.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 94,
-															GroupLayout.PREFERRED_SIZE)))
-									.addComponent(senhaText, GroupLayout.PREFERRED_SIZE, 178,
-											GroupLayout.PREFERRED_SIZE))));
-			gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_contentPanel.createSequentialGroup().addGap(11).addComponent(lblNewLabel_4).addGap(6)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_contentPanel.createSequentialGroup().addComponent(lblNewLabel_5)
-											.addGap(6).addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 80,
-													GroupLayout.PREFERRED_SIZE))
-									.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 115,
-											GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblNewLabel)
-									.addComponent(lblNewLabel_1))
-							.addGap(6)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-									.addComponent(loginTextComboBox, GroupLayout.PREFERRED_SIZE,
-											GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(senhaText, GroupLayout.PREFERRED_SIZE, 31,
-											GroupLayout.PREFERRED_SIZE))
-							.addGap(11).addComponent(lblMsg_1).addGap(11)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-									.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-									.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 31,
-											GroupLayout.PREFERRED_SIZE))));
+								.addGap(127)
+								.addComponent(lblMsg_1, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addGap(10)
+								.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addGap(10)
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+									.addGroup(gl_contentPanel.createSequentialGroup()
+										.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblNewLabel)
+											.addComponent(loginTextComboBox, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE))
+										.addGap(6))
+									.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+									.addGroup(gl_contentPanel.createSequentialGroup()
+										.addGap(60)
+										.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+											.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblNewLabel_4)
+											.addComponent(lblNewLabel_5)))
+									.addComponent(senhaText, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))))
+						.addGap(7))
+			);
+			gl_contentPanel.setVerticalGroup(
+				gl_contentPanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPanel.createSequentialGroup()
+						.addGap(11)
+						.addComponent(lblNewLabel_4)
+						.addGap(6)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addGap(59)
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+									.addComponent(lblNewLabel)
+									.addComponent(lblNewLabel_1)))
+							.addGroup(gl_contentPanel.createSequentialGroup()
+								.addComponent(lblNewLabel_5)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+						.addGap(6)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(loginTextComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(senhaText, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addGap(11)
+						.addComponent(lblMsg_1)
+						.addGap(11)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)))
+			);
 			contentPanel.setLayout(gl_contentPanel);
 			buttonPane.setLayout(gl_buttonPane);
 		}
@@ -278,7 +302,7 @@ public class LoginUser extends JDialog {
 				//progressBar.setValue(i);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Não foi possivel carregar a barra" + e.getMessage());
+				JOptionPane.showMessageDialog(null, "NÃ£o foi possivel carregar a barra" + e.getMessage());
 			}
 
 		}

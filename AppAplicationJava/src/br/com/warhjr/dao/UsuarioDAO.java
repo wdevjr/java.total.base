@@ -10,7 +10,6 @@ import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 import br.com.warhjr.model.Usuario;
 
@@ -21,9 +20,9 @@ public class UsuarioDAO {
 	static private String userUsuario;
 	static private String userLogin;
 	static private String userTipo;
-	private JTable jTable;
-	private int i = 0;
 
+
+	@SuppressWarnings("static-access")
 	public boolean atuentica(Object object, Object senha) throws SQLException {
 
 		PreparedStatement pstmt;
@@ -56,6 +55,7 @@ public class UsuarioDAO {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public boolean verificaUserCodigo(Integer num) throws SQLException {
 
 		PreparedStatement stmt = connectionAux.getConnection()
@@ -76,6 +76,7 @@ public class UsuarioDAO {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public Integer incrementa() throws SQLException {
 		PreparedStatement stmt = connectionAux.getConnection()
 				.prepareStatement("select max(idusuario)as num from usuario");
@@ -114,7 +115,7 @@ public class UsuarioDAO {
 		str = str.replace("#", "");
 		str = str.replace("$", "");
 		str = str.replace("%", "");
-		str = str.replace("¨", "");
+		str = str.replace("ï¿½", "");
 		str = str.replace("&", "");
 		str = str.replace("'1'='1'", "");
 		str = str.replace("'1'-'1'", "");
@@ -122,15 +123,20 @@ public class UsuarioDAO {
 		str = str.replace("--", "");
 		str = str.replace("insert", "");
 		str = str.replace("drop", "");
-		str = str.replace("delet", "");
+		str = str.replace("delete", "");
 		str = str.replace("xp_", "");
 		str = str.replace("select", "");
+		str = str.replace("applet", "");
+		str = str.replace("drop table", "");
+		str = str.replace("show table", "");
+		str = str.replace("object", "");
 		str = str.replace("*", "");
 		return str;
 	}
 
 	
 
+	@SuppressWarnings({ "rawtypes", "unchecked", "static-access" })
 	public ComboBoxModel carregaComboBox(JComboBox combo) {
 		try {
 			combo.addItem("Selecione Abaixo !");
@@ -146,11 +152,12 @@ public class UsuarioDAO {
 			JOptionPane.showMessageDialog(null, "Ocorreu erro ao carregar a Combo Box", "Erro",
 					JOptionPane.ERROR_MESSAGE);
 		}
-		return null; // como é uma função mas que não precisa de return carregado pois o while ja faz
+		return null; // como ï¿½ uma funï¿½ï¿½o mas que nï¿½o precisa de return carregado pois o while ja faz
 						// isso ...
 
 	}
 
+	@SuppressWarnings("static-access")
 	public List<Usuario> getCombo() throws SQLException {
 		Usuario usuario = new Usuario();
 
@@ -177,6 +184,7 @@ public class UsuarioDAO {
 	
 	
 	
+	@SuppressWarnings("static-access")
 	public List<Usuario> consultaCostumizadaCodigoUsuario(Long id) throws SQLException
 	{
 		
@@ -205,26 +213,16 @@ public class UsuarioDAO {
 	}
 	
 	
+	@SuppressWarnings("static-access")
 	public List<Usuario> findUsuarios(String nomeUsuario) throws SQLException 
 	{
 
-//		
-//		if (nomeUsuario.equals("%"))
-//		{
-//			//usuarios.clear();
-//			List<Usuario> usuariosAux = new ArrayList<Usuario>();
-//			usuariosAux.clear();
-//
-//			usuariosAux = null;
-//			usuariosAux = new ArrayList();
-//			return usuariosAux;
-//			
-//		} else {
+
 
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		String select = "select * from USUARIO where nomeusuario LIKE '%" + nomeUsuario
 				+ "%' ORDER BY nomeusuario DESC";
-		;
+		
 
 		PreparedStatement stmt = connectionAux.getConnection().prepareStatement(select);
 
@@ -249,6 +247,7 @@ public class UsuarioDAO {
    // }
 	}
 
+	@SuppressWarnings("static-access")
 	public void inserir(Usuario usuarios) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pst = null;
@@ -279,6 +278,7 @@ public class UsuarioDAO {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public void updateUsuarios(Usuario usuario) {
 		PreparedStatement stmt = null;
 
@@ -302,6 +302,7 @@ public class UsuarioDAO {
 		}
 	}
 
+	@SuppressWarnings("static-access")
 	public void remover(String id) {
 
 		String delete = "delete from USUARIO where idusuario = ?";
@@ -315,7 +316,7 @@ public class UsuarioDAO {
 			pstmt.close();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro ao excluir Usuário do banco de " + "dados " + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Erro ao excluir Usuï¿½rio do banco de " + "dados " + e.getMessage());
 
 		}
 	}

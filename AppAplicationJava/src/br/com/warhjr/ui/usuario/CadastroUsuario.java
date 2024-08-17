@@ -1,7 +1,6 @@
 package br.com.warhjr.ui.usuario;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -10,15 +9,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.InputStream;
-import java.io.ObjectStreamField;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.ListIterator;
 
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -30,31 +26,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
-import org.codehaus.groovy.tools.shell.commands.ClearCommand;
 
 import br.com.warhjr.controller.UsuarioController;
 import br.com.warhjr.dao.ConectionDataBase;
-import br.com.warhjr.dao.UsuarioDAO;
 import br.com.warhjr.model.Usuario;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 
 
 @SuppressWarnings("serial")
@@ -62,41 +50,19 @@ public class CadastroUsuario extends JFrame {
 	
 
 	private JPanel contentPane;
-	private JPanel panel_2;
 	public static JPanel panelAlert;
 	public static JPanel panel_super;
 	public JLabel LabelStatus;
-	private JButton btnInserir;
-	private JButton btnBusca;
-	private JButton btnGravar;
-	private JButton btnEditar;
-	private JButton btnDeletar;
-	private JButton btnCancelar;
-	private JButton btGravar;
-	private JButton clique;
-	private JLabel lblNewLabel;
-	private JTextField labelCodigo;
-	private JLabel txtLlblCidade;
-	private JLabel LabelUser;
-	private JLabel LabelLogin;
-	private JButton btnConsultar;
-	// protected AbstractButton btnEditar;
 	UsuarioController auxControllerUser = new UsuarioController();;
-	private JLabel msg;
-	private JLabel datalabel;
-	private Date data;
 	SimpleDateFormat sdt;
 	private JTextField textConsulta;
 	private JTable tableUsers;
 	private JTextField textFieldID;
-	private JTextField datatext;
 	private JPanel panel;
-	private JButton btnNewButton_1;
 	private JTextField textFieldNome;
 	private JTextField textFieldLogin;
 	private JPasswordField textFieldSenha;
 	private JTextField textFieldData;
-	private DefaultTableCellRenderer CellRe = new DefaultTableCellRenderer();
 
 	/**
 	 * Launch the application.
@@ -131,10 +97,33 @@ public class CadastroUsuario extends JFrame {
 			@Override
 			public void run() {
 				try {
-					CadastroUsuario frame = new CadastroUsuario();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//					try {
+//					    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//					        if ("Nimbus".equals(info.getName())) {
+//					            UIManager.setLookAndFeel(info.getClassName());
+//					            break;
+//					        }
+//					    }
+//					} catch (Exception e) {
+//						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//					}
+					
+			        try {
+			            // select Look and Feel
+			            UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+						CadastroUsuario frame = new CadastroUsuario();
+						frame.setLocationRelativeTo(null);
+						frame.setVisible(true);
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			        }
+			        catch (Exception ex) {
+			            ex.printStackTrace();
+			        }
+		
+
+					
+					
+
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -153,16 +142,15 @@ public class CadastroUsuario extends JFrame {
 	public void getPopularTable() {
 		UsuarioController userTable = new UsuarioController();
 		DefaultTableModel model = new DefaultTableModel();
-		UsuarioController cc = new UsuarioController();
 		
 		if (textConsulta.getText().length() != 0) {
 			Object[] tableColumes = new Object[6];
 
-			tableColumes[0] = "Código";
+			tableColumes[0] = "CÃ³digo";
 			tableColumes[1] = "Nome";
 			tableColumes[2] = "Login";
 			tableColumes[3] = "Senha";
-			tableColumes[4] = "Tipo Usuário";
+			tableColumes[4] = "Tipo UsuÃ¡rio";
 			tableColumes[5] = "Data Cadastro";
 
 			model.setColumnIdentifiers(tableColumes);
@@ -207,16 +195,15 @@ public class CadastroUsuario extends JFrame {
 	public void getPopularTableComParametro() {
 		UsuarioController userTable = new UsuarioController();
 		DefaultTableModel model = new DefaultTableModel();
-		UsuarioController cc = new UsuarioController();
 		
 		if (textConsulta.getText().length() != 0) {
 			Object[] tableColumes = new Object[6];
 
-			tableColumes[0] = "Código";
+			tableColumes[0] = "CÃ³digo";
 			tableColumes[1] = "Nome";
 			tableColumes[2] = "Login";
 			tableColumes[3] = "Senha";
-			tableColumes[4] = "Tipo Usuário";
+			tableColumes[4] = "Tipo UsuÃ¡rio";
 			tableColumes[5] = "Data Cadastro";
 
 			model.setColumnIdentifiers(tableColumes);
@@ -269,14 +256,14 @@ public class CadastroUsuario extends JFrame {
 
 
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "rawtypes", "unchecked" })
 	public CadastroUsuario()  throws Exception {
 		setTitle("Treina swing java Contriole de Usu\u00E1rios- v10.0");
 
 		// setAlwaysOnTop(true);
 		// requestFocus(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 832, 488);
+		setBounds(100, 100, 867, 526);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -299,16 +286,16 @@ public class CadastroUsuario extends JFrame {
 		tableUsers.setShowGrid(true);
 		tableUsers.setSelectionBackground(new Color(57, 105, 138));
 		tableUsers.setSelectionForeground(Color.WHITE);
-		DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
 
 		JButton btDeletar = new JButton("Deletar");
-		//JButton btnNewButton_1 = new JButton("Imprimir Relat\u00F3rio");
+
 		
 		textConsulta = new JTextField();
 		textConsulta.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 		textConsulta.setColumns(10);
 		
 		btDeletar.addActionListener(new ActionListener() {
+			@SuppressWarnings({ "unused" })
 			private JComboBox textFieldTipo;
 
 			@Override
@@ -316,7 +303,7 @@ public class CadastroUsuario extends JFrame {
 
 				int resposta;
 
-				resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo Excluir? ...", "Erro na Exclusão...",
+				resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo Excluir? ...", "Erro na ExclusÃ£o...",
 						JOptionPane.YES_NO_OPTION);
 
 				if (resposta == JOptionPane.YES_OPTION) {
@@ -370,9 +357,7 @@ public class CadastroUsuario extends JFrame {
 		btNovo.setBounds(10, 11, 94, 25);
 		panel_3.add(btNovo);
 
-		UsuarioDAO user = new UsuarioDAO();
-		SimpleDateFormat sdt = new SimpleDateFormat("dd/MM/yyyy");
-		Date data = new Date();
+
 		JLabel label_6 = new JLabel("Nome:");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -401,9 +386,13 @@ public class CadastroUsuario extends JFrame {
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		JComboBox textFieldTipo = new JComboBox();
+		textFieldTipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		textFieldTipo.setBorder(new LineBorder(SystemColor.BLUE, 1, false));
 		textFieldTipo.addItem("Administrador");
-		textFieldTipo.addItem("Usuário");
+		textFieldTipo.addItem("UsuÃ¡rio");
 		textFieldTipo.addItem("Super");
 		
 		JLabel lblNewLabel_2 = new JLabel("Data Cadastro:");
@@ -477,13 +466,13 @@ public class CadastroUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (textFieldNome.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "O nome do Usuário deve ser informado!", "Atenção!",
+					JOptionPane.showMessageDialog(null, "O nome do UsuÃ¡rio deve ser informado!", "AtenÃ§Ã£o!",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else if (textFieldLogin.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "O nome de login deve ser informado!", "Atenção!",
+					JOptionPane.showMessageDialog(null, "O nome de login deve ser informado!", "AtenÃ§Ã£o!",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else if (textFieldSenha.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "A senha também deve ser informada!", "Atenção!",
+					JOptionPane.showMessageDialog(null, "A senha tambÃ©m deve ser informada!", "AtenÃ§Ã£o!",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
 
@@ -510,7 +499,7 @@ public class CadastroUsuario extends JFrame {
 						btGravar.setEnabled(false);
 
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage().toString(), "Atenção Possivel Erro!",
+						JOptionPane.showMessageDialog(null, e1.getMessage().toString(), "AtenÃ§Ã£o Possivel Erro!",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
@@ -566,10 +555,8 @@ public class CadastroUsuario extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 806, Short.MAX_VALUE)
-					.addContainerGap())
 				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -589,6 +576,7 @@ public class CadastroUsuario extends JFrame {
 		
 
 		btnImprimir.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				HashMap parameterMap;
 				if (textFieldID.getText().length() > 0) {
@@ -607,7 +595,7 @@ public class CadastroUsuario extends JFrame {
 						JasperPrint relatorio = JasperFillManager.fillReport(report, parameterMap, con.getConnection());
 						JasperViewer viewer = new JasperViewer(relatorio, false);
 
-						viewer.setTitle("Relatório de Usuários");
+						viewer.setTitle("RelatÃ³rio de UsuÃ¡rios");
 						viewer.setVisible(true);
 
 					} catch (Exception e1) {
@@ -618,42 +606,13 @@ public class CadastroUsuario extends JFrame {
 
 				} else {
 
-					JOptionPane.showMessageDialog(null, "Consulte um Usuário e Selecione no Grid (Tabela) Abaixo !");
+					JOptionPane.showMessageDialog(null, "Consulte um Usuï¿½rio e Selecione no Grid (Tabela) Abaixo !");
 				}
 			}
 			
 		});
 		btnImprimir.setBackground(Color.WHITE);
 		btnImprimir.setIcon(new ImageIcon(CadastroUsuario.class.getResource("/br/com/warhjr/img/Alerts/website_development.png")));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1)
-						.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 618, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-							.addGap(31))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addGap(153))))
-		);
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
@@ -664,6 +623,7 @@ public class CadastroUsuario extends JFrame {
 							.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
 								.addComponent(label_6)
 								.addGroup(gl_panel_5.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 364, GroupLayout.PREFERRED_SIZE)
 									.addGap(18)
 									.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
@@ -692,8 +652,8 @@ public class CadastroUsuario extends JFrame {
 						.addComponent(label_7))
 					.addGap(6)
 					.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_5.createSequentialGroup()
@@ -711,6 +671,39 @@ public class CadastroUsuario extends JFrame {
 					.addGap(26))
 		);
 		panel_5.setLayout(gl_panel_5);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(7)
+							.addComponent(lblNewLabel_1))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(56)
+					.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(7)
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(20)
+							.addComponent(btnImprimir, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
+					.addGap(12))
+		);
 		panel.setLayout(gl_panel);
 
 		btnNewButton.addActionListener(new ActionListener() {
@@ -720,12 +713,7 @@ public class CadastroUsuario extends JFrame {
 			@Override
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
-				// getPopularTable();
-				
-//				if (textConsulta.getText().equals("%")) {
-//					JOptionPane.showMessageDialog(null, "O Nome do Usuário Não ser % !", "Atenção!", JOptionPane.INFORMATION_MESSAGE);
-//				    return;
-//				}
+
 
 				userTable = new UsuarioController();
 				DefaultTableModel model = new DefaultTableModel();
@@ -734,11 +722,11 @@ public class CadastroUsuario extends JFrame {
 				{
 					Object[] tableColumes = new Object[6];
 
-					tableColumes[0] = "Código";
+					tableColumes[0] = "CÃ³digo";
 					tableColumes[1] = "Nome";
 					tableColumes[2] = "Login";
 				    tableColumes[3] = "Senha";
-					tableColumes[4] = "Tipo Usuário";
+					tableColumes[4] = "Tipo UsuÃ¡rio";
 					tableColumes[5] = "Data Cadastro";
 
 					model.setColumnIdentifiers(tableColumes);
@@ -812,7 +800,7 @@ public class CadastroUsuario extends JFrame {
 						.addGap(16)));
 
 		tableUsers.addMouseListener(new MouseAdapter() {
-			private AbstractButton datatext;
+	
 
 			@Override
 			public void mousePressed(MouseEvent e) {

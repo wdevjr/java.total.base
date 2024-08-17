@@ -31,7 +31,7 @@ public class ConectionDataBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Banco de Dados n„o Conectado ... !");
+			JOptionPane.showMessageDialog(null, "Banco de Dados n√£o Conectado ... !");
 			throw new RuntimeException(e);
 		}
 

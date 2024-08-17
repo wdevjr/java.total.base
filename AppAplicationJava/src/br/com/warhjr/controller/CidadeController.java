@@ -1,6 +1,5 @@
 package br.com.warhjr.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import br.com.warhjr.dao.CidadeDAO;

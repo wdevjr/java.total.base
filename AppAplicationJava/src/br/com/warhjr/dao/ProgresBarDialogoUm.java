@@ -1,25 +1,23 @@
 package br.com.warhjr.dao;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JProgressBar;
-import javax.swing.Timer;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Color;
+import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class ProgresBarDialogoUm extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	public static JProgressBar progressBar;
 
-	private ActionListener at;
 
 	/**
 	 * Launch the application.

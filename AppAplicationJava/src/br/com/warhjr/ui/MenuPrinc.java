@@ -1,10 +1,7 @@
 package br.com.warhjr.ui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.Frame;
-import java.awt.LayoutManager;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Timer;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -28,18 +24,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JToolBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-
-import org.springframework.cglib.transform.AbstractTransformTask;
 
 import br.com.warhjr.dao.UsuarioDAO;
 import br.com.warhjr.ui.arquivo.CadastroArquivo;
 import br.com.warhjr.ui.usuario.CadastroUsuario;
 
+@SuppressWarnings("serial")
 public class MenuPrinc extends JFrame {
 
 	/**
@@ -48,14 +42,9 @@ public class MenuPrinc extends JFrame {
 	// private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;
-	private JButton buttonNew;
-	private JToolBar toolBar;
-	private LayoutManager auxPenilUser = null;
-	private JFrame MenuPrinc;
-	private JPanel north, center, south;
+
 	private JPanel panelStatusBar = new JPanel();
-	private Timer timer;
-	private String saud;
+
 	private JLabel labelTempGlobo = new JLabel();
 	private JLabel labelTempChave = new JLabel();
 	private JLabel labelTempLogin = new JLabel();
@@ -71,16 +60,21 @@ public class MenuPrinc extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			private Component statusBar;
 
 			@Override
 			public void run() {
 				try {
-					MenuPrinc frame = new MenuPrinc();
-					//frame.setExtendedState(frame.getExtendedState() | Frame.NORMAL);
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
+					try {
+						// select Look and Feel
+						UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+						MenuPrinc frame = new MenuPrinc();
+						// frame.setExtendedState(frame.getExtendedState() | Frame.NORMAL);
+						frame.setLocationRelativeTo(null);
+						frame.setVisible(true);
 
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,47 +86,49 @@ public class MenuPrinc extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	
-	  public static String DiaDaSemana(int i, int tipo) {
-		    String diasem[] = {"domingo", "segunda-feira", "terça-feira",
-		      "quarta-feira", "quinta-feira", "sexta-feira", "sábado"};
-		    if (tipo == 0)
-		       return(diasem[i-1]); 
-		    else return(diasem[i-1].substring(0, 6));
-		  }
-	  
-	  public static String NomeDoMes(int i, int tipo) {
-		    String mes[] = {"janeiro", "fevereiro", "março", "abril",
-		      "maio", "junho", "julho", "agosto", "setembro", "outubro",
-		      "novembro", "dezembro"};
-		    if (tipo == 0)
-		       return(mes[i-1]); 
-		    else return(mes[i-1].substring(0, 7)); 
-		  }
-	  
-	  public static String DataPorExtenso() {
-		    
-		    Date dt;
-			dt = new Date();
-		    int d = dt.getDate();
-		    int m = dt.getMonth()+1;
-		    int a = dt.getYear()+1900;
 
-		    Calendar data = new GregorianCalendar(a, m-1, d);
-		    int ds = data.get(Calendar.DAY_OF_WEEK);
+	public static String DiaDaSemana(int i, int tipo) {
+		String diasem[] = { "domingo", "segunda-feira", "terÃ§a-feira", "quarta-feira", "quinta-feira", "sexta-feira",
+				"sÃ¡bado" };
+		if (tipo == 0)
+			return (diasem[i - 1]);
+		else
+			return (diasem[i - 1].substring(0, 6));
+	}
 
-		    return(" " + d + " de " + NomeDoMes(m, 0) + " de " +
-		      a + "  "  + DiaDaSemana(ds, 1) +  ".  ");
-		  }
-	  
-	
-    private String hora(){
-    	SimpleDateFormat ds = new SimpleDateFormat("HH");
-        Calendar c = Calendar.getInstance();
-        Date data = c.getTime();
-        //DateFormat f = DateFormat.getTimeInstance(); 
-        return ds.format(data);
-    } 
+	public static String NomeDoMes(int i, int tipo) {
+		String mes[] = { "janeiro", "fevereiro", "marÃ§o", "abril", "maio", "junho", "julho", "agosto", "setembro",
+				"outubro", "novembro", "dezembro" };
+		if (tipo == 0)
+			return (mes[i - 1]);
+		else
+			return (mes[i - 1].substring(0, 7));
+	}
+
+	public static String DataPorExtenso() {
+
+		SimpleDateFormat dsDia = new SimpleDateFormat("dd");
+		SimpleDateFormat dsMes = new SimpleDateFormat("MM");
+		SimpleDateFormat dsAno = new SimpleDateFormat("yyyy");
+		Calendar c = Calendar.getInstance();
+		int d = Integer.parseInt(dsDia.format(c.getTime()));
+		int m = Integer.parseInt(dsMes.format(c.getTime()));
+		int a = Integer.parseInt(dsAno.format(c.getTime()));
+
+		Calendar datadt = new GregorianCalendar(a, m - 1, d);
+		int ds = datadt.get(Calendar.DAY_OF_WEEK);
+
+		return (" " + d + " de " + NomeDoMes(m, 0) + " de " + a + "  " + DiaDaSemana(ds, 0) + "  ");
+	}
+
+	@SuppressWarnings("unused")
+	private String hora() {
+		SimpleDateFormat ds = new SimpleDateFormat("HH");
+		Calendar c = Calendar.getInstance();
+		Date data = c.getTime();
+		// DateFormat f = DateFormat.getTimeInstance();
+		return ds.format(data);
+	}
 
 	public String Saudacao() {
 		SimpleDateFormat ds = new SimpleDateFormat("HH");
@@ -143,7 +139,7 @@ public class MenuPrinc extends JFrame {
 		if (horas >= 0 && horas <= 5) { // entre meia noite (0h) e 5 da madrugada
 			return "Boa madrugada!";
 		} else {
-			if (horas >= 6 && horas < 12) { // entre 6 e 11 da manhã
+			if (horas >= 6 && horas < 12) { // entre 6 e 11 da manhï¿½
 				return "Bom dia!";
 			} else {
 				if (horas >= 12 && horas < 18) { // entre meio dia (12h) e 17 (5h) da tarde
@@ -157,50 +153,48 @@ public class MenuPrinc extends JFrame {
 		}
 		return null;
 
-	}  
-	
-	
-	@SuppressWarnings("unused")
+	}
+
 	public MenuPrinc() {
 		requestFocus(true);
 		setTitle("Menu Principal - Treinamentos 2015 - V1.0.00");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 863, 616);
 		panelStatusBar.setBackground(Color.WHITE);
-		
-		//panelStatusBar.setPreferredSize(new Dimension(frame.getWidth(), 16));
+
+		// panelStatusBar.setPreferredSize(new Dimension(frame.getWidth(), 16));
 		panelStatusBar.setLayout(new BoxLayout(panelStatusBar, BoxLayout.X_AXIS));
 		JLabel statusLabel = new JLabel("status");
 		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		//panelStatusBar.add(statusLabel);
-        //panelStatusBar.setLayout(new BoxLayout(south, 1));
+		// panelStatusBar.add(statusLabel);
+		// panelStatusBar.setLayout(new BoxLayout(south, 1));
 		this.labelTempGlobo.setIcon(new ImageIcon(MenuPrinc.class.getResource("/br/com/warhjr/img/terraPrnc.png")));
 		this.labelTempChave.setIcon(new ImageIcon(MenuPrinc.class.getResource("/br/com/warhjr/img/Msgina 002.png")));
 		this.labelTempLogin.setIcon(new ImageIcon(MenuPrinc.class.getResource("/br/com/warhjr/img/login_16x16.png")));
 		this.labelTempHora.setIcon(new ImageIcon(MenuPrinc.class.getResource("/br/com/warhjr/img/clock.png")));
 		panelStatusBar.add(new JLabel("       "));
 		panelStatusBar.add(this.labelTempGlobo);
-		panelStatusBar.add(new JLabel("   "+Saudacao()+"  Hoje é"+ " "+DataPorExtenso()));
-		 panelStatusBar.add(new JLabel("   "));
+		panelStatusBar.add(new JLabel("   " + Saudacao() + "  Hoje Ã©" + " " + DataPorExtenso()));
+		panelStatusBar.add(new JLabel("   "));
 		panelStatusBar.add(new JSeparator(1));
 		panelStatusBar.add(this.labelTempLogin);
-        panelStatusBar.add(new JLabel(" Nome: "+UsuarioDAO.getNomeUser()));
-        panelStatusBar.add(new JLabel("     "));
-        panelStatusBar.add(new JSeparator(1));
-        panelStatusBar.add(this.labelTempChave);
-        panelStatusBar.add(new JLabel(" Login: "+UsuarioDAO.getLoginUser()+"    "));
-        panelStatusBar.add(new JSeparator(1));
-        panelStatusBar.add(new JLabel("    "));
-        panelStatusBar.add(this.labelTempHora);
-        
-        panelStatusBar.add(new JLabel("Hora Atual: "));
-        ClockPane relogio = new ClockPane();
-        relogio = new ClockPane();
-        panelStatusBar.add(relogio);
-        panelStatusBar.add(new JSeparator(1));
-        panelStatusBar.add(new JLabel("Post Meridiem: "+"PM             "));
-        panelStatusBar.add(new JSeparator(1));
-		
+		panelStatusBar.add(new JLabel(" Nome: " + UsuarioDAO.getNomeUser()));
+		panelStatusBar.add(new JLabel("     "));
+		panelStatusBar.add(new JSeparator(1));
+		panelStatusBar.add(this.labelTempChave);
+		panelStatusBar.add(new JLabel(" Login: " + UsuarioDAO.getLoginUser() + "    "));
+		panelStatusBar.add(new JSeparator(1));
+		panelStatusBar.add(new JLabel("    "));
+		panelStatusBar.add(this.labelTempHora);
+
+		panelStatusBar.add(new JLabel("Hora Atual: "));
+		ClockPane relogio = new ClockPane();
+		relogio = new ClockPane();
+		panelStatusBar.add(relogio);
+		panelStatusBar.add(new JSeparator(1));
+		panelStatusBar.add(new JLabel("Post Meridiem: " + "PM             "));
+		panelStatusBar.add(new JSeparator(1));
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
@@ -231,8 +225,6 @@ public class MenuPrinc extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setBackground(new Color(231, 229, 214));
 
-
-		
 		panel.setBackground(SystemColor.menu);
 		panel.setBorder(new LineBorder(Color.BLUE));
 
@@ -259,17 +251,6 @@ public class MenuPrinc extends JFrame {
 
 		JMenuItem mntmCadastroDeUsurios = new JMenuItem("Cadastro de Usu\u00E1rios");
 		mntmCadastroDeUsurios.setIcon(new ImageIcon(MenuPrinc.class.getResource("/br/com/warhjr/img/Adm.jpg")));
-		
-
-		
-
-	    
-	    
-
-
-
-
-		
 
 		mntmCadastroDeUsurios.addActionListener(new ActionListener() {
 			@Override
@@ -375,29 +356,21 @@ public class MenuPrinc extends JFrame {
 						.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
 				.addGap(22)));
 		panel.setLayout(gl_panel);
-		
-		
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING).addGroup(gl_contentPane
+				.createSequentialGroup()
+				.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panelStatusBar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(0))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGap(0)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
-					.addComponent(panelStatusBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 409, Short.MAX_VALUE).addComponent(panelStatusBar,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
 		contentPane.setLayout(gl_contentPane);
-		
-
-		
-
 
 //		buttonNew = addToolbarButton( toolBar, false, "New",
 //				"new", "Create a new document" );

@@ -1,42 +1,39 @@
 package br.com.warhjr.ui.cidade;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ListIterator;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
-import java.awt.Color;
-
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.WindowConstants;
 
 import br.com.warhjr.controller.CidadeController;
 import br.com.warhjr.model.Cidade;
 import br.com.warhjr.ui.MeuRenderer;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.sql.SQLException;
-import java.util.ListIterator;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.Font;
-
-import javax.swing.UIManager;
-
+@SuppressWarnings("serial")
 public class BuscaCidadeDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -120,7 +117,7 @@ public class BuscaCidadeDialog extends JDialog {
 				// Grid ...
 				DefaultTableModel aModel = new DefaultTableModel();
 				Object[] tableColumnNames = new Object[3];
-				tableColumnNames[0] = "Código";
+				tableColumnNames[0] = "Cï¿½digo";
 				tableColumnNames[1] = "Nome Cidade";
 				tableColumnNames[2] = "UF";
 

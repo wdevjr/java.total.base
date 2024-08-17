@@ -1,19 +1,17 @@
 package br.com.warhjr.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 
+@SuppressWarnings("serial")
 public class ClockPane extends JPanel {
 
     private JLabel clock;

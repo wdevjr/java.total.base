@@ -3,6 +3,9 @@ package br.com.warhjr.ui.usuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ListIterator;
@@ -18,8 +21,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -27,21 +33,12 @@ import br.com.warhjr.controller.UsuarioController;
 import br.com.warhjr.model.Usuario;
 import br.com.warhjr.ui.MeuRenderer;
 
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-
+@SuppressWarnings("serial")
 public class BuscaUsuarioDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPanel panel;
 	private JTextField tfNome;
-	private JTable jTable;
-	private JScrollPane jScrollPane;
 	public JTable dsTableUser;
 	public static JLabel id = null;
 	private JTextField nome = null;
@@ -111,8 +108,8 @@ public class BuscaUsuarioDialog extends JDialog {
 
 				DefaultTableModel aModel = new DefaultTableModel();
 				Object[] tableColumnNames = new Object[5];
-				tableColumnNames[0] = "CÛdigo";
-				tableColumnNames[1] = "Nome do Usu·rio";
+				tableColumnNames[0] = "C√≥digo";
+				tableColumnNames[1] = "Nome do Usu√°rio";
 				tableColumnNames[2] = "Login";
 				tableColumnNames[3] = "Senha";
 				tableColumnNames[4] = "Nivel";

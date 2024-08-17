@@ -4,9 +4,10 @@ import java.awt.Dimension;
 
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class StatusBar extends JLabel {
     
-    /** Cria uma nova instância de StatusBar */
+   
     public StatusBar() {
         super();
         super.setPreferredSize(new Dimension(100, 16));

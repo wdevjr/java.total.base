@@ -1,43 +1,33 @@
 package br.com.warhjr.ui.arquivo;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
 import java.awt.Color;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTable;
-import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-
-import br.com.warhjr.controller.PessoaController;
-import br.com.warhjr.controller.UsuarioController;
-import br.com.warhjr.model.Pessoa;
-import br.com.warhjr.model.Usuario;
-import br.com.warhjr.ui.MeuRenderer;
-
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ListIterator;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.AncestorEvent;
-import java.awt.SystemColor;
-import java.awt.Font;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import br.com.warhjr.controller.PessoaController;
+import br.com.warhjr.model.Pessoa;
+
+@SuppressWarnings("serial")
 public class BuscaPessoaDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -51,9 +41,25 @@ public class BuscaPessoaDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+//			try {
+//			    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//			        if ("Nimbus".equals(info.getName())) {
+//			            UIManager.setLookAndFeel(info.getClassName());
+//			            break;
+//			        }
+//			    }
+//			} catch (Exception e) {
+//				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//			}
+	        try {
+	            // select Look and Feel
+	            UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
 			BuscaPessoaDialog dialog = new BuscaPessoaDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,12 +98,12 @@ public class BuscaPessoaDialog extends JDialog {
 				if ((e.getKeyCode() != 8) && (!textFieldPessoa.getText().equals(""))) {
 					DefaultTableModel aModel = new DefaultTableModel();
 					Object[] tableColumnNames = new Object[9];
-					tableColumnNames[0] = "Código";
-					tableColumnNames[1] = "Código Endereço";
+					tableColumnNames[0] = "CÃ³digo";
+					tableColumnNames[1] = "CÃ³digo EndereÃ§o";
 					tableColumnNames[2] = "Nome";
 					tableColumnNames[3] = "Idade";
 					tableColumnNames[4] = "Sexo";
-					tableColumnNames[5] = "Endereço";
+					tableColumnNames[5] = "EndereÃ§o";
 					tableColumnNames[6] = "Bairro";
 					tableColumnNames[7] = "Nome Cidade";
 					tableColumnNames[8] = "UF";
