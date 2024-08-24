@@ -60,17 +60,18 @@ public class MenuPrinc extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+	
 
 			@Override
 			public void run() {
 				try {
-					try {
-						// select Look and Feel
-						UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
-						MenuPrinc frame = new MenuPrinc();
-						// frame.setExtendedState(frame.getExtendedState() | Frame.NORMAL);
-						frame.setLocationRelativeTo(null);
-						frame.setVisible(true);
+			        try {
+			            // select Look and Feel
+			        UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+					MenuPrinc frame = new MenuPrinc();
+					//frame.setExtendedState(frame.getExtendedState() | Frame.NORMAL);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
 
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -106,19 +107,21 @@ public class MenuPrinc extends JFrame {
 	}
 
 	public static String DataPorExtenso() {
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		SimpleDateFormat FormatoDia = new SimpleDateFormat("dd");
+		SimpleDateFormat FormatoMes = new SimpleDateFormat("MM");
+		SimpleDateFormat FormatoAno = new SimpleDateFormat("yyyy");
+		
+		int d = Integer.parseInt(FormatoDia.format(calendar.getTime()));
+		int m = Integer.parseInt(FormatoMes.format(calendar.getTime()));
+		int a = Integer.parseInt(FormatoAno.format(calendar.getTime()));
 
-		SimpleDateFormat dsDia = new SimpleDateFormat("dd");
-		SimpleDateFormat dsMes = new SimpleDateFormat("MM");
-		SimpleDateFormat dsAno = new SimpleDateFormat("yyyy");
-		Calendar c = Calendar.getInstance();
-		int d = Integer.parseInt(dsDia.format(c.getTime()));
-		int m = Integer.parseInt(dsMes.format(c.getTime()));
-		int a = Integer.parseInt(dsAno.format(c.getTime()));
+		Calendar data = new GregorianCalendar(a, m - 1, d);
+		int ds = data.get(Calendar.DAY_OF_WEEK);
 
-		Calendar datadt = new GregorianCalendar(a, m - 1, d);
-		int ds = datadt.get(Calendar.DAY_OF_WEEK);
-
-		return (" " + d + " de " + NomeDoMes(m, 0) + " de " + a + "  " + DiaDaSemana(ds, 0) + "  ");
+		return (" " + d + " de " + NomeDoMes(m, 0) + " de " + a + "  " + DiaDaSemana(ds, 0) + ".  ");
 	}
 
 	@SuppressWarnings("unused")
@@ -155,6 +158,7 @@ public class MenuPrinc extends JFrame {
 
 	}
 
+	
 	public MenuPrinc() {
 		requestFocus(true);
 		setTitle("Menu Principal - Treinamentos 2015 - V1.0.00");
