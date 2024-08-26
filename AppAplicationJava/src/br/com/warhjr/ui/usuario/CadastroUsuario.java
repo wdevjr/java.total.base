@@ -606,7 +606,7 @@ public class CadastroUsuario extends JFrame {
 
 				} else {
 
-					JOptionPane.showMessageDialog(null, "Consulte um Usu�rio e Selecione no Grid (Tabela) Abaixo !");
+					JOptionPane.showMessageDialog(null, "Consulte um Usuário e Selecione no Grid (Tabela) Abaixo !");
 				}
 			}
 			
