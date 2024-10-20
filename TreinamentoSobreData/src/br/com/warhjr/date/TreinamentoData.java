@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class TreinamentoSobreData {
+public class TreinamentoData {
 
 	private JFrame frame;
 	private JTextField textFieldDateDois;
@@ -29,7 +29,7 @@ public class TreinamentoSobreData {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TreinamentoSobreData window = new TreinamentoSobreData();
+					TreinamentoData window = new TreinamentoData();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class TreinamentoSobreData {
 	/**
 	 * Create the application.
 	 */
-	public TreinamentoSobreData() {
+	public TreinamentoData() {
 		initialize();
 	}
 
